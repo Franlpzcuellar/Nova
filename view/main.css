@@ -1,6 +1,19 @@
 /* Importing fonts from Google */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
+
+/* COLORES */
+
+/*
+
+NEGRO = #000000
+ROJO = #FD080F
+GRIS OSCURO = #443C3D
+GRIS CLARO = #DCE0DF
+BLANCO = #FFFFFF
+
+*/
+
 /* Reseting */
 * {
     margin: 0;
@@ -10,7 +23,8 @@
 }
 
 body {
-    background: #ecf0f3;
+    background: #000000;
+    color: #FFFFFF;
 }
 
 .wrapper {
@@ -94,6 +108,12 @@ body {
 
 .wrapper a:hover {
     color: #039BE5;
+}
+
+.barra{
+    position: sticky;
+    left: 0;
+    height: 100vh;
 }
 
 @media(max-width: 380px) {
