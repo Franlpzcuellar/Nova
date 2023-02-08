@@ -6,8 +6,8 @@ Class Personal {
 
     public function __construct(){
 
-        require_once("conexion/conectar.php");
-        $this->db = Conexion::conectar();
+        require_once("conexion/Conectar.php");
+        $this->db = Conexion::conexion();
         
 
     }

@@ -5,8 +5,8 @@ class Lugar{
     private $db;
 
     public function __construct(){
-        require_once("modelo/conectar.php");
-        $this->db = Conexion::conectar();
+        require_once("modelo/Conectar.php");
+        $this->db = Conexion::conexion();
     }
 
     public function readLugar(){
@@ -18,18 +18,20 @@ class Lugar{
         return $final;
     }
 
-public function updateLugar($id, $nombre){
-        $consulta = $this->db->prepare("UPDATE lugar SET nombre=:n WHERE id=:i");
+    public function updateLugar($id, $localidad, $recinto, $direccion){
+        $consulta = $this->db->prepare("UPDATE lugar SET localidad=:l, recinto=:r, direccion=:d WHERE id=:i");
 
         $consulta->execute(
             array(
-                ":n" => $nombre,
+                ":l" => $localidad,
+                ":r" => $recinto,
+                ":d" => $direccion,
                 ":i" => $id
             )
         );
     }
 
-public function deleteLugar($id){
+    public function deleteLugar($id){
         $consulta = $this->db->prepare("DELETE FROM lugar WHERE id=:i");
 
         $consulta->execute(
@@ -40,12 +42,14 @@ public function deleteLugar($id){
     }
 
 
-public function createLugar($nombre){
-        $consulta = $this->db->prepare("INSERT INTO lugar(nombre) VALUES (:n)");
+public function createLugar($localidad, $recinto, $direccion){
+        $consulta = $this->db->prepare("INSERT INTO lugar(localidad, recinto, direccion) VALUES (':l', ':r', ':d')");
 
         $consulta->execute(
             array(
-                ":n" => $nombre
+                ":l" => $localidad,
+                ":r" => $recinto,
+                ":d" => $direccion,
             )
         );
     }

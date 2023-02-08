@@ -5,8 +5,8 @@ class Material{
     private $db;
 
     public function __construct(){
-        require_once("modelo/conectar.php");
-        $this->db = Conexion::conectar();
+        require_once("modelo/Conectar.php");
+        $this->db = Conexion::conexion();
     }
 
     public function readMaterial(){

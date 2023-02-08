@@ -1,31 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="main.css" rel="stylesheet">
-
-    </head>
-    <body>
+<body>
+    <main>
       <div class="wrapper">
-        <div class="logo">
-            <img src="https://cdn0.bodas.net/vendor/70721/3_2/960/jpg/logotipo-nova-eventos-y-producciones_1_70721.jpeg" alt="">
+        <div class="logologin">
+            <img src="https://cdn0.bodas.net/vendor/70721/3_2/960/jpg/logotipo-nova-eventos-y-producciones_1_70721.jpeg">
         </div>
         <div class="text-center mt-4 name">
            Nova Eventos
         </div>
-        <form class="p-3 mt-3">
-            <div class="form-field d-flex align-items-center">
-                <span class="far fa-user"></span>
-                <input type="text" name="userName" id="userName" placeholder="Username">
-            </div>
-            <div class="form-field d-flex align-items-center">
-                <span class="fas fa-key"></span>
-                <input type="password" name="pwd" id="pwd" placeholder="Password">
-            </div>
-            <button class="btn mt-3">Login</button>
-        </form>
-    </div>
-    </body>
-</html>
+            <form class="p-3 mt-3" method="post" action="index.php">
+                <div class="form-field d-flex align-items-center">
+                    <span class="far fa-user"></span>
+                    <input type="text" name="userName" id="userName" placeholder="Username">
+                </div>
+                <div class="form-field d-flex align-items-center">
+                    <span class="fas fa-key"></span>
+                    <input type="password" name="pwd" id="pwd" placeholder="Password">
+                </div>
+                <button class="btn mt-3">Login</button>
+            </form>
+        </div>
+    </main>
+</body>

@@ -5,7 +5,7 @@
     private $db;
 
     public function __construct(){
-        require_once("modelo/conectar.php");
+        require_once("modelo/Conectar.php");
         $this->db = Conectar::conexion();
 
     }
