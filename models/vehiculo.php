@@ -24,7 +24,7 @@
     public function createVehiculo($matricula, $modelo, $revision, $seguro, $fechaVencimiento){
 
 
-        $consulta = 'INSERT INTO vehiculo(matricula, modelo, revision, seguro, fechaVencimiento) VALUES (:matriculal, :modelo, :revision, :seguro, :fechaVencimiento)';
+        $consulta = 'INSERT INTO vehiculo(matricula, modelo, revision, seguro, fechaVencimiento) VALUES (:matricula, :modelo, :revision, :seguro, :fechaVencimiento)';
         $resultado=$this->db->prepare($consulta);
         $resultado->execute(array(":matricula" => $matricula, ":modelo" => $modelo, ":revision" => $revision, ":seguro" => $seguro, ":fechaVencimiento" => $fechaVencimiento));
 
@@ -73,7 +73,7 @@
         $consulta = $this->db->prepare('SELECT * FROM vehiculo LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
         $consulta->execute();
 
-        $fila = $consulta->fetch(PDO::FETCH_OBJ);
+        $fila = $consulta->fetchAll(PDO::FETCH_OBJ);
 
         return $fila;
 

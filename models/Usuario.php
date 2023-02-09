@@ -79,7 +79,7 @@
             $consulta = $this->db->prepare('SELECT * FROM usuario LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
             $consulta->execute();
     
-            $fila = $consulta->fetch(PDO::FETCH_OBJ);
+            $fila = $consulta->fetchAll(PDO::FETCH_OBJ);
     
             return $fila;
     

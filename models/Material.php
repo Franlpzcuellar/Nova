@@ -111,7 +111,7 @@ class Material{
         $consulta = $this->db->prepare('SELECT * FROM material LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
         $consulta->execute();
 
-        $fila = $consulta->fetch(PDO::FETCH_OBJ);
+        $fila = $consulta->fetchAll(PDO::FETCH_OBJ);
 
         return $fila;
 

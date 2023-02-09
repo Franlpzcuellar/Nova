@@ -370,3 +370,7 @@ h2{
 .divCategorias .ulti{
     grid-column: 2/3;
 }
+
+.modelo .columna2 img{
+    border-radius: 10px;
+}

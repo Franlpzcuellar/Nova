@@ -6,10 +6,8 @@ Class Personal {
 
     public function __construct(){
 
-        require_once("conexion/Conectar.php");
-        $this->db = Conexion::conexion();
-        
-
+        require_once("models/Conectar.php");
+        $this->db = Conectar::conexion();
     }
 
     public function getPersonal(){
@@ -21,42 +19,47 @@ Class Personal {
         return $final;
     }
 
-    public function updatePersonal($id, $nombre, $dni, $tarjetaSanitaria, $imagen, $direccion, $comentarios){
+    public function updatePersonal($id, $nombre, $dni, $tarjetaSanitaria, $nSeguridadSocial, $imagen, $direccion, $telefono, $comentarios){
         $consulta = $this->db->prepare("UPDATE personal SET nombre = ':n', dni = ':d',
-         tarjetaSanitaria = ':t', imagen = ':i', direccion = ':di', comentarios = ':c'");
+         tarjetaSanitaria = ':t', nSeguridadSocial = ':ss', imagen = ':i', direccion = ':di', telefono = ':tf', comentarios = ':c' WHERE id = ':id'");
 
         $consulta->execute(
             array(
+                ':id' => $id,
                 ':n' => $nombre,
                 ':d' => $dni,
                 ':t' => $tarjetaSanitaria,
+                ':ss' => $nSeguridadSocial,
                 ':i' => $imagen,
                 ':di' => $direccion,
+                ':tf' => $telefono,
                 ':c' => $comentarios
             )
         );
     }
 
     public function deletePersonal($id){
-        $consulta = $this->db->prepare("DELETE FROM personal WHERE id = '$id'");
+        $consulta = $this->db->prepare("DELETE FROM personal WHERE id = :i");
 
         $consulta->execute(
             array(':i' => $id,)
         );
     }
 
-    public function createPersonal($nombre, $dni, $tarjetaSanitaria, $imagen, $direccion, $comentarios){
-        $consulta = $this->db->prepare("INSERT INTO personal (nombre, dia, tarjetaSanitaria, imagen, direccion, comentarios) 
+    public function createPersonal($nombre, $dni, $tarjetaSanitaria, $nSeguridadSocial, $imagen, $direccion, $telefono, $comentarios){
+        $consulta = $this->db->prepare("INSERT INTO personal(nombre, dni, tarjetaSanitaria, nSeguridadSocial, imagen, direccion, telefono, comentarios) 
         VALUES
-        (':n', ':d', ':t',':i',':di',':c')");
+        (:n, :d, :t, :ss, :i, :di, :tf, :c)");
 
         $consulta->execute(
             array(
                 ':n' => $nombre,
                 ':d' => $dni,
                 ':t' => $tarjetaSanitaria,
+                ':ss' => $nSeguridadSocial,
                 ':i' => $imagen,
                 ':di' => $direccion,
+                ':tf' => $telefono,
                 ':c' => $comentarios
             )
         );
@@ -82,7 +85,7 @@ Class Personal {
         $consulta = $this->db->prepare('SELECT * FROM personal LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
         $consulta->execute();
 
-        $fila = $consulta->fetch(PDO::FETCH_OBJ);
+        $fila = $consulta->fetchAll(PDO::FETCH_OBJ);
 
         return $fila;
 

@@ -43,7 +43,7 @@ class Lugar{
 
 
 public function createLugar($localidad, $recinto, $direccion){
-        $consulta = $this->db->prepare("INSERT INTO lugar(localidad, recinto, direccion) VALUES (':l', ':r', ':d')");
+        $consulta = $this->db->prepare("INSERT INTO lugar(localidad, recinto, direccion) VALUES (:l, :r, :d)");
 
         $consulta->execute(
             array(
@@ -73,7 +73,7 @@ public function createLugar($localidad, $recinto, $direccion){
         $consulta = $this->db->prepare('SELECT * FROM lugar LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
         $consulta->execute();
 
-        $fila = $consulta->fetch(PDO::FETCH_OBJ);
+        $fila = $consulta->fetchAll(PDO::FETCH_OBJ);
 
         return $fila;
 

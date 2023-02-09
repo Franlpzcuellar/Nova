@@ -64,32 +64,34 @@
   
   <main class="fondo">
     
-    <!-- DIV DE PERSONAL -->
+    <!-- DIV PERSONAL -->
 
     <div class="personal d-none">
       <h2 >PERSONAL</h2>
       <div class = "container arriba">
           <div class="mb-3 row">
-            <i class="bi bi-plus-square" data-div="anadirV"> Añadir Fichero</i><!-- sumar fichero-->
+            <i class="bi bi-plus-square" data-div="anadirP"> Añadir Fichero</i><!-- sumar fichero-->
           </div>
       </div>
 
+      <?php foreach($paginasPersonal as $x): ?>     <!-- EMPIEZA EL BUCLE -->
+        
       <div class = "container mb-5 modelo">
         <div class="columna1">
-          <label><span class="titulo">Nombre: </span> Tragaperras</label>
-          <label><span class="titulo">DNI: </span> 09877435456J</label>
-          <label><span class="titulo">Tarjeta Sanitaria: </span>3434354ffd5</label>
-          <label><span class="titulo">Nº S/S: </span>00523821095</label>
-          <label><span class="titulo">Dirección: </span>Calle mi polla gorda sin numero</label>
-          <label><span class="titulo">Telefono: </span> 6969696969</label>
-          <label><span class="titulo">Carnet tipo: </span> Conductor de pollas </label>
+          <label><span class="titulo">Nombre: </span><?php echo $x->nombre  ?></label>
+          <label><span class="titulo">DNI: </span><?php echo $x->dni  ?></label>
+          <label><span class="titulo">Tarjeta Sanitaria: </span><?php echo $x->tarjetaSanitaria  ?></label>
+          <label><span class="titulo">Nº S/S: </span><?php echo $x->nSeguridadSocial  ?></label>
+          <label><span class="titulo">Dirección: </span><?php echo $x->direccion  ?></label>
+          <label><span class="titulo">Telefono: </span><?php echo $x->telefono  ?></label>
+          <label><span class="titulo">Comentarios: </span><?php echo $x->comentarios  ?></label>
         
           <div class="botones">
               <div class="btnModificar">
-                <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>     
+                <input type="submit" class="modBotonP" name="modBotonP" id="modBotonP" value="MODIFICAR"></input>     
               </div>
               <div class="btnEliminar">
-                <input type="submit" class="delBoton" name="delBoton" id="delBoton" value="ELIMINAR"></input>     
+                <input type="submit" class="delBotonP" name="delBotonP" id="delBotonP" value="ELIMINAR"></input>     
               </div>
           </div>
         </div>
@@ -98,6 +100,23 @@
         </div>
         </div>
       </div>
+
+      <?php endforeach; ?>                      <!-- ACABA EL BUCLE -->
+      
+      <? for($i=1; $i<=$numeroDePaginasPersonal; $i++){
+        
+        echo "<nav aria-label='Page navigation example'>
+        <ul class='pagination'>
+          <li class='page-item'><a class='page-link' href='index.php?paginaPersonal=" . $i-1 . "'>Previous</a></li>
+          <li class='page-item'><a class='page-link' href='index.php?paginaPersonal=$i'>". $i ."</a></li>
+          <li class='page-item'><a class='page-link' href='index.php?paginaPersonal=" . $i+1 . "'>Next</a></li>
+        </ul>
+      </nav>";
+        
+      }
+      
+      ?>
+
     </div>
 
     <!-- DIV DE REGISTRAR -->
@@ -117,7 +136,7 @@
     </form>
 
     
-    <!-- DIV DE VEHICULOS -->
+    <!-- DIV ELIMINAR  Y MODIFICAR VEHICULOS -->
     <div class="vehiculos d-none">
       <h2>Vehiculos</h2>
       <div class="container arriba">
@@ -128,21 +147,21 @@
 
       <div class="container mb-5 modelo">
         <div class="columna1">
-          <label><span class="titulo">Marca:</span> Mercedes</label>
-          <label><span class="titulo">Modelo:</span> Vito</label>
-          <label><span class="titulo">Matrícula:</span> 0000 RGF</label>
-          <label><span class="titulo">Última Revisión:</span> 24-05-2022</label>
-          <label><span class="titulo">Última ITV:</span> 26-06-2022</label>
-          <label><span class="titulo">KMs:</span> 234000</label>
-          <label><span class="titulo">Fecha Seguro:</span> 02-02-2022</label>      
-          <label><span class="titulo">Observaciones:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras viverra magna ultrices lorem laoreet, in rhoncus tellus rhoncus. Phasellus eget sem at ex bibendum tincidunt. Quisque in leo in nisi pretium ultricies quis quis nunc. Aliquam erat volutpat. Sed finibus et tortor ut pretium. </label>
+          <label><span class="titulo">Marca:</span name="marca" value=""> Mercedes</label>
+          <label><span class="titulo">Modelo:</span name="modelo" value=""> Vito</label>
+          <label><span class="titulo">Matrícula:</span name="matricula" value=""> 0000 RGF</label>
+          <label><span class="titulo">Última Revisión:</span name="revision" value=""> 24-05-2022</label>
+          <label><span class="titulo">Última ITV:</span name="itv" value=""> 26-06-2022</label>
+          <label><span class="titulo">KMs:</span name="km" value=""> 234000</label>
+          <label><span class="titulo">Fecha Seguro:</span name="seguro" value=""> 02-02-2022</label>      
+          <label><span class="titulo">Observaciones:</span name="observaciones" value=""> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras viverra magna ultrices lorem laoreet, in rhoncus tellus rhoncus. Phasellus eget sem at ex bibendum tincidunt. Quisque in leo in nisi pretium ultricies quis quis nunc. Aliquam erat volutpat. Sed finibus et tortor ut pretium. </label>
           
           <div class="botones">
             <div class="btnModificar">
-              <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>     
+              <input type="submit" class="modBotonV" name="modBotonV" id="modBotonV" value="MODIFICAR"></input>     
             </div>
             <div class="btnEliminar">
-              <input type="submit" class="delBoton" name="delBoton" id="delBoton" value="ELIMINAR"></input>     
+              <input type="submit" class="delBotonV" name="delBotonV" id="delBotonV" value="ELIMINAR"></input>     
             </div>
           </div>
         </div>
@@ -155,7 +174,7 @@
     </div>
 
     
-    <!-- DIV DE MATERIAL -->
+    <!-- DIV ELIMINAR Y MODIFCAR MATERIAL -->
     <div class="material d-none">
       <div class="container arriba">
             <div class="mb-3 row">
@@ -197,15 +216,15 @@
 
 
         <div class="btnModificar">
-          <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>    
-        </div>
+          <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>
+          
       </div>
     </div>
   </div>
     
     
     
-    <!-- DIV DE CARGA -->
+    <!-- DIV MODIFICAR CARGA -->
     <div class="carga d-none">
     <h2>Carga</h2>
         <div class="container arriba">
@@ -223,14 +242,14 @@
           <label><span class="titulo">Fecha:</span>02-01-2023</label>
 
           <div class="btnModificar">
-            <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>    
+            <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>  
           </div>
         </div>
     </div>
 
 
     
-    <!-- DIV DE UBICACIONES -->
+    <!-- DIV ELIMINAR UBICACIONES -->
 
     <div class="ubicaciones d-none">
       <h2>Ubicaciones</h2>
@@ -269,10 +288,11 @@
 
 
 
-  <!--AÑADIR PERSONAL-->
+  <!-- DIV AÑADIR PERSONAL-->
 
   <div class="pantallaOscura anadirP d-none">
-      <div class="pantallaFrontal container mb-5"><i class="bi bi-x" data-div="anadirP"></i>
+      <form class="pantallaFrontal container mb-5" method="post" action="index.php">
+        <i class="bi bi-x" data-div="anadirP"></i>
           <label><span class="titulo">Nombre:</span></label>
           <input type="text" name="addNombre">
           <label><span class="titulo">DNI:</span></label>
@@ -289,8 +309,8 @@
           <input type="text" name="addTelefono">      
           <label><span class="titulo">Comentarios:</span>
           <input type="text" name="addCom">
-          <input type="submit" name="addBotonP" id="addBotonP" value="addBotonP">AÑADIR</input> 
-      </div>
+          <input type="submit" name="addBotonP" id="addBotonP" value="AÑADIR"></input> 
+      </form>
   </div>
 
 
