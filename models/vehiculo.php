@@ -53,7 +53,31 @@
         ));
     }
 
+    public function getFilas(){
+        // Devuelve un int con las filas que hay en una table
+        
+        $consulta = $this->db->prepare("SELECT * FROM vehiculo");
+        $consulta->execute();
 
+        $total = $consulta->rowCount();
+
+        return $total;
+
+    }
+
+    public function getLimit($numeroDePagina, $cuantosElementosPorPagina){
+        // Devuelve un SELECT * CON LIMIT
+
+        $numeroEmpieza = $cuantosElementosPorPagina * ($numeroDePagina - 1);
+
+        $consulta = $this->db->prepare('SELECT * FROM vehiculo LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
+        $consulta->execute();
+
+        $fila = $consulta->fetch(PDO::FETCH_OBJ);
+
+        return $fila;
+
+    }
 
     }
 

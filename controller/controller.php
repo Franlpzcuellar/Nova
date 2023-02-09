@@ -45,11 +45,67 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
         $claseUsuario = new Usuario();  //nos traemos las clases usuario
     
         if($claseUsuario->registrar($_POST['nregistrar'], $_POST['cregistrar'],$_POST['rol'] )){
-            
-            require("index.php");           
+
+            // echo
+            //         "<script>
+            //         alert('Sent Successfully');
+            //         document.location.href = 'index.php';
+            //         </script>
+            //         ";    
         }
         
     }
+
+    //AÑADIR PERSONAL 
+
+    if(isset($_POST['addBotonP'])){
+
+    $clasePersonal = new Personal();
+
+    }
+
+
+
+
+    //ELIMINAR PERSONAL
+
+   /* if(isset($_POST[])){
+        
+        
+        
+    }*/
+
+
+    //MODIFICAR PERSONAL
+
+
+
+    //AÑADIR VEHICULOS
+
+
+    //ELIMINAR VEHICULOS
+
+
+    //MODIFICAR VEHICULOS
+
+
+    //AÑADIR MATERIAL
+
+
+    //ELIMINAR MATERIAL
+
+
+    //MODIFICAR MATERIAL
+
+
+    //AÑADIR UBICACION
+
+
+    //ELIMINAR UBICACION
+
+
+    //MODIFICAR UBICACION
+
 
     /* PROVISIONAL */
     if($_SESSION["rol"] == "admin"){
@@ -58,7 +114,13 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
         echo "PROVISIONAL_LECTURA";
     }
     /* PROVISIONAL */
+
 }
+
+
+
+
+
 
 
 

@@ -57,5 +57,32 @@
 
             return $consulta->fetch(PDO::FETCH_ASSOC)["rol"];
         }
+
+
+        public function getFilas(){
+            // Devuelve un int con las filas que hay en una table
+            
+            $consulta = $this->db->prepare("SELECT * FROM usuario");
+            $consulta->execute();
+
+            $total = $consulta->rowCount();
+
+            return $total;
+    
+        }
+
+        public function getLimit($numeroDePagina, $cuantosElementosPorPagina){
+            // Devuelve un SELECT * CON LIMIT
+    
+            $numeroEmpieza = $cuantosElementosPorPagina * ($numeroDePagina - 1);
+    
+            $consulta = $this->db->prepare('SELECT * FROM usuario LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
+            $consulta->execute();
+    
+            $fila = $consulta->fetch(PDO::FETCH_OBJ);
+    
+            return $fila;
+    
+        }
     }
 ?>
