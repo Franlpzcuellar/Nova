@@ -3,6 +3,8 @@
     font-family: "HighlandGothicFLF-Bold";
     src:url(style/HighlandGothicFLF-Bold.ttf)
 }
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 /* COLORES */
 
 /*
@@ -44,10 +46,10 @@ main{
     min-height: 100vh;
     width: 100vw;
     max-width: 100vw;
+    font-family: 'Poppins', sans-serif;
 }
 
 h2{
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     margin: auto;
     margin: 10px;
@@ -59,6 +61,11 @@ h2{
     margin-left: 280px;
 }
 
+.logindiv{
+    box-shadow: 0px 10px 100px #000000;
+
+}
+
 .logologin{
     display: flex;
     justify-content: center;
@@ -67,6 +74,8 @@ h2{
 .logologin img{
     border-radius: 20px;
     height: 100px;
+    border: 1px solid #FD080F;
+    box-shadow: 0px 5px 10px #000000;
 }
 
 .wrapper {
@@ -250,6 +259,8 @@ h2{
 
 .modelo .columna2 img{
     height: 100px;
+    box-shadow: 0px 0px 0px 1px #FD080F,
+    0px 5px 10px #000000;
 }
 
 
@@ -266,17 +277,52 @@ h2{
     width: 50%;
 }
 
-.modBoton, .delBoton{
+.botones2{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.botonesPersonal{
+    grid-column: 1/3;
+}
+
+.nuevoanadir{
+    background: #FD080F;
+    width: fit-content;
+    border-radius: 20px;
+    border: 1px solid #FD080F;
+    padding-inline: 15px;
+    padding-block: 8px;
+    font-weight: bold;
+
+    user-select: none;
+
+    cursor: pointer;
+}
+
+.nuevoanadir:hover{
+    background: #ffffff;
+    color: #FD080F;
+}
+
+.modBoton, .delBoton, .anadirBoton{
     background-color: #FD080F;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding-inline: 12px;
+    padding-block: 3px;
     color: #FFFFFF;
     border:none;
     border-radius: 15px;
 }
 
-.modBoton:hover, .delBoton:hover{
-    background-color: rgb(255, 61, 65)
+.modBoton:hover, .delBoton:hover, .anadirBoton:hover{
+    background-color: rgb(255, 61, 65);
+    box-shadow: 0px 3px 6px #00000091;
+}
+
+.anadirBoton{
+    margin-top: 20px;
 }
 
 .input-group{
@@ -298,7 +344,7 @@ h2{
 }
 
 .buscar:hover{
-    background-color: rgb(255, 61, 65)
+    background-color: rgb(255, 61, 65);
 }
 
 
@@ -316,6 +362,9 @@ h2{
 
 .pantallaFrontal{
     display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-template-rows: repeat(2, 1fr);
     border: 1px solid #FD080F;
     box-shadow: 0px 0px 100px 0px #000000;
     padding: 40px;
@@ -324,10 +373,20 @@ h2{
     width: 50%;
 }
 
+.pantallaFrontal input{
+    margin-top: 8px;
+    width: 60%;
+}
+
+.file{
+    color:white;
+
+}
+
 .bi-x{
     background: #000000;
-    box-shadow: 0px 0px 0px 2px #443C3D,
-    0px 0px 0px 3px #ecf0f3;
+    border: 1px solid #FD080F;   
+    box-shadow: 0px 5px 10px #000000; 
     padding: 5px;
     border-radius: 10px;
     position: absolute;
@@ -338,15 +397,19 @@ h2{
     cursor: pointer;
 }
 
-h2{
+.bi-x:hover{
+    background: #3a3a3a;
+    border: 1px solid #FD080F; 
+}
 
+h2{
     color: white;
 }
 
 .divCategorias{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
     grid-gap: 5px;
 }
 
@@ -373,4 +436,26 @@ h2{
 
 .modelo .columna2 img{
     border-radius: 10px;
+}
+
+.paginacion{
+    display: flex;
+    border-radius: 30px;
+    padding-block: 15px;
+    
+    justify-content: center;
+}
+
+.pagina{
+    text-decoration: none;
+    border-radius: 50%;
+    padding-inline: 13px;
+    padding-block: 5px;
+    margin-left: 30px;
+    color: white;
+    background-color: #FD080F;
+}
+
+.pagina:hover{
+    background-color: rgb(255, 61, 65);
 }

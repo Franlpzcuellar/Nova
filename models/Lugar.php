@@ -6,7 +6,7 @@ class Lugar{
 
     public function __construct(){
         require_once("modelo/Conectar.php");
-        $this->db = Conexion::conexion();
+        $this->db = Conectar::conexion();
     }
 
     public function readLugar(){

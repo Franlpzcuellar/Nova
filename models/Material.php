@@ -6,7 +6,7 @@ class Material{
 
     public function __construct(){
         require_once("modelo/Conectar.php");
-        $this->db = Conexion::conexion();
+        $this->db = Conectar::conexion();
     }
 
     public function readMaterial(){
@@ -46,8 +46,8 @@ class Material{
         );
     }
 
-    public function createMaterial($nombre, $familia, $marca, $foto, $datos, $averias){
-        $consulta = $this->db->prepare("INSERT INTO material(nombre, familia, marca, foto, datos, averias) VALUES (:n, :f, :m, :o, :d, :a)");
+    public function createMaterial($nombre, $familia, $marca, $foto, $datos){ //habia varaible $averias, pero eso es en vehiculo no en material
+        $consulta = $this->db->prepare("INSERT INTO material(nombre, familia, marca, foto, datos) VALUES (:n, :f, :m, :o, :d)");
 
         $consulta->execute(
             array(
@@ -55,8 +55,7 @@ class Material{
                 ":f" => $familia,
                 ":m" => $marca,
                 ":o" => $foto,
-                ":d" => $datos,
-                ":a" => $averias
+                ":d" => $datos
             )
         );
     }

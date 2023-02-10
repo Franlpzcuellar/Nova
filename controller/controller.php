@@ -19,7 +19,7 @@ if(isset($_GET["cerrarSesion"])){
     header("Location: index.php");
 }
 
-if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login si no hay un usuario logeado en este momento*/
+if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login si no hay un usuario logeado en este momento*/
     if(isset($_POST['userName']) && isset($_POST['pwd'])){
         $claseUsuario = new Usuario();      // Nuevo Usuario para tener los métodos de validación de usuarios.
 
@@ -28,7 +28,29 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
 
             if($claseUsuario->getRol($_SESSION["nombre"]) == "admin"){
                 $_SESSION["rol"] = "admin";
+
+                $personal = new Personal();
+        
+
+                $filasPersonal = $personal->getFilas();
+                $filasPersonalPorPagina = 3;
+                
+                if(isset($_GET["paginaPersonal"])){
+                    $paginaPersonalActual = $_GET["paginaPersonal"];
+                }   else{
+                    $paginaPersonalActual = 1;
+                }
+        
+                
+                $paginasPersonal = $personal->getLimit($paginaPersonalActual, $filasPersonalPorPagina);
+                
+                $numeroDePaginasPersonal = ceil($filasPersonal / $filasPersonalPorPagina);
+
+
+
+
                 require("view/vista_admin.php");
+
             }   else{
                 $_SESSION["rol"] = "lectura";
                 // Aquí irá el require que importará la vista de PERSONAL.
@@ -41,7 +63,7 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
         require("view/login.html");        // Si no existen usuario y contraseña directamente se pide otra vez el login
     
     }
-}else{  /* Aquí introduciremos las redirecciones al resto de pestañas */
+}else{  // Aquí introduciremos las redirecciones al resto de pestañas */
     
         // AQUI YA SE HA INICIADO SESION
 
@@ -70,14 +92,7 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
 
         $claseUsuario = new Usuario();  //nos traemos las clases usuario
     
-        if($claseUsuario->registrar($_POST['nregistrar'], $_POST['cregistrar'],$_POST['rol'] )){
-            echo
-                    "<script>
-                    confirm ('Sent Successfully');
-                    document.location.href = 'index.php';
-                    </script>
-                    ";    
-        }
+        $claseUsuario->registrar($_POST['nregistrar'], $_POST['cregistrar'],$_POST['rol']);
         
     }
 
@@ -85,9 +100,21 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
 
     if(isset($_POST['addBotonP'])){
 
+        $nombre_imagen = $_FILES["addImagen"]["name"];
+        $tipo_imagen = $_FILES["addImagen"]["type"];
+        $tam_imagen = $_FILES["addImagen"]["size"];
+        
+        if($tam_imagen <= 1000000){
+            if($tipo_imagen=="addImagen/jpg" || $tipo_imagen == "addImagen/jpeg" || $tipo_imagen == "addImagen/png" || $tipo_imagen == "addImagen/gif"){
+                $carpeta_destino = 'upload/imagenes/';
+                move_uploaded_file($_FILES["addImagen"]["tmp_name"], $carpeta_destino.$nombre_imagen);
+            
+            }
+        }
+
         $clasePersonal = new Personal();
 
-        $clasePersonal->createPersonal($_POST['addNombre'], $_POST['addDNI'], $_POST['addTarjetasanitaria'], $_POST['addNumss'], $_FILES["addImagen"]["name"], $_POST['addDireccion'], $_POST['addTelefono'], $_POST["addCom"]);
+        $clasePersonal->createPersonal($_POST['addNombre'], $_POST['addDNI'], $_POST['addTarjetasanitaria'], $_POST['addNumss'], $nombre_imagen , $_POST['addDireccion'], $_POST['addTelefono'], $_POST["addCom"]);
             
         header("Location: index.php");
     }
@@ -105,15 +132,15 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
 
     //MODIFICAR PERSONAL
 
-    /*if(isset($_POST['modBotonP'])){
+    if(isset($_POST['modBotonP'])){
         $clasePersonal = new Personal();
 
         $clasePersonal->updatePersonal($_POST['id'], $_POST['nombre'], $_POST['dni'], $_POST['tarjetaSanitaria'], $_POST['nSeguridadSocial'], $_POST['imagen'], $_POST['direccion'], $_POST['telefono'], $_POST['comentarios']);
-    }*/
+    }
 
     //AÑADIR VEHICULOS
 
-    if(isset($_POST['addBotonV'])){
+    /*if(isset($_POST['addBotonV'])){
 
         $claseVehiculo = new Vehiculo();
 
@@ -122,11 +149,11 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
         header("Location: index.php");
         
     
-    }
+    }*/
 
     //ELIMINAR VEHICULOS
 
-   /* if(isset($_POST["delBotonV"])){
+    /*if(isset($_POST["delBotonV"])){
         $claseVehiculo = new Vehiculo();
         $claseVehiculo->deleteVehiculo($_POST["id"]);
         header("Location: index.php);
@@ -141,14 +168,17 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
     }*/
     
 
-    //AÑADIR MATERIAL
+    //AÑADIR MATERIAL // estaba comentado
 
     /*if(isset($_POST['addBotonM'])){
 
         $claseMaterial = new Material();
 
-        $claseMaterial->createMaterial($_POST['addNom'],$_POST['addFam'],$_POST['addMarca'],$_POST['addFoto'],$_POST['']);
+        $claseMaterial->createMaterial($_POST['addNom'],$_POST['addFam'],$_POST['addMarca'],$_POST['addFoto'],$_POST['addDatos']);
+
+        header("Location: index.php");
     }*/
+    
 
 
     //ELIMINAR MATERIAL
@@ -161,15 +191,15 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
     //MODIFICAR MATERIAL
 
 
-    //AÑADIR LUGAR
+    //AÑADIR LUGAR estaba comentado
 
-    /*if(isset($_POST["addBotonU"])){
+    if(isset($_POST["addBotonU"])){
         $claseLugar = new Lugar();
         $claseLugar->createLugar($_POST['addLocalidad'], $_POST['addRe'], $_POST['addDir']);
 
         header('Location: index.php');
         
-    }*/
+    }
 
 
     /*ELIMINAR UBICACION
@@ -187,6 +217,8 @@ if(!isset($_SESSION["nombre"])){ /* Este if sirve para que nos envíe al login s
         echo "PROVISIONAL_LECTURA";
     }
     /* PROVISIONAL */
+
+
 
 }
 

@@ -1,4 +1,11 @@
 $(document).ready(function () {
+
+    $(".activo").addClass("d-none");            // Para pagina inicial
+    $(".activo").removeClass("activo");
+    $("." + $("#categoriaInicio").val()).removeClass("d-none");
+    $("." + $("#categoriaInicio").val()).addClass("activo");
+
+
     
     $(document).on("click", ".nav-link", function () {          // Botones de sidebar
         $(".activo").addClass("d-none");

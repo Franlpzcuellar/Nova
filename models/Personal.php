@@ -82,7 +82,7 @@ Class Personal {
 
         $numeroEmpieza = $cuantosElementosPorPagina * ($numeroDePagina - 1);
 
-        $consulta = $this->db->prepare('SELECT * FROM personal LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
+        $consulta = $this->db->prepare('SELECT * FROM personal ORDER BY nombre ASC LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
         $consulta->execute();
 
         $fila = $consulta->fetchAll(PDO::FETCH_OBJ);
