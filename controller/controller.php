@@ -29,27 +29,7 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
             if($claseUsuario->getRol($_SESSION["nombre"]) == "admin"){
                 $_SESSION["rol"] = "admin";
 
-                $personal = new Personal();
-        
-
-                $filasPersonal = $personal->getFilas();
-                $filasPersonalPorPagina = 3;
-                
-                if(isset($_GET["paginaPersonal"])){
-                    $paginaPersonalActual = $_GET["paginaPersonal"];
-                }   else{
-                    $paginaPersonalActual = 1;
-                }
-        
-                
-                $paginasPersonal = $personal->getLimit($paginaPersonalActual, $filasPersonalPorPagina);
-                
-                $numeroDePaginasPersonal = ceil($filasPersonal / $filasPersonalPorPagina);
-
-
-
-
-                require("view/vista_admin.php");
+                header("Location: index.php");
 
             }   else{
                 $_SESSION["rol"] = "lectura";
@@ -87,11 +67,37 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
 
         
+        // ELIMINAR PERSONAL
+
+        if(isset($_POST["botonBorrarPersonal"])){
+            $personal->deletePersonal($_POST["idBorrarPersonal"]);
+
+            header("Location: index.php");
+        }
+
+
+        // MOSTRAR VEHICULOS
+
+        
+        $vehiculo = new Vehiculo();
+
+        $filasVehiculo = $vehiculo->getFilas();
+        $filasVehiculoPorPagina = 3;
+
+        if(isset($_GET["paginaVehiculo"])){
+            $paginaVehiculoActual = $_GET["paginaVehiculo"];
+        } else {
+            $paginaVehiculoActual = 1;
+        }
+
+        $paginasVehiculo = $vehiculo->getLimit($paginaVehiculoActual, $filasVehiculoPorPagina);
+        $numeroDePaginasVehiculo = ceil($filasVehiculo / $filasVehiculoPorPagina);
+        
+        
         //parte de registrar en admin 
     if(isset($_POST["registrar"])){
 
         $claseUsuario = new Usuario();  //nos traemos las clases usuario
-    
         $claseUsuario->registrar($_POST['nregistrar'], $_POST['cregistrar'],$_POST['rol']);
         
     }
@@ -100,21 +106,20 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     if(isset($_POST['addBotonP'])){
 
-        $nombre_imagen = $_FILES["addImagen"]["name"];
-        $tipo_imagen = $_FILES["addImagen"]["type"];
-        $tam_imagen = $_FILES["addImagen"]["size"];
+        $nombreImagen = $_FILES["addImagen"]["name"];
+        $tipoImagen = $_FILES["addImagen"]["type"];
+        $tamImagen = $_FILES["addImagen"]["size"];
         
-        if($tam_imagen <= 1000000){
-            if($tipo_imagen=="addImagen/jpg" || $tipo_imagen == "addImagen/jpeg" || $tipo_imagen == "addImagen/png" || $tipo_imagen == "addImagen/gif"){
-                $carpeta_destino = 'upload/imagenes/';
-                move_uploaded_file($_FILES["addImagen"]["tmp_name"], $carpeta_destino.$nombre_imagen);
-            
+        if($tamImagen <= 1000000){
+            if($tipoImagen == "image/jpg" || $tipoImagen == "image/jpeg" || $tipoImagen == "image/png" || $tipoImagen == "image/gif"){
+                //$urlInsert = dirname(__FILE__) ."/upload/images/";
+                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/proyectonova/upload/images/'.$nombreImagen;
+                move_uploaded_file($_FILES["addImagen"]["tmp_name"], $carpetaDestino);
             }
         }
 
         $clasePersonal = new Personal();
-
-        $clasePersonal->createPersonal($_POST['addNombre'], $_POST['addDNI'], $_POST['addTarjetasanitaria'], $_POST['addNumss'], $nombre_imagen , $_POST['addDireccion'], $_POST['addTelefono'], $_POST["addCom"]);
+        $clasePersonal->createPersonal($_POST['addNombre'], $_POST['addDNI'], $_POST['addTarjetasanitaria'], $_POST['addNumss'], $nombreImagen , $_POST['addDireccion'], $_POST['addTelefono'], $_POST["addCom"]);
             
         header("Location: index.php");
     }
@@ -124,7 +129,6 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     if(isset($_POST['delBotonP'])){
         $clasePersonal = new Personal();
-
         $clasePersonal->deletePersonal($_POST['id']);
 
         header("Location: index.php");
@@ -134,38 +138,68 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     if(isset($_POST['modBotonP'])){
         $clasePersonal = new Personal();
+        $clasePersonal->updatePersonal($_POST['id'], $_POST['editNombre'], $_POST['editDNI'], $_POST['editTarjetasanitaria'], $_POST['editNumss'], $_POST['editImagen'], $_POST['editDireccion'], $_POST['editTelefono'], $_POST['editCom']);
 
-        $clasePersonal->updatePersonal($_POST['id'], $_POST['nombre'], $_POST['dni'], $_POST['tarjetaSanitaria'], $_POST['nSeguridadSocial'], $_POST['imagen'], $_POST['direccion'], $_POST['telefono'], $_POST['comentarios']);
+        header("Location: index.php");
     }
+
+    
 
     //AÑADIR VEHICULOS
 
-    /*if(isset($_POST['addBotonV'])){
+    if(isset($_POST['addBotonV'])){
+
+        $nombreImg = $_FILES["addImg"]["name"];
+        $tipoImg = $_FILES["addImg"]["type"];
+        $tamImg = $_FILES["addImg"]["size"];
+
+        $nombreImgItv = $_FILES["addImgItv"]["name"];
+        $tipoImgItv = $_FILES["addImgItv"]["type"];
+        $tamImgItv = $_FILES["addImgItv"]["size"];
+
+        $nombreImgPermiso = $_FILES["addImgPermiso"]["name"];
+        $tipoImgPermiso = $_FILES["addImgPermiso"]["type"];
+        $tamImgPermiso = $_FILES["addImgPermiso"]["size"];
+
+        if($tamImg <= 1000000 && $tamImgItv <= 1000000 && $tamImgPermiso <= 1000000){
+            if($tipoImg=="image/jpg" || $tipoImg == "image/jpeg" || $tipoImg == "image/png" || $tipoImg == "image/gif"){
+                $carpetaDestino = 'C:/xampp/htdocs/php/ProyectoNova/upload/images/'. $nombreImg;
+                move_uploaded_file($_FILES["addImg"]["tmp_name"], $carpetaDestino);
+            }
+            if($tipoImgPermiso=="image/jpg" || $tipoImgPermiso == "image/jpeg" || $tipoImgPermiso == "image/png" || $tipoImgPermiso == "image/gif"){
+                $carpetaDestino = 'C:/xampp/htdocs/php/ProyectoNova/upload/images/'. $nombreImgItv;
+                move_uploaded_file($_FILES["addImgItv"]["tmp_name"], $carpetaDestino);
+            }
+            if($tipoImgPermiso=="image/jpg" || $tipoImgPermiso == "image/jpeg" || $tipoImgPermiso == "image/png" || $tipoImgPermiso == "image/gif"){
+                $carpetaDestino = 'C:/xampp/htdocs/php/ProyectoNova/upload/images/'. $nombreImgPermiso;
+                move_uploaded_file($_FILES["addImgPermiso"]["tmp_name"], $carpetaDestino);
+            }
+        }
 
         $claseVehiculo = new Vehiculo();
 
-        $clasePersonal->createVehiculo($_POST['addMarca'],$_POST['addModelo'],$_POST['addMatricula'],$_POST['addRevision'],$_POST['addITV'],$_POST['addKM'],$_POST['addSeguro'],$_POST['addObs']);
+        $claseVehiculo->createVehiculo($_POST['addMarca'],$_POST['addModelo'],$_POST['addMatricula'],$_POST['addAverias'],$_POST['addITV'],$_POST['addKM'],$_POST['addSeguro'],$_POST['addFechaSeguro'], $nombreImg, $_nombreImgItv, $nombreImgPermiso, $_POST['addObs']);
 
         header("Location: index.php");
-        
-    
-    }*/
+    }
 
     //ELIMINAR VEHICULOS
 
-    /*if(isset($_POST["delBotonV"])){
+    if(isset($_POST["botonBorrarVehiculo"])){
         $claseVehiculo = new Vehiculo();
-        $claseVehiculo->deleteVehiculo($_POST["id"]);
-        header("Location: index.php);
-    }*/
+        $claseVehiculo->deleteVehiculo($_POST["idBorrarVehiculo"]);
+        
+        header("Location: index.php");
+    }
 
 
     //MODIFICAR VEHICULOS
-    /*if(isset($_POST['modBotonP'])){
+    if(isset($_POST['modBotonV'])){
         $claseVehiculo = new Vehiculo();
-
-        $claseVehiculo->updateVehiculo($_POST['id'], $_POST['matricula'], $_POST['modelo'], $_POST['revision'], $_POST['seguro'], $_POST['imagen'], $_POST['fechaVencimiento']);
-    }*/
+        $claseVehiculo->updateVehiculo($_POST['id'], $_POST['editMarca'],$_POST['editModelo'],$_POST['editMatricula'],$_POST['editAverias'],$_POST['editITV'],$_POST['editKM'],$_POST['editSeguro'],$_POST['editFechaSeguro'], $_POST['editImg'], $_POST['editImgItv'], $_POST['editImgPermiso'], $_POST['editObs']);
+        
+        header("Location: index.php");
+    }
     
 
     //AÑADIR MATERIAL // estaba comentado
@@ -200,6 +234,23 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
         header('Location: index.php');
         
     }
+
+
+    /*  MOSTRAR UBICACION */
+    
+        $ubicacion = new Lugar();
+
+        $filasUbicacion = $ubicacion->getFilas();
+        $filasUbicacionPorPagina = 3;
+
+        if(isset($_GET["paginaUbicacion"])){
+            $paginaUbicacionActual = $_GET["paginaUbicacion"];
+        } else {
+            $paginaUbicacionActual = 1;
+        }
+
+        $paginasUbicacion = $ubicacion->getLimit($paginaUbicacionActual, $filasUbicacionPorPagina);
+        $numeroDePaginasUbicacion = ceil($filasUbicacion / $filasUbicacionPorPagina);
 
 
     /*ELIMINAR UBICACION

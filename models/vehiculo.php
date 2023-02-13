@@ -5,7 +5,7 @@
     private $db;
 
     public function __construct(){
-        require_once("modelo/Conectar.php");
+        require_once("models/Conectar.php");
         $this->db = Conectar::conexion();
 
     }
@@ -21,12 +21,27 @@
 
     }
 
-    public function createVehiculo($matricula, $modelo, $revision, $seguro, $fechaVencimiento){
+    public function createVehiculo($marca, $matricula, $modelo, $ultimaItv, $averias, $kms, $seguro, $fechaSeguro, $img, $imgItv, $imgPermiso, $observaciones){
 
 
-        $consulta = 'INSERT INTO vehiculo(matricula, modelo, revision, seguro, fechaVencimiento) VALUES (:matricula, :modelo, :revision, :seguro, :fechaVencimiento)';
+        $consulta = 'INSERT INTO vehiculo(marca, matricula, modelo, ultimaItv, averias, kms, seguro, fechaSeguro, imagen, imagenItv, imagenPermisoCirculacion, observaciones)
+        VALUES
+        (:marca, :matricula, :modelo, :ultimaItv, :averias, :kms, :seguro, :fechaSeguro, :imagen, :imagenItv, :imagenPermisoCirculacion, :observaciones)';
         $resultado=$this->db->prepare($consulta);
-        $resultado->execute(array(":matricula" => $matricula, ":modelo" => $modelo, ":revision" => $revision, ":seguro" => $seguro, ":fechaVencimiento" => $fechaVencimiento));
+        $resultado->execute(array(
+            ":marca" => $marca,
+            ":matricula" => $matricula,
+            ":modelo" => $modelo,
+            ":ultimaItv" => $ultimaItv,
+            ":averias" => $averias,
+            ":kms" => $kms,
+            ":seguro" => $seguro,
+            ":fechaSeguro" => $fechaSeguro,
+            ":imagen" => $img,
+            ":imagenItv" => $imgItv,
+            ":imagenPermisoCirculacion" => $imgPermiso,
+            ":observaciones" => $observaciones
+        ));
 
     }
     
@@ -39,17 +54,21 @@
         
     }
 
-    public function updateVehiculo($id, $matricula, $modelo, $revision, $seguro, $fechaVencimiento){
+    public function updateVehiculo($id,$marca, $matricula, $modelo, $ultimaItv, $averias, $kms, $seguro, $fechaSeguro, $observaciones){
 
-        $consulta = 'UPDATE FROM vehiculo SET MATRICULA = :matricula, MODELO = :modelo, REVISION = :revision, SEGURO = :seguro, FECHAVENCIMIENTO = :fechaVencimiento WHERE ID = :id';
+        $consulta = 'UPDATE FROM vehiculo SET MARCA = :marca, MATRICULA = :matricula, MODELO = :modelo, ultimaItv = :ultimaItv, averias = :averias, kms = :kms, seguro = :seguro, fechaSeguro = :fechaSeguro, observaciones = :observaciones WHERE ID = :id';
         $resultado = $this->db->prepare($consulta);
         $resultado->execute(array(
             ":id" => $id,
+            ":marca" => $marca,
             ":matricula" => $matricula,
             ":modelo" => $modelo,
-            ":revision" => $revision,
+            ":ultimaItv" => $ultimaItv,
+            ":averias" => $averias,
+            ":kms" => $kms,
             ":seguro" => $seguro,
-            ":fechaVencimiento" => $fechaVencimiento
+            ":fechaSeguro" => $fechaSeguro,
+            ":observaciones" => $observaciones
         ));
     }
 

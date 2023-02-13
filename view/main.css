@@ -47,6 +47,8 @@ main{
     width: 100vw;
     max-width: 100vw;
     font-family: 'Poppins', sans-serif;
+
+    color: #ecf0f3;
 }
 
 h2{
@@ -322,7 +324,8 @@ h2{
 }
 
 .anadirBoton{
-    margin-top: 20px;
+    margin-top: 8px;
+    width: 200px;
 }
 
 .input-group{
@@ -373,14 +376,18 @@ h2{
     width: 50%;
 }
 
-.pantallaFrontal input{
+.pantallaFrontal .input{
     margin-top: 8px;
     width: 60%;
 }
 
+.pantallaFrontal label span{
+    display: flex;
+    justify-content: left;
+}
+
 .file{
     color:white;
-
 }
 
 .bi-x{
@@ -458,4 +465,8 @@ h2{
 
 .pagina:hover{
     background-color: rgb(255, 61, 65);
+}
+
+.textoEliminar{
+    color: #ecf0f3;
 }

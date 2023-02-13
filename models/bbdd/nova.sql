@@ -22,15 +22,18 @@ CREATE TABLE personal(
 
 CREATE TABLE vehiculo(
     id INT PRIMARY KEY AUTO_INCREMENT,
+    marca VARCHAR(255),
     matricula VARCHAR(200),
     modelo VARCHAR(200),
     imagen VARCHAR(255),
     imagenItv VARCHAR(255),
     imagenPermisoCirculacion VARCHAR(255),
-    revision VARCHAR(30000),
+    ultimaItv VARCHAR(30000),
     averias VARCHAR(5000),
+    kms INT,
     seguro VARCHAR(200),
-    fechaVencimiento VARCHAR(200)
+    fechaSeguro VARCHAR(200),
+    observaciones TEXT
 );
 
 CREATE TABLE material(
@@ -64,11 +67,11 @@ VALUES
 INSERT INTO personal(nombre,dni,tarjetaSanitaria,nSeguridadSocial,imagen,direccion,telefono,comentarios)
 VALUES
 ("Pedro","01648246C","9176YJ","098765432","https://dibujosycolores.com/numeros/numero-2/numero-2-1.jpg","Calle Polla 123 1C","603135478","Perro sanxe"),
-("MadreMarco","98765240J","98167","123456789","https://pbs.twimg.com/media/D6uc2kBX4AAv3xV.jpg","Calle Coño 123 2Y","69696969","Marco gay");
-INSERT INTO vehiculo(matricula,modelo,imagen,imagenItv,imagenPermisoCirculacion,revision,averias,seguro,fechaVencimiento)
+("MadreMarco","98765240J","98167","123456789","https://pbs.twimg.com/media/D6uc2kBX4AAv3xV.jpg","Calle Coño 123 2Y","69696969","Marco gay. Su vieja");
+INSERT INTO vehiculo(marca, matricula,modelo,imagen,imagenItv,imagenPermisoCirculacion,ultimaItv,averias, kms, seguro, fechaSeguro, observaciones)
 VALUES
-("2127JFK","modeloyoqse","https://images.coches.com/_vn_/kia/Sportage/c399cf1d98a95d24f8e8715dd0b13fb2.jpg?p=cc_vn_high","https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2022/09/pegatina-itv-2803459.jpg","https://www.dgt.es/export/sites/web-DGT/.galleries/Images/nuestros-servicios/tarjeta-itv-500.jpg","revisionidkqcojonesponer aqui","averia en el motor","29-08-27","29-08-30"),
-("0984OYS","modelo2","https://images.coches.com/_vn_/kia/Sportage/c399cf1d98a95d24f8e8715dd0b13fb2.jpg?p=cc_vn_high","https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2022/09/pegatina-itv-2803459.jpg","https://www.dgt.es/export/sites/web-DGT/.galleries/Images/nuestros-servicios/tarjeta-itv-500.jpg","revisionidkqcojonesponer aquilorenipmsuasmamsaksadfgqwertyuf","averia en el motorasasadfd","29-08-27","29-08-30");
+("Perú", "2127JFK","Palomero","https://images.coches.com/_vn_/kia/Sportage/c399cf1d98a95d24f8e8715dd0b13fb2.jpg?p=cc_vn_high","https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2022/09/pegatina-itv-2803459.jpg","https://www.dgt.es/export/sites/web-DGT/.galleries/Images/nuestros-servicios/tarjeta-itv-500.jpg","revisionidkqcojonesponer aqui","averia en el motor", 250000, "Mutua Madrileña","29-08-27","Está pa morirse"),
+("Ford", "0984OYS","Kuga","https://images.coches.com/_vn_/kia/Sportage/c399cf1d98a95d24f8e8715dd0b13fb2.jpg?p=cc_vn_high","https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2022/09/pegatina-itv-2803459.jpg","https://www.dgt.es/export/sites/web-DGT/.galleries/Images/nuestros-servicios/tarjeta-itv-500.jpg","revisionidkqcojonesponer aquilorenipmsuasmamsaksadfgqwertyuf","averia en el motorasasadfd", 10000, "Mutua Madrileña","29-08-27","Huele a pedo");
 INSERT INTO material(nombre,familia,marca,foto,datos,fechaCarga,lugarCarga)
 VALUES
 ("material1","familiamaterial1","marcapolla","https://pbs.twimg.com/media/D6uc2kBX4AAv3xV.jpg","datos qwerty loren ipsum blablablalbablamarcogay","09-feb-2023","lugarCarga1"),

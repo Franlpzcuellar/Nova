@@ -112,10 +112,11 @@
 
             <div class="botones botonesPersonal mt-3">
               <div class="btnModificar">
-                <input type="submit" class="modBoton" name="modBotonP" id="modBotonP" value="MODIFICAR"></input>
+                <input type="button" class="modBoton modBotonP" name="modBotonP" id="modBotonP" data-div="pantallaOscuraEditPersonal" data-id="<?php echo $x->id ?>" value="MODIFICAR" data-nombre="<?php echo $x->nombre?>" data-dni="<?php echo $x->dni?>"
+                data-ts="<?php echo $x->tarjetaSanitaria ?>" data-ss="<?php echo $x->nSeguridadSocial ?>" data-direccion= "<?php echo $x->direccion ?>" data-telefono="<?php echo $x->telefono ?>" data-comentarios="<?php echo $x->comentarios ?>" ></input>
               </div>
               <div class="btnEliminar">
-                <input type="submit" class="delBoton" name="delBotonP" id="delBotonP" value="ELIMINAR"></input>
+                <input type="button" class="delBoton delBotonP" name="delBotonP" id="delBotonP" data-div="pantallaOscuraBorrarPersonal" data-id="<?php echo $x->id ?>" value="ELIMINAR"></input>
               </div>
             </div>
           </div>
@@ -170,31 +171,49 @@
         </div>
       </div>
 
-      <div class="container mb-5 modelo">
-        <div class="columna1">
-          <label><span class="titulo">Marca:</span name="marca" value=""> Mercedes</label>
-          <label><span class="titulo">Modelo:</span name="modelo" value=""> Vito</label>
-          <label><span class="titulo">Matrícula:</span name="matricula" value=""> 0000 RGF</label>
-          <label><span class="titulo">Última Revisión:</span name="revision" value=""> 24-05-2022</label>
-          <label><span class="titulo">Última ITV:</span name="itv" value=""> 26-06-2022</label>
-          <label><span class="titulo">KMs:</span name="km" value=""> 234000</label>
-          <label><span class="titulo">Fecha Seguro:</span name="seguro" value=""> 02-02-2022</label>
-          <label><span class="titulo">Observaciones:</span name="observaciones" value=""> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras viverra magna ultrices lorem laoreet, in rhoncus tellus rhoncus. Phasellus eget sem at ex bibendum tincidunt. Quisque in leo in nisi pretium ultricies quis quis nunc. Aliquam erat volutpat. Sed finibus et tortor ut pretium. </label>
+      <?php foreach ($paginasVehiculo as $x): ?> <!-- EMPIEZA EL BUCLE -->
+        <div class="container mb-5 modelo">
+          <div class="columna1">
+            <label><span class="titulo">Marca:</span><?php echo $x->marca ?></label>
+            <label><span class="titulo">Modelo:</span><?php echo $x->modelo ?></label>
+            <label><span class="titulo">Matrícula:</span><?php echo $x->matricula ?></label>
+            <label><span class="titulo">Averías:</span><?php echo $x->averias ?></label>
+            <label><span class="titulo">Última ITV:</span><?php echo $x->ultimaItv ?></label>
+            <label><span class="titulo">KMs:</span><?php echo $x->kms ?></label>
+            <label><span class="titulo">Seguro:</span><?php echo $x->seguro ?></label>
+            <label><span class="titulo">Fecha Seguro:</span><?php echo $x->fechaSeguro ?></label>
+            <label><span class="titulo">Observaciones:</span><?php echo $x->observaciones ?></label>
 
-          <div class="botones mt-3">
-            <div class="btnModificar">
-              <input type="submit" class="modBoton" name="modBotonV" id="modBotonV" value="MODIFICAR"></input>
-            </div>
-            <div class="btnEliminar">
-              <input type="submit" class="delBoton" name="delBotonV" id="delBotonV" value="ELIMINAR"></input>
+            <div class="botones mt-3">
+              <div class="btnModificar">
+                <input type="submit" class="modBoton modBotonV" name="modBotonV" id="modBotonV" value="MODIFICAR" data-div="pantallaOscuraEditVehiculo"  data-id="<?php echo $x->id ?>" data-marca="<?php echo $x->marca?>" data-matricula="<?php echo $x->matricula?>"
+                data-averias="<?php  echo $x->averias ?>" data-ultimaItv="<?php echo $x->ultimaItv ?>" data-kms= "<?php echo $x->kms ?>" data-seguro="<?php echo $x->seguro ?>" data-fechaSeguro="<?php echo $x->fechaSeguro ?> "data-observaciones="<?php echo $x->observaciones ?> "></input>
+              </div>
+              <div class="btnEliminar">
+                <input type="submit" class="delBoton delBotonV" name="delBotonV" data-div="pantallaOscuraBorrarVehiculo" data-id="<?php echo $x->id?>" id="delBotonV" value="ELIMINAR"></input>
+              </div>
             </div>
           </div>
+          <div class="columna2">
+            <span class="titulo">Imagen:</span>
+            <img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png">
+            <span class="titulo">ITV:</span>
+            <img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png">
+            <span class="titulo">Permiso Circulación:</span>
+            <img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png">
+          </div>
         </div>
-        <div class="columna2">
-          <img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png">
-          <img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png">
-          <img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png">
-        </div>
+      <?php endforeach; ?> <!-- ACABA EL BUCLE -->
+
+      <div class='paginacion'>
+
+        <?php
+
+        for ($i = 1; $i <= $numeroDePaginasVehiculo; $i++) {
+          echo "<a class='pagina' href ='?paginaVehiculo=" . $i . "&categoria=vehiculos'>" . $i . "</a>";
+        };
+        ?>
+
       </div>
     </div>
 
@@ -284,12 +303,14 @@
           <i class="bi bi-plus-square nuevoanadir" data-div="">&nbsp Añadir nueva ubicación</i><!-- sumar fichero-->
         </div>
       </div>
+
+      <?php foreach($paginasUbicacion as $x): ?>
+
       <div class="container mb-5 modelo">
         <div class="columna1">
-          <label><span class="titulo">ID:</span>1234</label>
-          <label><span class="titulo">Localidad:</span>Granada</label>
-          <label><span class="titulo">Recinto:</span>Sala Polla</label>
-          <label><span class="titulo">Direccion:</span>direccion qwertyuio</label>
+          <label><span class="titulo">Localidad: </span> <?php echo $x->localidad; ?> </label>
+          <label><span class="titulo">Recinto: </span> <?php echo $x->recinto; ?> </label>
+          <label><span class="titulo">Direccion: </span> <?php echo $x->direccion; ?> </label>
         </div>
 
         <div class="botones2">
@@ -300,6 +321,16 @@
             <input type="submit" class="delBoton" name="delBoton" id="delBoton" value="ELIMINAR"></input>
           </div>
         </div>
+      </div>
+
+      <?php endforeach; ?>
+
+      <div class='paginacion'>
+        <?php
+          for ($i = 1; $i <= $numeroDePaginasUbicacion; $i++) {
+            echo "<a class='pagina' href ='?paginaUbicacion=" . $i . "&categoria=ubicaciones'>" . $i . "</a>";
+          };
+        ?>
       </div>
     </div>
 
@@ -319,21 +350,22 @@
     <form class="pantallaFrontal container mb-5" method="post" action="index.php" enctype="multipart/form-data">
       <i class="bi bi-x" data-div="anadirP"></i>
       <label><span class="titulo">Nombre:</span></label>
-      <input type="text" name="addNombre">
+      <input class="input" type="text" name="addNombre">
       <label><span class="titulo">DNI:</span></label>
-      <input type="text" name="addDNI">
+      <input class="input" type="text" name="addDNI">
       <label><span class="titulo">Tarjeta Sanitaria:</span></label>
-      <input type="text" name="addTarjetasanitaria">
+      <input class="input" type="text" name="addTarjetasanitaria">
       <label><span class="titulo">Número SS:</span></label>
-      <input type="text" name="addNumss">
+      <input class="input" type="text" name="addNumss">
       <label><span class="titulo">Foto:</span></label>
-      <input class="file" type="file" name="addImagen">
+      <input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
+      <input class="input file" type="file" name="addImagen">
       <label><span class="titulo">Direccion:</span></label>
-      <input type="text" name="addDireccion">
+      <input class="input" type="text" name="addDireccion">
       <label><span class="titulo">Teléfono:</span></label>
-      <input type="text" name="addTelefono">
+      <input class="input" type="text" name="addTelefono">
       <label><span class="titulo">Comentarios:</span></label>
-      <input type="text" name="addCom"><br>
+      <input class="input" type="text" name="addCom"><br>
       <div class="botones2">
         <input type="submit" class="anadirBoton" name="addBotonP" id="addBotonP" value="AÑADIR"></input>
       </div>
@@ -341,34 +373,132 @@
   </div>
 
 
+  
+  <div class="pantallaOscura pantallaOscuraEditPersonal editP d-none">
+    <form class="pantallaFrontal container mb-5" method="post" action="index.php" enctype="multipart/form-data">
+      <i class="bi bi-x" data-div="pantallaOscuraEditPersonal"></i>
+      <input class="input" type="hidden" name="idEditPersonal" id="idEditPersonal" value="">
+      <label><span class="titulo">Nombre:</span></label>
+      <input class="input" type="text" name="editNombrePersonal" id="editNombrePersonal">
+      <label><span class="titulo">DNI:</span></label>
+      <input class="input" type="text" name="editDNIPersonal" id="editDNIPersonal">
+      <label><span class="titulo">Tarjeta Sanitaria:</span></label>
+      <input class="input" type="text" name="editTarjetaSanitariaPersonal" id="editTarjetaSanitariaPersonal">
+      <label><span class="titulo">Número SS:</span></label>
+      <input class="input" type="text" name="editNumSSPersonal" id="editNumSSPersonal">
+      <label><span class="titulo">Foto:</span></label>
+      <input class="input" class="file" type="file" name="editImagenPersonal" id="editImagenPersonal">
+      <label><span class="titulo">Direccion:</span></label>
+      <input class="input" type="text" name="editDireccionPersonal" id="editDireccionPersonal">
+      <label><span class="titulo">Teléfono:</span></label>
+      <input class="input" type="text" name="editTelefonoPersonal" id="editTelefonoPersonal">
+      <label><span class="titulo">Comentarios:</span></label>
+      <input class="input" type="text" name="editComPersonal" id="editComPersonal">
+      <br>
+      <div class="botones2">
+        <input type="submit" class="anadirBoton" name="editBotonP" id="editBotonP" value="MODIFICAR"></input>
+      </div>
+    </form>
+  </div>
 
+
+  <!-- DIV ELIMINAR PERSONAL -->
+
+  <div class="pantallaOscura pantallaOscuraBorrarPersonal d-none">
+      <form class="pantallaFrontal container mb-5" method="post" action="index.php">
+        <input type="hidden" name="idBorrarPersonal" id="idBorrarPersonal" value="">
+        <p class="textoEliminar">¿Estás seguro/a de que quieres borrar la ficha seleccionada?</p>
+
+        <input type="submit" class="modBoton" name="botonBorrarPersonal" value="BORRAR">
+        <input type="button" class="salirPantallaOscuraBorrarPersonal modBoton" data-div="pantallaOscuraBorrarPersonal" value="CANCELAR Y SALIR">
+      </form>
+  </div>
 
   <!-- DIV AÑADIR VEHICULOS -->
 
 
   <div class="pantallaOscura anadirV d-none">
-    <div class="pantallaFrontal container mb-5"><i class="bi bi-x" data-div="anadirV"></i>
+    <form class="pantallaFrontal container mb-5" method="post" action="index.php" enctype="multipart/form-data">
+      <i class="bi bi-x" data-div="anadirV"></i>
       <label><span class="titulo">Marca:</span></label>
-      <input type="text" name="addMarca">
+      <input class="input" type="text" name="addMarca">
       <label><span class="titulo">Modelo:</span></label>
-      <input type="text" name="addModelo">
+      <input class="input" type="text" name="addModelo">
       <label><span class="titulo">Matrícula:</span></label>
-      <input type="text" name="addMatricula">
-      <label><span class="titulo">Última Revisión:</span></label>
-      <input type="text" name="addRevision">
+      <input class="input" type="text" name="addMatricula">
+      <label><span class="titulo">Averias:</span></label>
+      <input class="input" type="text" name="addAverias">
       <label><span class="titulo">Última ITV:</span></label>
-      <input type="file" name="addITV">
+      <input class="input" type="text" name="addITV">
       <label><span class="titulo">KMs:</span></label>
-      <input type="text" name="addKM">
+      <input class="input" type="text" name="addKM">
+      <label><span class="titulo">Seguro:</span></label>
+      <input class="input" type="text" name="addSeguro">
       <label><span class="titulo">Fecha Seguro:</span></label>
-      <input type="file" name="addSeguro">
+      <input class="input" type="text" name="addFechaSeguro">
+      <label><span class="titulo">Imagen:</span></label>
+      <input class="input" type="file" name="addImg">
+      <label><span class="titulo">Imagen ITV:</span></label>
+      <input class="input" type="file" name="addImgItv">
+      <label><span class="titulo">Imagen Permiso Circulación:</span></label>
+      <input class="input" type="file" name="addImgPermiso">
       <label><span class="titulo">Observaciones:</span>
-        <input type="text" name="addObs">
-        <input type="submit" name="addBotonV" id="addBotonV" value="addBotonV">AÑADIR</input>
+      <input class="input" type="text" name="addObs">
+      <div class="botones2">
+        <input type="submit" class="anadirBoton" name="addBotonV" id="addBotonV" value="AÑADIR"></input>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- DIV MODIFICAR VEHICULO -->
+          <!--Añadir id de vehiculos -->
+  <div class="pantallaOscura pantallaOscuraEditVehiculo d-none">
+    <div class="pantallaFrontal container mb-5">
+      <i class="bi bi-x" data-div="pantallaOscuraEditVehiculo"></i>
+      <input type="hidden" name="idEditVehiculo" id="idEditVehiculo"  value="">
+      <label><span class="titulo">Marca:</span></label>
+      <input class="input" type="text" name="editMarca" id="editMarca">
+      <label><span class="titulo">Modelo:</span></label>
+      <input class="input" type="text" name="editModelo">
+      <label><span class="titulo">Matrícula:</span></label>
+      <input class="input" type="text" name="editMatricula">
+      <label><span class="titulo">Averias:</span></label>
+      <input class="input" type="text" name="editAverias">
+      <label><span class="titulo">Última ITV:</span></label>
+      <input class="input" type="text" name="editITV">
+      <label><span class="titulo">KMs:</span></label>
+      <input class="input" type="text" name="editKM">
+      <label><span class="titulo">Seguro:</span></label>
+      <input class="input" type="text" name="editSeguro">
+      <label><span class="titulo">Fecha Seguro:</span></label>
+      <input class="input" type="text" name="editFechaSeguro">
+      <label><span class="titulo">Imagen:</span></label>
+      <input class="input" type="file" name="editImg">
+      <label><span class="titulo">Imagen ITV:</span></label>
+      <input class="input" type="file" name="editImgItv">
+      <label><span class="titulo">Imagen Permiso Circulación:</span></label>
+      <input class="input" type="file" name="editImgPermiso">
+      <label><span class="titulo">Observaciones:</span>
+      <input class="input" type="text" name="editObs">
+      <div class="botones2">
+        <input type="submit" class="anadirBoton" name="editBotonv" id="editBotonv" value="MODIFICAR"></input>
+      </div>
     </div>
   </div>
 
 
+  <!-- DIV ELIMINAR VEHICULO -->
+
+  <div class="pantallaOscura pantallaOscuraBorrarVehiculo d-none">
+      <form class="pantallaFrontal container mb-5" method="post" action="index.php">
+        <input type="hidden" name="idBorrarVehiculo" id="idBorrarVehiculo" value="">
+        <p class="textoEliminar">¿Estás seguro/a de que quieres borrar el vehículo seleccionado?</p>
+
+        <input type="submit" class="modBoton" name="botonBorrarVehiculo" value="BORRAR">
+        <input type="button" class="salirPantallaOscuraBorrarVehiculo modBoton" data-div="pantallaOscuraBorrarVehiculo" value="CANCELAR Y SALIR">
+      </form>
+  </div>
 
   <!-- DIV AÑADIR MATERIAL -->
 
