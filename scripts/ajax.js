@@ -48,9 +48,11 @@ $(document).ready(function () {
         
     });
 
+    
+
     $(".delBotonP").click(function (e) { 
-        e.preventDefault();                                           //Boton Eliminar Personal
-                                                                    
+        e.preventDefault();  //Boton Eliminar Personal
+          
         $("#idBorrarPersonal").val($(this).data("id"));
         $("." + $(this).data("div")).removeClass("d-none");
     });
@@ -76,6 +78,15 @@ $(document).ready(function () {
         $("." + $(this).data("div")).addClass("d-none");
     });
 
+
+    $(".salirPantallaOscuraBorrarU").click(function (e) { 
+        e.preventDefault();
+        
+        $("#idBorrarU").val("");
+        $("." + $(this).data("div")).addClass("d-none");
+        
+    });
+
     $(".modBotonP").click(function (e) { 
         e.preventDefault();
         $("." + $(this).data("div")).removeClass("d-none");
@@ -91,5 +102,48 @@ $(document).ready(function () {
         $("#editTelefonoPersonal").val($(this).data("telefono"));
         $("#editComPersonal").val($(this).data("comentarios"));
     });
+
+    $(".modBotonU").click(function (e) { 
+        e.preventDefault();
+        $("." + $(this).data("div")).removeClass("d-none");
+        
+        $("#idEditU").val($(this).data("id"));
+        $("#editLocalidad").val($(this).data("localidad"));
+        $("#editRe").val($(this).data("recinto"));
+        $("#editDir").val($(this).data("direccion"));
+    });
+
+
+    $(".modBotonV").click(function (e) {
+        e.preventDefault();
+
+        $("." + $(this).data("div")).removeClass("d-none");
+
+        $("#idEditVehiculo").val($(this).data("id"));
+        $("#editMarcaVehiculo").val($(this).data("marca"));
+        $("#editModeloVehiculo").val($(this).data("modelo"));
+        $("#editMatriculaVehiculo").val($(this).data("matricula"));
+        $("#editAveriasVehiculo").val($(this).data("averias"));
+        $("#editItvVehiculo").val($(this).data("ultimaitv"));
+        $("#editKmVehiculo").val($(this).data("kms"));
+        $("#editSeguroVehiculo").val($(this).data("seguro"));
+        $("#editFechaSeguroVehiculo").val($(this).data("fechaseguro"));
+        $("#editImgVehiculo").val($(this).data("imagen"));
+        $("#editImgItvVehiculo").val($(this).data("imagenitv"));
+        $("#editImgPermisoVehiculo").val($(this).data("imagenPermisoCirculacion"));
+        $("#editObsVehiculo").val($(this).data("observaciones"));
+
+    });
    
+
+    $(".delBotonU").click(function (e) { 
+        e.preventDefault();
+
+        $("#idBorrarU").val($(this).data("id"));
+        $("." + $(this).data("div")).removeClass("d-none");
+
+    });
+
+    
+
 });

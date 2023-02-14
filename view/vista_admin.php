@@ -113,7 +113,7 @@
             <div class="botones botonesPersonal mt-3">
               <div class="btnModificar">
                 <input type="button" class="modBoton modBotonP" name="modBotonP" id="modBotonP" data-div="pantallaOscuraEditPersonal" data-id="<?php echo $x->id ?>" value="MODIFICAR" data-nombre="<?php echo $x->nombre?>" data-dni="<?php echo $x->dni?>"
-                data-ts="<?php echo $x->tarjetaSanitaria ?>" data-ss="<?php echo $x->nSeguridadSocial ?>" data-direccion= "<?php echo $x->direccion ?>" data-telefono="<?php echo $x->telefono ?>" data-comentarios="<?php echo $x->comentarios ?>" ></input>
+                data-ts="<?php echo $x->tarjetaSanitaria ?>" data-ss="<?php echo $x->nSeguridadSocial ?>" data-direccion= "<?php echo $x->direccion ?>" data-telefono="<?php echo $x->telefono ?>" data-comentarios="<?php echo $x->comentarios ?>" data-imagen="<?php echo $x->imagen ?>" ></input>
               </div>
               <div class="btnEliminar">
                 <input type="button" class="delBoton delBotonP" name="delBotonP" id="delBotonP" data-div="pantallaOscuraBorrarPersonal" data-id="<?php echo $x->id ?>" value="ELIMINAR"></input>
@@ -121,7 +121,7 @@
             </div>
           </div>
           <div class="columna2">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSplcPrFOJUTfYMXURYfSeUxr9rklYqL65Qg&usqp=CAU" alt="">
+            <label><span class="titulo">Imagen: </span><img src="<?php echo $x->imagen ?>"></label>
           </div>
         </div>
 
@@ -186,21 +186,20 @@
 
             <div class="botones mt-3">
               <div class="btnModificar">
-                <input type="submit" class="modBoton modBotonV" name="modBotonV" id="modBotonV" value="MODIFICAR" data-div="pantallaOscuraEditVehiculo"  data-id="<?php echo $x->id ?>" data-marca="<?php echo $x->marca?>" data-matricula="<?php echo $x->matricula?>"
-                data-averias="<?php  echo $x->averias ?>" data-ultimaItv="<?php echo $x->ultimaItv ?>" data-kms= "<?php echo $x->kms ?>" data-seguro="<?php echo $x->seguro ?>" data-fechaSeguro="<?php echo $x->fechaSeguro ?> "data-observaciones="<?php echo $x->observaciones ?> "></input>
+                <input type="button" class="modBoton modBotonV" name="modBotonV" id="modBotonV" value="MODIFICAR" data-div="pantallaOscuraEditVehiculo"  data-id="<?php echo $x->id ?>" data-marca="<?php echo $x->marca?>" data-modelo="<?php echo $x->modelo ?>" data-matricula="<?php echo $x->matricula?>" data-averias="<?php  echo $x->averias ?>" data-ultimaitv= "<?php echo $x->ultimaItv ?>" data-kms= "<?php echo $x->kms ?>" data-seguro="<?php echo $x->seguro ?>" data-fechaseguro="<?php echo $x->fechaSeguro ?> "data-observaciones="<?php echo $x->observaciones ?>"data-imagen="<?php echo $x->imagen ?>"data-imagenItv="<?php echo $x->imagen ?>"></input>
               </div>
               <div class="btnEliminar">
-                <input type="submit" class="delBoton delBotonV" name="delBotonV" data-div="pantallaOscuraBorrarVehiculo" data-id="<?php echo $x->id?>" id="delBotonV" value="ELIMINAR"></input>
+                <input type="button" class="delBoton delBotonV" name="delBotonV" data-div="pantallaOscuraBorrarVehiculo" data-id="<?php echo $x->id?>" id="delBotonV" value="ELIMINAR"></input>
               </div>
             </div>
           </div>
           <div class="columna2">
             <span class="titulo">Imagen:</span>
-            <img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png">
+            <label><img src="<?php echo $x->imagen ?>"></label>
             <span class="titulo">ITV:</span>
-            <img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png">
+            <label><img src="<?php echo $x->imagenItv ?>"></label>
             <span class="titulo">Permiso Circulación:</span>
-            <img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png">
+            <label><img src="<?php echo $x->imagenPermisoCirculacion ?>"></label>
           </div>
         </div>
       <?php endforeach; ?> <!-- ACABA EL BUCLE -->
@@ -247,27 +246,26 @@
         <button type="submit" name="utiles" class="btn categoria">Útiles y Herramientas</button>
         <button type="submit" name="varios" class="btn categoria ulti">Varios</button>
       </form>
-    </div>
 
-    <div class="d-none fichaProducto">
-      <h2>Ficha Producto</h2>
-      <div class="container mb-5 modelo">
-        <label><span class="titulo">ID:</span>1234</label>
-        <label><span class="titulo">Nombre:</span>Altavoz</label>
-        <label><span class="titulo">Familia:</span>Perez</label>
-        <label><span class="titulo">Marca:</span>Sony</label>
-        <label><span class="titulo">Foto:</span><img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png" width="60"></label>
-        <label><span class="titulo">Datos:</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores suscipit beatae similique in perspiciatis quaerat?</label>
+      <div class="d-none fichaProducto">
+        <h2>Ficha Producto</h2>
+        <div class="container mb-5 modelo">
+          <label><span class="titulo">ID:</span>1234</label>
+          <label><span class="titulo">Nombre:</span>Altavoz</label>
+          <label><span class="titulo">Familia:</span>Perez</label>
+          <label><span class="titulo">Marca:</span>Sony</label>
+          <label><span class="titulo">Foto:</span><img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png" width="60"></label>
+          <label><span class="titulo">Datos:</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores suscipit beatae similique in perspiciatis quaerat?</label>
 
 
-        <div class="btnModificar">
-          <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>
+          <div class="btnModificar">
+            <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>
 
-        </div>
+          </div>
       </div>
     </div>
-
-
+      
+    </div>
 
     <!-- DIV CARGA -->
     <div class="carga d-none">
@@ -315,10 +313,10 @@
 
         <div class="botones2">
           <div class="btnModificar">
-            <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>
+            <input type="button" class="modBoton modBotonU" name="modBotonU" data-div="pantallaOscuraEditU" data-id="<?php echo $x->id; ?>" data-localidad="<?php echo $x->localidad; ?>" data-recinto="<?php echo $x->recinto; ?>" data-direccion="<?php echo $x->direccion; ?>" id="modBoton" value="MODIFICAR"></input>
           </div>
           <div class="btnEliminar">
-            <input type="submit" class="delBoton" name="delBoton" id="delBoton" value="ELIMINAR"></input>
+            <input type="button" class="delBoton delBotonU" name="delBotonU" data-div="pantallaOscuraBorrarU" id="delBoton" value="ELIMINAR"></input>
           </div>
         </div>
       </div>
@@ -358,8 +356,7 @@
       <label><span class="titulo">Número SS:</span></label>
       <input class="input" type="text" name="addNumss">
       <label><span class="titulo">Foto:</span></label>
-      <input type="hidden" name="MAX_FILE_SIZE" value="30000"/>
-      <input class="input file" type="file" name="addImagen">
+      <input class="input file" type="file" name="addImagen" value="">
       <label><span class="titulo">Direccion:</span></label>
       <input class="input" type="text" name="addDireccion">
       <label><span class="titulo">Teléfono:</span></label>
@@ -372,6 +369,7 @@
     </form>
   </div>
 
+<!-- DIV EDITAR PERSONAL-->
 
   
   <div class="pantallaOscura pantallaOscuraEditPersonal editP d-none">
@@ -454,37 +452,37 @@
   <!-- DIV MODIFICAR VEHICULO -->
           <!--Añadir id de vehiculos -->
   <div class="pantallaOscura pantallaOscuraEditVehiculo d-none">
-    <div class="pantallaFrontal container mb-5">
+    <form method="post" action="index.php" enctype="multipart/form-data" class="pantallaFrontal container mb-5">
       <i class="bi bi-x" data-div="pantallaOscuraEditVehiculo"></i>
       <input type="hidden" name="idEditVehiculo" id="idEditVehiculo"  value="">
       <label><span class="titulo">Marca:</span></label>
-      <input class="input" type="text" name="editMarca" id="editMarca">
+      <input class="input" type="text" name="editMarca" id="editMarcaVehiculo">
       <label><span class="titulo">Modelo:</span></label>
-      <input class="input" type="text" name="editModelo">
+      <input class="input" type="text" name="editModelo" id="editModeloVehiculo">
       <label><span class="titulo">Matrícula:</span></label>
-      <input class="input" type="text" name="editMatricula">
+      <input class="input" type="text" name="editMatricula" id="editMatriculaVehiculo">
       <label><span class="titulo">Averias:</span></label>
-      <input class="input" type="text" name="editAverias">
+      <input class="input" type="text" name="editAverias" id="editAveriasVehiculo">
       <label><span class="titulo">Última ITV:</span></label>
-      <input class="input" type="text" name="editITV">
+      <input class="input" type="text" name="editItv" id="editItvVehiculo">
       <label><span class="titulo">KMs:</span></label>
-      <input class="input" type="text" name="editKM">
+      <input class="input" type="text" name="editKm" id="editKmVehiculo">
       <label><span class="titulo">Seguro:</span></label>
-      <input class="input" type="text" name="editSeguro">
+      <input class="input" type="text" name="editSeguro" id="editSeguroVehiculo">
       <label><span class="titulo">Fecha Seguro:</span></label>
-      <input class="input" type="text" name="editFechaSeguro">
+      <input class="input" type="text" name="editFechaSeguro" id="editFechaSeguroVehiculo">
       <label><span class="titulo">Imagen:</span></label>
-      <input class="input" type="file" name="editImg">
+      <input class="input" type="file" name="editImg" id="editImgVehiculo">
       <label><span class="titulo">Imagen ITV:</span></label>
-      <input class="input" type="file" name="editImgItv">
+      <input class="input" type="file" name="editImgItv" id="editImgItvVehiculo">
       <label><span class="titulo">Imagen Permiso Circulación:</span></label>
-      <input class="input" type="file" name="editImgPermiso">
+      <input class="input" type="file" name="editImgPermiso" id="editImgPermisoVehiculo">
       <label><span class="titulo">Observaciones:</span>
-      <input class="input" type="text" name="editObs">
+      <input class="input" type="text" name="editObs" id="editObsVehiculo">
       <div class="botones2">
-        <input type="submit" class="anadirBoton" name="editBotonv" id="editBotonv" value="MODIFICAR"></input>
+        <input type="submit" class="anadirBoton" name="editBotonV" id="editBotonV" value="MODIFICAR"></input>
       </div>
-    </div>
+    </form>
   </div>
 
 
@@ -524,13 +522,42 @@
   <div class="pantallaOscura anadirU d-none"><i class="bi bi-x" data-div="anadirU"></i>
     <div class="pantallaFrontal container mb-5">
       <label><span class="titulo">Localidad:</span></label>
-      <input type="text" name="addLocalidad">
+      <input type="text" name="addLocalidad" id="addLocalidad">
       <label><span class="titulo">Recinto:</span></label>
-      <input type="text" name="addRe">
+      <input type="text" name="addRe" id="addRe">
       <label><span class="titulo">Direccion:</span></label>
-      <input type="text" name="addDir">
+      <input type="text" name="addDir" id="addDir">
       <input type="submit" name="addBotonU" id="addBotonU">AÑADIR</input>
     </div>
+  </div>
+
+  <!-- DIV EDITAR UBICACIONES -->
+  <div class="pantallaOscura pantallaOscuraEditU d-none ">
+    <form class="pantallaFrontal container mb-5" action="index.php" method="post">
+      <i class="bi bi-x" data-div="pantallaOscuraEditU"></i>
+      <input type="hidden" name="idEditU" id="idEditU"  value="">
+      <label><span class="titulo">Localidad:</span></label>
+      <input class="input" type="text" name="editLocalidad" id="editLocalidad">
+      <label><span class="titulo">Recinto:</span></label>
+      <input class="input" type="text" name="editRe" id="editRe">
+      <label><span class="titulo">Direccion:</span></label>
+      <input class="input" type="text" name="editDir" id="editDir">
+      <div class="botones2">
+        <input type="submit" class="anadirBoton" name="editBotonU" id="editBotonU" value="MODIFICAR"></input>
+      </div>
+    </form>
+  </div>
+
+  <!-- DIV ELIMINAR UBICACION-->
+
+  <div class="pantallaOscura pantallaOscuraBorrarU d-none">
+      <form class="pantallaFrontal container mb-5" method="post" action="index.php">
+        <input type="hidden" name="idBorrarU" id="idBorrarU" value="">
+        <p class="textoEliminar">¿Estás seguro/a de que quieres borrar la ubicación seleccionada?</p>
+        
+        <input type="submit" class="modBoton" name="botonBorrarU" value="BORRAR">
+        <input type="button" class="salirPantallaOscuraBorrarU modBoton" data-div="pantallaOscuraBorrarU" value="CANCELAR Y SALIR">
+      </form>
   </div>
 
 </body>

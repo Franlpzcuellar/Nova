@@ -18,8 +18,8 @@ class Material{
         return $final;
     }
 
-    public function updateMaterial($id, $nombre, $familia, $marca, $foto, $datos, $averias, $fechaCarga, $lugarCarga){
-        $consulta = $this->db->prepare("UPDATE material SET nombre=:n, familia=:f, marca=:m, foto=:o, datos=:d, averias=:a, fechaCarga=:fc, lugarCarga=:lc WHERE id=:i");
+    public function updateMaterial($id, $nombre, $familia, $marca, $foto, $datos, $fechaCarga, $lugarCarga){
+        $consulta = $this->db->prepare("UPDATE material SET nombre=:n, familia=:f, marca=:m, foto=:o, datos=:d, fechaCarga=:fc, lugarCarga=:lc WHERE id=:i");
 
         $consulta->execute(
             array(
@@ -28,7 +28,6 @@ class Material{
                 ":m" => $marca,
                 ":o" => $foto,
                 ":d" => $datos,
-                ":a" => $averias,
                 ":fc" => $fechaCarga,
                 ":lc" => $lugarCarga,
                 ":i" => $id
@@ -46,7 +45,7 @@ class Material{
         );
     }
 
-    public function createMaterial($nombre, $familia, $marca, $foto, $datos){ //habia varaible $averias, pero eso es en vehiculo no en material
+    public function createMaterial($nombre, $familia, $marca, $foto, $datos){
         $consulta = $this->db->prepare("INSERT INTO material(nombre, familia, marca, foto, datos) VALUES (:n, :f, :m, :o, :d)");
 
         $consulta->execute(

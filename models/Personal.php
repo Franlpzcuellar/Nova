@@ -20,8 +20,8 @@ Class Personal {
     }
 
     public function updatePersonal($id, $nombre, $dni, $tarjetaSanitaria, $nSeguridadSocial, $imagen, $direccion, $telefono, $comentarios){
-        $consulta = $this->db->prepare("UPDATE personal SET nombre = ':n', dni = ':d',
-         tarjetaSanitaria = ':t', nSeguridadSocial = ':ss', imagen = ':i', direccion = ':di', telefono = ':tf', comentarios = ':c' WHERE id = ':id'");
+        $consulta = $this->db->prepare("UPDATE personal SET nombre=:n, dni = :d,
+         tarjetaSanitaria = :t, nSeguridadSocial = :ss, imagen = :i, direccion = :di, telefono = :tf, comentarios = :c WHERE id = :id");
 
         $consulta->execute(
             array(

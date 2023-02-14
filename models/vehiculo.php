@@ -26,21 +26,21 @@
 
         $consulta = 'INSERT INTO vehiculo(marca, matricula, modelo, ultimaItv, averias, kms, seguro, fechaSeguro, imagen, imagenItv, imagenPermisoCirculacion, observaciones)
         VALUES
-        (:marca, :matricula, :modelo, :ultimaItv, :averias, :kms, :seguro, :fechaSeguro, :imagen, :imagenItv, :imagenPermisoCirculacion, :observaciones)';
+        (:m, :ma, :mo, :u, :a, :k, :s, :f, :i, :im, :ima, :o)';
         $resultado=$this->db->prepare($consulta);
         $resultado->execute(array(
-            ":marca" => $marca,
-            ":matricula" => $matricula,
-            ":modelo" => $modelo,
-            ":ultimaItv" => $ultimaItv,
-            ":averias" => $averias,
-            ":kms" => $kms,
-            ":seguro" => $seguro,
-            ":fechaSeguro" => $fechaSeguro,
-            ":imagen" => $img,
-            ":imagenItv" => $imgItv,
-            ":imagenPermisoCirculacion" => $imgPermiso,
-            ":observaciones" => $observaciones
+            ":m" => $marca,
+            ":ma" => $matricula,
+            ":mo" => $modelo,
+            ":u" => $ultimaItv,
+            ":a" => $averias,
+            ":k" => $kms,
+            ":s" => $seguro,
+            ":f" => $fechaSeguro,
+            ":i" => $img,
+            ":im" => $imgItv,
+            ":ima" => $imgPermiso,
+            ":o" => $observaciones
         ));
 
     }
@@ -54,21 +54,24 @@
         
     }
 
-    public function updateVehiculo($id,$marca, $matricula, $modelo, $ultimaItv, $averias, $kms, $seguro, $fechaSeguro, $observaciones){
+    public function updateVehiculo($id, $marca, $matricula, $modelo, $ultimaItv, $averias, $kms, $seguro, $fechaSeguro, $img, $imgItv, $imgPermiso, $observaciones){
 
-        $consulta = 'UPDATE FROM vehiculo SET MARCA = :marca, MATRICULA = :matricula, MODELO = :modelo, ultimaItv = :ultimaItv, averias = :averias, kms = :kms, seguro = :seguro, fechaSeguro = :fechaSeguro, observaciones = :observaciones WHERE ID = :id';
+        $consulta = 'UPDATE vehiculo SET marca = :m, matricula = :ma, modelo = :mo, ultimaItv = :u, averias = :a, kms = :k, seguro = :s, fechaSeguro = :f, imagen = :i, imagenItv = :im, imagenPermisoCirculacion = :ima, observaciones = :o WHERE id = :id';
         $resultado = $this->db->prepare($consulta);
         $resultado->execute(array(
             ":id" => $id,
-            ":marca" => $marca,
-            ":matricula" => $matricula,
-            ":modelo" => $modelo,
-            ":ultimaItv" => $ultimaItv,
-            ":averias" => $averias,
-            ":kms" => $kms,
-            ":seguro" => $seguro,
-            ":fechaSeguro" => $fechaSeguro,
-            ":observaciones" => $observaciones
+            ":m" => $marca,
+            ":ma" => $matricula,
+            ":mo" => $modelo,
+            ":u" => $ultimaItv,
+            ":a" => $averias,
+            ":k" => $kms,
+            ":s" => $seguro,
+            ":f" => $fechaSeguro,
+            ":i" => $img,
+            ":im" => $imgItv,
+            ":ima" => $imgPermiso,
+            ":o" => $observaciones
         ));
     }
 

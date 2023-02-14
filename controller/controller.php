@@ -110,17 +110,12 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
         $tipoImagen = $_FILES["addImagen"]["type"];
         $tamImagen = $_FILES["addImagen"]["size"];
         
-        if($tamImagen <= 1000000){
-            if($tipoImagen == "image/jpg" || $tipoImagen == "image/jpeg" || $tipoImagen == "image/png" || $tipoImagen == "image/gif"){
-                //$urlInsert = dirname(__FILE__) ."/upload/images/";
-                $carpetaDestino = $_SERVER['DOCUMENT_ROOT'].'/proyectonova/upload/images/'.$nombreImagen;
-                move_uploaded_file($_FILES["addImagen"]["tmp_name"], $carpetaDestino);
-            }
-        }
+        $carpetaDestino = $_SERVER["DOCUMENT_ROOT"].'/php/proyectonova/upload/images/';
+        move_uploaded_file($_FILES["addImagen"]["tmp_name"], $carpetaDestino.$nombreImagen);
 
         $clasePersonal = new Personal();
+
         $clasePersonal->createPersonal($_POST['addNombre'], $_POST['addDNI'], $_POST['addTarjetasanitaria'], $_POST['addNumss'], $nombreImagen , $_POST['addDireccion'], $_POST['addTelefono'], $_POST["addCom"]);
-            
         header("Location: index.php");
     }
 
@@ -136,9 +131,9 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     //MODIFICAR PERSONAL
 
-    if(isset($_POST['modBotonP'])){
+    if(isset($_POST['editBotonP'])){
         $clasePersonal = new Personal();
-        $clasePersonal->updatePersonal($_POST['id'], $_POST['editNombre'], $_POST['editDNI'], $_POST['editTarjetasanitaria'], $_POST['editNumss'], $_POST['editImagen'], $_POST['editDireccion'], $_POST['editTelefono'], $_POST['editCom']);
+        $clasePersonal->updatePersonal($_POST['idEditPersonal'], $_POST['editNombrePersonal'], $_POST['editDNIPersonal'], $_POST['editTarjetaSanitariaPersonal'], $_POST['editNumSSPersonal'], $_FILES['editImagenPersonal']['name'], $_POST['editDireccionPersonal'], $_POST['editTelefonoPersonal'], $_POST['editComPersonal']);
 
         header("Location: index.php");
     }
@@ -163,15 +158,15 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
         if($tamImg <= 1000000 && $tamImgItv <= 1000000 && $tamImgPermiso <= 1000000){
             if($tipoImg=="image/jpg" || $tipoImg == "image/jpeg" || $tipoImg == "image/png" || $tipoImg == "image/gif"){
-                $carpetaDestino = 'C:/xampp/htdocs/php/ProyectoNova/upload/images/'. $nombreImg;
+                $carpetaDestino = $_SERVER["DOCUMENT_ROOT"].'/php/proyectonova/upload/images/'. $nombreImg;
                 move_uploaded_file($_FILES["addImg"]["tmp_name"], $carpetaDestino);
             }
             if($tipoImgPermiso=="image/jpg" || $tipoImgPermiso == "image/jpeg" || $tipoImgPermiso == "image/png" || $tipoImgPermiso == "image/gif"){
-                $carpetaDestino = 'C:/xampp/htdocs/php/ProyectoNova/upload/images/'. $nombreImgItv;
+                $carpetaDestino = $_SERVER["DOCUMENT_ROOT"].'/php/proyectonova/upload/images/'. $nombreImgItv;
                 move_uploaded_file($_FILES["addImgItv"]["tmp_name"], $carpetaDestino);
             }
             if($tipoImgPermiso=="image/jpg" || $tipoImgPermiso == "image/jpeg" || $tipoImgPermiso == "image/png" || $tipoImgPermiso == "image/gif"){
-                $carpetaDestino = 'C:/xampp/htdocs/php/ProyectoNova/upload/images/'. $nombreImgPermiso;
+                $carpetaDestino = $_SERVER["DOCUMENT_ROOT"].'/php/proyectonova/upload/images/'. $nombreImgPermiso;
                 move_uploaded_file($_FILES["addImgPermiso"]["tmp_name"], $carpetaDestino);
             }
         }
@@ -187,16 +182,16 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     if(isset($_POST["botonBorrarVehiculo"])){
         $claseVehiculo = new Vehiculo();
-        $claseVehiculo->deleteVehiculo($_POST["idBorrarVehiculo"]);
+        $claseVehiculo->deleteVehiculo($_POST["id"]);
         
         header("Location: index.php");
     }
 
 
     //MODIFICAR VEHICULOS
-    if(isset($_POST['modBotonV'])){
+    if(isset($_POST['editBotonV'])){
         $claseVehiculo = new Vehiculo();
-        $claseVehiculo->updateVehiculo($_POST['id'], $_POST['editMarca'],$_POST['editModelo'],$_POST['editMatricula'],$_POST['editAverias'],$_POST['editITV'],$_POST['editKM'],$_POST['editSeguro'],$_POST['editFechaSeguro'], $_POST['editImg'], $_POST['editImgItv'], $_POST['editImgPermiso'], $_POST['editObs']);
+        $claseVehiculo->updateVehiculo($_POST['idEditVehiculo'], $_POST['editMarca'],$_POST['editModelo'],$_POST['editMatricula'],$_POST['editAverias'],$_POST['editItv'],$_POST['editKm'],$_POST['editSeguro'],$_POST['editFechaSeguro'], $_FILES['editImg']['name'], $_FILES['editImgItv']['name'], $_FILES['editImgPermiso']['name'], $_POST['editObs']);
         
         header("Location: index.php");
     }
@@ -204,28 +199,39 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     //AÑADIR MATERIAL // estaba comentado
 
-    /*if(isset($_POST['addBotonM'])){
+    if(isset($_POST['addBotonM'])){
 
         $claseMaterial = new Material();
 
         $claseMaterial->createMaterial($_POST['addNom'],$_POST['addFam'],$_POST['addMarca'],$_POST['addFoto'],$_POST['addDatos']);
 
         header("Location: index.php");
-    }*/
+    }
     
 
 
     //ELIMINAR MATERIAL
     
-    /*
-    if(isset($_POST['']))
+    
+    if(isset($_POST["botonBorrarMaterial"])){
+        $claseMaterial = new Material();
+        $claseMaterial->deleteMaterial($_POST["id"]);
+        
+        header("Location: index.php");
+    }
 
-     */
 
     //MODIFICAR MATERIAL
 
+    if(isset($_POST['modBotonM'])){
+        $claseMaterial = new Material();
+        $claseMaterial->updateMaterial($_POST['id'], $_POST['editNombre'],$_POST['editFamilia'],$_POST['editMarca'],$_POST['editFoto'],$_POST['editDatos'],$_POST['editFechaCarga'],$_POST['editLugarCarga']);
+        
+        header("Location: index.php");
+    }
 
-    //AÑADIR LUGAR estaba comentado
+
+    //AÑADIR UBICACION
 
     if(isset($_POST["addBotonU"])){
         $claseLugar = new Lugar();
@@ -253,12 +259,24 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
         $numeroDePaginasUbicacion = ceil($filasUbicacion / $filasUbicacionPorPagina);
 
 
-    /*ELIMINAR UBICACION
+    /*ELIMINAR UBICACION */
         
-    if(isset($_POST[""]))  
+    if(isset($_POST['botonBorrarU'])){
+        $claseLugar = new Lugar();
+        $claseLugar->deleteLugar($_POST['id']);
+
+        header("Location: index.php");
+    }  
     
-    */
-    //MODIFICAR UBICACION
+
+    /*MODIFICAR UBICACION*/
+    
+    if(isset($_POST['editBotonU'])){
+        $claseLugar = new Lugar();
+        $claseLugar->updateLugar($_POST['id'], $_POST['editLocalidad'],$_POST['editRe'],$_POST['editDir']);
+        
+        header("Location: index.php");
+    }
 
 
     /* PROVISIONAL */
