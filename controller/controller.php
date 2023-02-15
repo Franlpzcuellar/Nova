@@ -132,8 +132,15 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
     //MODIFICAR PERSONAL
 
     if(isset($_POST['editBotonP'])){
+        $nombreImagenPersonal = $_FILES["editImagenPersonal"]["name"];
+        $tipoImagenPersonal = $_FILES["editImagenPersonal"]["type"];
+        $tamImagenPersonal = $_FILES["editImagenPersonal"]["size"];
+
+        $carpetaDestino = $_SERVER["DOCUMENT_ROOT"].'/php/proyectonova/upload/images/';
+        move_uploaded_file($_FILES["editImagenPersonal"]["tmp_name"], $carpetaDestino.$nombreImagenPersonal);
+
         $clasePersonal = new Personal();
-        $clasePersonal->updatePersonal($_POST['idEditPersonal'], $_POST['editNombrePersonal'], $_POST['editDNIPersonal'], $_POST['editTarjetaSanitariaPersonal'], $_POST['editNumSSPersonal'], $_FILES['editImagenPersonal']['name'], $_POST['editDireccionPersonal'], $_POST['editTelefonoPersonal'], $_POST['editComPersonal']);
+        $clasePersonal->updatePersonal($_POST['idEditPersonal'], $_POST['editNombrePersonal'], $_POST['editDNIPersonal'], $_POST['editTarjetaSanitariaPersonal'], $_POST['editNumSSPersonal'], $nombreImagenPersonal, $_POST['editDireccionPersonal'], $_POST['editTelefonoPersonal'], $_POST['editComPersonal']);
 
         header("Location: index.php");
     }
@@ -173,7 +180,7 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
         $claseVehiculo = new Vehiculo();
 
-        $claseVehiculo->createVehiculo($_POST['addMarca'],$_POST['addModelo'],$_POST['addMatricula'],$_POST['addAverias'],$_POST['addITV'],$_POST['addKM'],$_POST['addSeguro'],$_POST['addFechaSeguro'], $nombreImg, $_nombreImgItv, $nombreImgPermiso, $_POST['addObs']);
+        $claseVehiculo->createVehiculo($_POST['addMarca'],$_POST['addModelo'],$_POST['addMatricula'],$_POST['addAverias'],$_POST['addItv'],$_POST['addKm'],$_POST['addSeguro'],$_POST['addFechaSeguro'], $nombreImg, $nombreImgItv, $nombreImgPermiso, $_POST['addObs']);
 
         header("Location: index.php");
     }
@@ -182,7 +189,7 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     if(isset($_POST["botonBorrarVehiculo"])){
         $claseVehiculo = new Vehiculo();
-        $claseVehiculo->deleteVehiculo($_POST["id"]);
+        $claseVehiculo->deleteVehiculo($_POST["idBorrarVehiculo"]);
         
         header("Location: index.php");
     }
@@ -191,7 +198,7 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
     //MODIFICAR VEHICULOS
     if(isset($_POST['editBotonV'])){
         $claseVehiculo = new Vehiculo();
-        $claseVehiculo->updateVehiculo($_POST['idEditVehiculo'], $_POST['editMarca'],$_POST['editModelo'],$_POST['editMatricula'],$_POST['editAverias'],$_POST['editItv'],$_POST['editKm'],$_POST['editSeguro'],$_POST['editFechaSeguro'], $_FILES['editImg']['name'], $_FILES['editImgItv']['name'], $_FILES['editImgPermiso']['name'], $_POST['editObs']);
+        $claseVehiculo->updateVehiculo($_POST['idEditVehiculo'], $_POST['editMarcaVehiculo'],$_POST['editModeloVehiculo'],$_POST['editMatriculaVehiculo'],$_POST['editAveriasVehiculo'],$_POST['editItvVehiculo'],$_POST['editKmVehiculo'],$_POST['editSeguroVehiculo'],$_POST['editFechaSeguroVehiculo'], $_FILES['editImgVehiculo']['name'], $_FILES['editImgItvVehiculo']['name'], $_FILES['editImgPermisoVehiculo']['name'], $_POST['editObsVehiculo']);
         
         header("Location: index.php");
     }
@@ -263,8 +270,8 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
         
     if(isset($_POST['botonBorrarU'])){
         $claseLugar = new Lugar();
-        $claseLugar->deleteLugar($_POST['id']);
-
+        $claseLugar->deleteLugar($_POST['idBorrarU']);
+        
         header("Location: index.php");
     }  
     
@@ -273,13 +280,18 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
     
     if(isset($_POST['editBotonU'])){
         $claseLugar = new Lugar();
-        $claseLugar->updateLugar($_POST['id'], $_POST['editLocalidad'],$_POST['editRe'],$_POST['editDir']);
+        $claseLugar->updateLugar($_POST['idEditU'], $_POST['editLocalidad'],$_POST['editRe'],$_POST['editDir']);
         
         header("Location: index.php");
     }
 
 
+
+
+
+
     /* PROVISIONAL */
+    
     if($_SESSION["rol"] == "admin"){
         require("view/vista_admin.php");
     }else{

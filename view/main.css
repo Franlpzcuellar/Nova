@@ -470,3 +470,31 @@ h2{
 .textoEliminar{
     color: #ecf0f3;
 }
+
+.supFoto{
+    display: grid;
+    text-align: center;
+    grid-row-gap: 10px;
+}
+
+.supFoto span{
+    font-size: large;
+}
+
+.supFoto img{
+    width: 100px;
+}
+
+.supFoto2{
+    display: grid;
+    text-align: center;
+    grid-row-gap: 10px;
+}
+
+.supFoto2 span{
+    font-size: large;
+}
+
+.supFoto2 img{
+    margin: auto;
+}

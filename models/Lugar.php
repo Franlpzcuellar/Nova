@@ -70,7 +70,7 @@ public function createLugar($localidad, $recinto, $direccion){
 
         $numeroEmpieza = $cuantosElementosPorPagina * ($numeroDePagina - 1);
 
-        $consulta = $this->db->prepare('SELECT * FROM lugar LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
+        $consulta = $this->db->prepare('SELECT * FROM lugar ORDER BY localidad ASC LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
         $consulta->execute();
 
         $fila = $consulta->fetchAll(PDO::FETCH_OBJ);

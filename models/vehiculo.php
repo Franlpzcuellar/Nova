@@ -18,7 +18,6 @@
         $fila = $consulta->fetchAll(PDO::FETCH_OBJ);
 
         return $fila;
-
     }
 
     public function createVehiculo($marca, $matricula, $modelo, $ultimaItv, $averias, $kms, $seguro, $fechaSeguro, $img, $imgItv, $imgPermiso, $observaciones){
@@ -84,7 +83,6 @@
         $total = $consulta->rowCount();
 
         return $total;
-
     }
 
     public function getLimit($numeroDePagina, $cuantosElementosPorPagina){
@@ -92,13 +90,12 @@
 
         $numeroEmpieza = $cuantosElementosPorPagina * ($numeroDePagina - 1);
 
-        $consulta = $this->db->prepare('SELECT * FROM vehiculo LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
+        $consulta = $this->db->prepare('SELECT * FROM vehiculo ORDER BY marca ASC LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
         $consulta->execute();
 
         $fila = $consulta->fetchAll(PDO::FETCH_OBJ);
 
         return $fila;
-
     }
 
     }
