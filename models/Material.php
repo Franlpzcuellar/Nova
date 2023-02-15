@@ -18,8 +18,8 @@ class Material{
         return $final;
     }
 
-    public function updateMaterial($id, $nombre, $familia, $marca, $foto, $datos, $fechaCarga, $lugarCarga){
-        $consulta = $this->db->prepare("UPDATE material SET nombre=:n, familia=:f, marca=:m, foto=:o, datos=:d, fechaCarga=:fc, lugarCarga=:lc WHERE id=:i");
+    public function updateMaterial($id, $nombre, $familia, $marca, $foto, $datos, $ubicacion){
+        $consulta = $this->db->prepare("UPDATE material SET nombre=:n, familia=:f, marca=:m, foto=:o, datos=:d, ubicacionMaterial=:u WHERE id=:i");
 
         $consulta->execute(
             array(
@@ -28,8 +28,7 @@ class Material{
                 ":m" => $marca,
                 ":o" => $foto,
                 ":d" => $datos,
-                ":fc" => $fechaCarga,
-                ":lc" => $lugarCarga,
+                ":u" => $ubicacion,
                 ":i" => $id
             )
         );
@@ -45,8 +44,8 @@ class Material{
         );
     }
 
-    public function createMaterial($nombre, $familia, $marca, $foto, $datos){
-        $consulta = $this->db->prepare("INSERT INTO material(nombre, familia, marca, foto, datos) VALUES (:n, :f, :m, :o, :d)");
+    public function createMaterial($nombre, $familia, $marca, $foto, $datos, $ubicacion){
+        $consulta = $this->db->prepare("INSERT INTO material(nombre, familia, marca, foto, datos, ubicacionMaterial) VALUES (:n, :f, :m, :o, :d, :u)");
 
         $consulta->execute(
             array(
@@ -54,7 +53,8 @@ class Material{
                 ":f" => $familia,
                 ":m" => $marca,
                 ":o" => $foto,
-                ":d" => $datos
+                ":d" => $datos,
+                ":u" => $ubicacion
             )
         );
     }
@@ -89,11 +89,13 @@ class Material{
         );
     }
 
-    public function getFilas(){
+    public function getFilas($familia){
         // Devuelve un int con las filas que hay en una table
         
-        $consulta = $this->db->prepare("SELECT * FROM material");
-        $consulta->execute();
+        $consulta = $this->db->prepare("SELECT * FROM material WHERE familia=:f");
+        $consulta->execute(array(
+            ":f"=>$familia
+        ));
 
         $total = $consulta->rowCount();
 
@@ -101,12 +103,12 @@ class Material{
 
     }
 
-    public function getLimit($numeroDePagina, $cuantosElementosPorPagina){
+    public function getLimit($numeroDePagina, $cuantosElementosPorPagina, $familia){
         // Devuelve un SELECT * CON LIMIT
 
         $numeroEmpieza = $cuantosElementosPorPagina * ($numeroDePagina - 1);
 
-        $consulta = $this->db->prepare('SELECT * FROM material LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
+        $consulta = $this->db->prepare('SELECT * FROM material WHERE familia="' . $familia . '" LIMIT '. $numeroEmpieza .', '. $cuantosElementosPorPagina);
         $consulta->execute();
 
         $fila = $consulta->fetchAll(PDO::FETCH_OBJ);

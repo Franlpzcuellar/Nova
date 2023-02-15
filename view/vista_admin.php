@@ -237,31 +237,55 @@
           <label class="form-label" for="form1"></label>
         </div>
       </div>
-      <form class="container mb-5 modelo divCategorias">
-        <button type="submit" name="estructuras" class="btn categoria">Estructuras</button>
-        <button type="submit" name="cableado" class="btn categoria">Cableado</button>
-        <button type="submit" name="sonido" class="btn categoria">Sonido</button>
-        <button type="submit" name="iluminacion" class="btn categoria">Iluminación</button>
-        <button type="submit" name="video" class="btn categoria">Video</button>
-        <button type="submit" name="utiles" class="btn categoria">Útiles y Herramientas</button>
-        <button type="submit" name="varios" class="btn categoria ulti">Varios</button>
-      </form>
+      <div class="container mb-5 modelo divCategorias">
+        <a href ='?categoria=material&familia=ESTRUCTURA' name="estructuras" class="btn categoria">Estructuras</a>
+        <a href ='?categoria=material&familia=CABLEADO' name="cableado" class="btn categoria">Cableado</a>
+        <a href ='?categoria=material&familia=SONIDO' name="sonido" class="btn categoria">Sonido</a>
+        <a href ='?categoria=material&familia=ILUMINACION' name="iluminacion" class="btn categoria">Iluminación</a>
+        <a href ='?categoria=material&familia=VIDEO' name="video" class="btn categoria">Video</a>
+        <a href ='?categoria=material&familia=UTILES' name="utiles" class="btn categoria">Útiles y Herramientas</a>
+        <a href ='?categoria=material&familia=VARIOS' name="varios" class="btn categoria ulti">Varios</a>
+      </div>
 
-      <div class="d-none fichaProducto">
+      <div class = "materiales <?php if(!isset($_GET["familia"])){
+        echo "d-none";
+      } ?>">
+        <div class="fichaProducto">
         <h2>Ficha Producto</h2>
-        <div class="container mb-5 modelo">
-          <label><span class="titulo">ID:</span>1234</label>
-          <label><span class="titulo">Nombre:</span>Altavoz</label>
-          <label><span class="titulo">Familia:</span>Perez</label>
-          <label><span class="titulo">Marca:</span>Sony</label>
-          <label><span class="titulo">Foto:</span><img src="https://m.media-amazon.com/images/I/41g6jROgo0L.png" width="60"></label>
-          <label><span class="titulo">Datos:</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores suscipit beatae similique in perspiciatis quaerat?</label>
+        <?php foreach ($paginasMaterial as $x): ?>
+          
+          <div class="container mb-5 modelo">
+            <label><span class="titulo">ID: </span><?php echo $x->id ?></label>
+            <label><span class="titulo">Nombre: </span><?php echo $x->nombre ?></label>
+            <label><span class="titulo">Familia: </span><?php echo $x->familia ?></label>
+            <label><span class="titulo">Marca: </span><?php echo $x->marca ?></label>
+            <label><span class="titulo">Ubicacion: </span><?php echo $x->ubicacionMaterial ?></label>
+            <label><span class="titulo">Foto: </span><img src="<?php echo 'upload/images/' . $x->foto ?>" width="60"></label>
+            <label><span class="titulo">Datos: </span><?php echo $x->datos ?></label>
 
+            <div class="btnModificar">
+              <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>
+            </div>
+          </div>
+        <?php endforeach; ?>
 
-          <div class="btnModificar">
-            <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>
+          <div class='paginacion'>
+
+            <?php
+
+            if(isset($_GET["familia"])){
+              $family = $_GET["familia"];
+            } else{
+              $family = "";
+            }
+
+            for ($i = 1; $i <= $numeroDePaginasMaterial; $i++) {
+              echo "<a class='pagina' href ='?paginaMaterial=" . $i . "&categoria=material&familia=" . $family . "'>" . $i . "</a>";
+            };
+            ?>
 
           </div>
+        </div>
       </div>
     </div>
       

@@ -202,6 +202,26 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
         
         header("Location: index.php");
     }
+
+
+    // MOSTRAR MATERIAL 
+    if (isset($_GET["familia"])){
+        $material = new Material();
+
+        $familia = $_GET["familia"];
+
+        $filasMaterial = $material->getFilas($familia);
+        $filasMaterialPorPagina = 3;
+
+        if(isset($_GET["paginaMaterial"])){
+            $paginaMaterialActual = $_GET["paginaMaterial"];
+        } else {
+            $paginaMaterialActual = 1;
+        }
+
+        $paginasMaterial = $material->getLimit($paginaMaterialActual, $filasMaterialPorPagina, $familia);
+        $numeroDePaginasMaterial = ceil($filasMaterial / $filasMaterialPorPagina);
+    }
     
 
     //AÑADIR MATERIAL // estaba comentado
@@ -210,7 +230,7 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
         $claseMaterial = new Material();
 
-        $claseMaterial->createMaterial($_POST['addNom'],$_POST['addFam'],$_POST['addMarca'],$_POST['addFoto'],$_POST['addDatos']);
+        $claseMaterial->createMaterial($_POST['addNom'],$_POST['addFam'],$_POST['addMarca'],$_POST['addFoto'],$_POST['addDatos'], $_POST['addUbicacion']);
 
         header("Location: index.php");
     }
@@ -232,7 +252,7 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     if(isset($_POST['modBotonM'])){
         $claseMaterial = new Material();
-        $claseMaterial->updateMaterial($_POST['id'], $_POST['editNombre'],$_POST['editFamilia'],$_POST['editMarca'],$_POST['editFoto'],$_POST['editDatos'],$_POST['editFechaCarga'],$_POST['editLugarCarga']);
+        $claseMaterial->updateMaterial($_POST['id'], $_POST['editNombre'],$_POST['editFamilia'],$_POST['editMarca'],$_POST['editFoto'],$_POST['editDatos'], $_POST['editUbicacion']);
         
         header("Location: index.php");
     }

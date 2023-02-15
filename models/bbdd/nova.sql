@@ -44,7 +44,8 @@ CREATE TABLE material(
     foto VARCHAR(2000),
     datos VARCHAR(5000),
     fechaCarga DATETIME,
-    lugarCarga VARCHAR(500)
+    lugarCarga VARCHAR(500),
+    ubicacionMaterial VARCHAR(200)
 );
 
 CREATE TABLE lugar(
@@ -72,7 +73,18 @@ INSERT INTO vehiculo(marca, matricula,modelo,imagen,imagenItv,imagenPermisoCircu
 VALUES
 ("Perú", "2127JFK","Palomero","https://images.coches.com/_vn_/kia/Sportage/c399cf1d98a95d24f8e8715dd0b13fb2.jpg?p=cc_vn_high","https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2022/09/pegatina-itv-2803459.jpg","https://www.dgt.es/export/sites/web-DGT/.galleries/Images/nuestros-servicios/tarjeta-itv-500.jpg","revisionidkqcojonesponer aqui","averia en el motor", 250000, "Mutua Madrileña","29-08-27","Está pa morirse"),
 ("Ford", "0984OYS","Kuga","https://images.coches.com/_vn_/kia/Sportage/c399cf1d98a95d24f8e8715dd0b13fb2.jpg?p=cc_vn_high","https://cdn.autobild.es/sites/navi.axelspringer.es/public/media/image/2022/09/pegatina-itv-2803459.jpg","https://www.dgt.es/export/sites/web-DGT/.galleries/Images/nuestros-servicios/tarjeta-itv-500.jpg","revisionidkqcojonesponer aquilorenipmsuasmamsaksadfgqwertyuf","averia en el motorasasadfd", 10000, "Mutua Madrileña","29-08-27","Huele a pedo");
-INSERT INTO material(nombre,familia,marca,foto,datos,fechaCarga,lugarCarga)
+INSERT INTO material(nombre,familia,marca,foto,datos,ubicacionMaterial)
 VALUES
-("material1","familiamaterial1","marcapolla","https://pbs.twimg.com/media/D6uc2kBX4AAv3xV.jpg","datos qwerty loren ipsum blablablalbablamarcogay","09-feb-2023","lugarCarga1"),
-("material2","familiamaterial2","marcapolla","https://pbs.twimg.com/media/D6uc2kBX4AAv3xV.jpg","datos qwerty loren ipsum blablablalbablamarcogay","09-feb-2023","lugarCarga1")
+("Torre Andamio", "ESTRUCTURAS", "Pro Safe", "https://www.iberandamios.com/540-large_default/andamio-plegable-75x190-750-m-altura-de-trabajo-con-estabilizadores.jpg", "Súbete a esta", "ESTRU1"),
+("Panel de Luz","ILUMINACION","Prime Lux","https://365enfoques.com/wp-content/uploads/2018/01/luces-para-estudio-fotografico.jpg","Para fotografías", "ILU2"),
+("Panel de Luz","ILUMINACION","Prime Lux","https://365enfoques.com/wp-content/uploads/2018/01/luces-para-estudio-fotografico.jpg","Para fotografías", "ILU2"),
+("Panel de Luz","ILUMINACION","Prime Lux","https://365enfoques.com/wp-content/uploads/2018/01/luces-para-estudio-fotografico.jpg","Para fotografías", "ILU2"),
+("Panel de Luz","ILUMINACION","Prime Lux","https://365enfoques.com/wp-content/uploads/2018/01/luces-para-estudio-fotografico.jpg","Para fotografías", "ILU2"),
+("Cable Eléctrico", "CABLEADO", "Kopp", "https://m.media-amazon.com/images/I/41Vs-rJJCgL.__AC_SX300_SY300_QL70_ML2_.jpg", "Tiene la longitud de mi p****", "CABLE3"),
+("Kit de Plataforma de Hombro para Cámara", "VIDEO", "Neewer", "https://m.media-amazon.com/images/I/712aWFKVLpL._AC_SX679_.jpg", "Con esto haces más hombro que en el gym", "VIDEO4"),
+("Caja de Conexión", "VARIOS", "IP55", "https://media.adeo.com/marketplace/LMES/82049184/1882493.png?width=650&height=650&format=jpg&quality=80&fit=bounds", "A tu madre si que se la conecto", "VAR5"),
+("Apollo Twin MkII Duo Heritage", "SONIDO", "Universal Audio", "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/508036/15742746_800.jpg", "Sonidos precisos", "SON6"),
+("Taladro Percutor 18V", "UTILES", "ONE", "https://static.ryobitools.eu/remote.axd/ryobi-media-images.s3.amazonaws.com/hi/RPD18-0--Hero_1.jpg?v=FAF4F0D7C5F9F8A190BF25FFB66B0BA6&width=500", "Genial", "UTI7");
+
+
+
