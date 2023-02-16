@@ -112,8 +112,7 @@
 
             <div class="botones botonesPersonal mt-3">
               <div class="btnModificar">
-                <input type="button" class="modBoton modBotonP" name="modBotonP" id="modBotonP" data-div="pantallaOscuraEditPersonal" data-id="<?php echo $x->id ?>" value="MODIFICAR" data-nombre="<?php echo $x->nombre?>" data-dni="<?php echo $x->dni?>"
-                data-ts="<?php echo $x->tarjetaSanitaria ?>" data-ss="<?php echo $x->nSeguridadSocial ?>" data-direccion= "<?php echo $x->direccion ?>" data-telefono="<?php echo $x->telefono ?>" data-comentarios="<?php echo $x->comentarios ?>" data-imagen="<?php echo $x->imagen ?>" ></input>
+                <input type="button" class="modBoton modBotonP" name="modBotonP" id="modBotonP" data-div="pantallaOscuraEditPersonal" data-id="<?php echo $x->id ?>" value="MODIFICAR" data-nombre="<?php echo $x->nombre ?>" data-dni="<?php echo $x->dni ?>" data-ts="<?php echo $x->tarjetaSanitaria ?>" data-ss="<?php echo $x->nSeguridadSocial ?>" data-direccion="<?php echo $x->direccion ?>" data-telefono="<?php echo $x->telefono ?>" data-comentarios="<?php echo $x->comentarios ?>" data-imagen="<?php echo $x->imagen ?>"></input>
               </div>
               <div class="btnEliminar">
                 <input type="button" class="delBoton delBotonP" name="delBotonP" id="delBotonP" data-div="pantallaOscuraBorrarPersonal" data-id="<?php echo $x->id ?>" value="ELIMINAR"></input>
@@ -171,7 +170,7 @@
         </div>
       </div>
 
-      <?php foreach ($paginasVehiculo as $x): ?> <!-- EMPIEZA EL BUCLE -->
+      <?php foreach ($paginasVehiculo as $x) : ?> <!-- EMPIEZA EL BUCLE -->
         <div class="container mb-5 modelo">
           <div class="columna1">
             <label><span class="titulo">Marca:</span><?php echo $x->marca ?></label>
@@ -186,20 +185,20 @@
 
             <div class="botones mt-3">
               <div class="btnModificar">
-                <input type="button" class="modBoton modBotonV" name="modBotonV" id="modBotonV" value="MODIFICAR" data-div="pantallaOscuraEditVehiculo"  data-id="<?php echo $x->id ?>" data-marca="<?php echo $x->marca?>" data-modelo="<?php echo $x->modelo ?>" data-matricula="<?php echo $x->matricula?>" data-averias="<?php  echo $x->averias ?>" data-ultimaitv= "<?php echo $x->ultimaItv ?>" data-kms= "<?php echo $x->kms ?>" data-seguro="<?php echo $x->seguro ?>" data-fechaseguro="<?php echo $x->fechaSeguro ?> " data-observaciones="<?php echo $x->observaciones ?>" data-imagen="<?php echo $x->imagen ?>" data-imagenItv="<?php echo $x->imagenItv ?>" data-imagenPermisoCirculacion="<?php echo $x->imagenPermisoCirculacion ?>"></input>
+                <input type="button" class="modBoton modBotonV" name="modBotonV" id="modBotonV" value="MODIFICAR" data-div="pantallaOscuraEditVehiculo" data-id="<?php echo $x->id ?>" data-marca="<?php echo $x->marca ?>" data-modelo="<?php echo $x->modelo ?>" data-matricula="<?php echo $x->matricula ?>" data-averias="<?php echo $x->averias ?>" data-ultimaitv="<?php echo $x->ultimaItv ?>" data-kms="<?php echo $x->kms ?>" data-seguro="<?php echo $x->seguro ?>" data-fechaseguro="<?php echo $x->fechaSeguro ?> " data-observaciones="<?php echo $x->observaciones ?>" data-imagen="<?php echo $x->imagen ?>" data-imagenItv="<?php echo $x->imagenItv ?>" data-imagenPermisoCirculacion="<?php echo $x->imagenPermisoCirculacion ?>"></input>
               </div>
               <div class="btnEliminar">
-                <input type="button" class="delBoton delBotonV" name="delBotonV" data-div="pantallaOscuraBorrarVehiculo" data-id="<?php echo $x->id?>" id="delBotonV" value="ELIMINAR"></input>
+                <input type="button" class="delBoton delBotonV" name="delBotonV" data-div="pantallaOscuraBorrarVehiculo" data-id="<?php echo $x->id ?>" id="delBotonV" value="ELIMINAR"></input>
               </div>
             </div>
           </div>
           <div class="columna2">
             <label class="supFoto2"><span class="titulo">Imagen</span>
-            <img src="<?php echo 'upload/images/' . $x->imagen ?>"></label>
+              <img src="<?php echo 'upload/images/' . $x->imagen ?>"></label>
             <label class="supFoto2"><span class="titulo">ITV</span>
-            <img src="<?php echo 'upload/images/' . $x->imagenItv ?>"></label>
+              <img src="<?php echo 'upload/images/' . $x->imagenItv ?>"></label>
             <label class="supFoto2"><span class="titulo">Permiso Circulación</span>
-            <img src="<?php echo 'upload/images/' . $x->imagenPermisoCirculacion ?>"></label>
+              <img src="<?php echo 'upload/images/' . $x->imagenPermisoCirculacion ?>"></label>
           </div>
         </div>
       <?php endforeach; ?> <!-- ACABA EL BUCLE -->
@@ -228,54 +227,66 @@
         </div>
       </div>
 
+      <!--BUSCADOR-->
       <div class="input-group">
-        <div class="form-outline">
-          <button type="button" class="buscar">
+        <form method="get" action="index.php" class="form-outline">
+          <button href='?categoria=material' class="buscar">
             <i class="bi bi-search"></i>
           </button>
-          <input type="search" id="form1" placeholder="Buscar..." />
-          <label class="form-label" for="form1"></label>
-        </div>
+          <input name="buscar" id="buscar" placeholder="Buscar..."></input>
+          <label class="form-label" for="buscar"></label>
+        </form>
       </div>
+
+      <!--FILTRO FAMILIA-->
       <div class="container mb-5 modelo divCategorias">
-        <a href ='?categoria=material&familia=ESTRUCTURA' name="estructuras" class="btn categoria">Estructuras</a>
-        <a href ='?categoria=material&familia=CABLEADO' name="cableado" class="btn categoria">Cableado</a>
-        <a href ='?categoria=material&familia=SONIDO' name="sonido" class="btn categoria">Sonido</a>
-        <a href ='?categoria=material&familia=ILUMINACION' name="iluminacion" class="btn categoria">Iluminación</a>
-        <a href ='?categoria=material&familia=VIDEO' name="video" class="btn categoria">Video</a>
-        <a href ='?categoria=material&familia=UTILES' name="utiles" class="btn categoria">Útiles y Herramientas</a>
-        <a href ='?categoria=material&familia=VARIOS' name="varios" class="btn categoria ulti">Varios</a>
+        <a href='?categoria=material&familia=CABLEADO' name="cableado" class="btn categoria">Cableado</a>
+        <a href='?categoria=material&familia=ESTRUCTURAS' name="estructuras" class="btn categoria">Estructuras</a>
+        <a href='?categoria=material&familia=ILUMINACION' name="iluminacion" class="btn categoria">Iluminación</a>
+        <a href='?categoria=material&familia=SONIDO' name="sonido" class="btn categoria">Sonido</a>
+        <a href='?categoria=material&familia=UTILES' name="utiles" class="btn categoria">Útiles y Herramientas</a>
+        <a href='?categoria=material&familia=VARIOS' name="varios" class="btn categoria">Varios</a>
+        <a href='?categoria=material&familia=VIDEO' name="video" class="btn categoria ulti">Video</a>
       </div>
 
-      <div class = "materiales <?php if(!isset($_GET["familia"])){
-        echo "d-none";
-      } ?>">
-        <div class="fichaProducto">
-        <h2>Ficha Producto</h2>
-        <?php foreach ($paginasMaterial as $x): ?>
-          
-          <div class="container mb-5 modelo">
-            <label><span class="titulo">ID: </span><?php echo $x->id ?></label>
-            <label><span class="titulo">Nombre: </span><?php echo $x->nombre ?></label>
-            <label><span class="titulo">Familia: </span><?php echo $x->familia ?></label>
-            <label><span class="titulo">Marca: </span><?php echo $x->marca ?></label>
-            <label><span class="titulo">Ubicacion: </span><?php echo $x->ubicacionMaterial ?></label>
-            <label><span class="titulo">Foto: </span><img src="<?php echo 'upload/images/' . $x->foto ?>" width="60"></label>
-            <label><span class="titulo">Datos: </span><?php echo $x->datos ?></label>
+      <!--MATERIALES-->
+      <div class="materiales <?php if (!isset($_GET["familia"])) {
+                                echo "d-none";
+                              }
+                              /*if (!isset($_GET["buscar"])) {echo "d-none";}*/ ?>">
 
-            <div class="btnModificar">
-              <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>
+        <div class="fichaProducto">
+          <h2>Ficha Producto</h2>
+
+          <?php foreach ($paginasMaterial as $x) : ?>
+
+            <div class="container mb-5 modelo modeloFichaProducto">
+              <label><span class="titulo espacioTitulo">ID:</span><?php echo "#" . $x->id ?></label>
+              <label><span class="titulo espacioTitulo">Nombre:</span><?php echo $x->nombre ?></label>
+              <label><span class="titulo espacioTitulo">Familia:</span><?php echo $x->familia ?></label>
+              <label><span class="titulo espacioTitulo">Marca:</span><?php echo $x->marca ?></label>
+              <label><span class="titulo espacioTitulo">Ubicacion:</span><?php echo $x->ubicacionMaterial ?></label>
+              <label class="fotoMaterial supFoto"><span class="titulo">Foto</span><img src="<?php echo 'upload/images/' . $x->foto ?>"></label>
+              <label><span class="titulo espacioTitulo">Datos:</span><?php echo $x->datos ?></label>
+
+              <div class="btnModificar btnModificar2">
+                <input type="button" class="modBoton" name="modBotonM" id="modBotonM" value="MODIFICAR" data-div="pantallaOscuraEditMaterial" data-id="<?php echo $x->id ?>" data-nombre="<?php echo $x->nombre ?>" data-familia="<?php echo $x->familia ?>" data-marca="<?php echo $x->marca ?>" data-foto="<?php echo $x->foto ?>" data-datos="<?php echo $x->datos ?>" data-ubicacionMaterial="<?php echo $x->ubicacionMaterial ?>"></input>
+                <input type="button" class="modBoton addBotonF" name="addBotonF" id="addBotonF" data-div="pantallaOscuraAnadirF" value="AÑADIR A FICHA DE CARGA"></input>
+                <input type="button" class="delBoton delBotonM" name="delBotonM" data-id="<?php echo $x->id; ?>" data-div="pantallaOscuraBorrarM" id="delBotonM" value="ELIMINAR"></input>
+              </div>
+
             </div>
-          </div>
-        <?php endforeach; ?>
+
+
+          <?php endforeach; ?>
 
           <div class='paginacion'>
 
             <?php
 
-            if(isset($_GET["familia"])){
+            if (isset($_GET["familia"])) {
               $family = $_GET["familia"];
-            } else{
+            } else {
               $family = "";
             }
 
@@ -288,77 +299,139 @@
         </div>
       </div>
     </div>
-      
-    </div>
 
     <!-- DIV CARGA -->
     <div class="carga d-none">
       <h2>Fichas de Carga</h2>
       <div class="container arriba">
         <div class="mb-3 row">
-          <i class="bi bi-plus-square nuevoanadir" data-div="">&nbsp Añadir Fichero</i><!-- sumar fichero-->
-          <i class="bi bi-eraser-fill"> Eliminar Fichero</i><!-- borrar fichero-->
-        </div>
-      </div>
-      <div class="container mb-5 modelo">
-        <label><span class="titulo">ID:</span>1234</label>
-        <label><span class="titulo">Nombre:</span>Altavoz</label>
-        <label><span class="titulo">Localidad:</span>Madrid</label>
-        <label><span class="titulo">Recinto:</span>Wizink Center</label>
-        <label><span class="titulo">Dirección:</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores suscipit beatae similique in perspiciatis quaerat?</label>
-        <label><span class="titulo">Fecha:</span>02-01-2023</label>
-
-        <div class="btnModificar">
-          <input type="submit" class="modBoton" name="modBoton" id="modBoton" value="MODIFICAR"></input>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- DIV UBICACIONES -->
-
-    <div class="ubicaciones d-none">
-      <h2>Ubicaciones</h2>
-      <div class="container arriba">
-        <div class="mb-3 row">
-          <i class="bi bi-plus-square nuevoanadir" data-div="pantallaOscuraAnadirU">&nbsp Añadir nueva ubicación</i><!-- sumar fichero-->
+          <i class="bi bi-plus-square nuevoanadir" data-div="anadirC">&nbsp Añadir Fichero</i><!-- sumar fichero-->
         </div>
       </div>
 
-      <?php foreach($paginasUbicacion as $x): ?>
-
-      <div class="container mb-5 modelo">
-        <div class="columna1">
-          <label><span class="titulo">Localidad: </span> <?php echo $x->localidad; ?> </label>
-          <label><span class="titulo">Recinto: </span> <?php echo $x->recinto; ?> </label>
-          <label><span class="titulo">Direccion: </span> <?php echo $x->direccion; ?> </label>
+      <div class="container mb-5 modelo factura"><!-- mb-5 modelo container -->
+        <div class="cabeceraFactura">
+          <label><span class="titulo">Localidad: </span>Granada</label>
+          <label><span class="titulo">Recinto: </span>Ferial Granada</label>
+          <label><span class="titulo">Fecha: </span>25-11-2220</label>
         </div>
+        <div class="cuerpoFactura">
 
-        <div class="botones2">
-          <div class="btnModificar">
-            <input type="button" class="modBoton modBotonU" name="modBotonU" data-div="pantallaOscuraEditU" data-id="<?php echo $x->id; ?>" data-localidad="<?php echo $x->localidad; ?>" data-recinto="<?php echo $x->recinto; ?>" data-direccion="<?php echo $x->direccion; ?>" id="modBoton" value="MODIFICAR"></input>
-          </div>
-          <div class="btnEliminar">
-            <input type="button" class="delBoton delBotonU" name="delBotonU" data-id="<?php echo $x->id; ?>" data-div="pantallaOscuraBorrarU" id="delBoton" value="ELIMINAR"></input>
+          <table class="tablaMaterial">
+            <tr>
+              <td class="tituloColumna">ID</td>
+              <td class="tituloColumna">NOMBRE</td>
+              <td class="tituloColumna">FAMILIA</td>
+              <td class="tituloColumna">MARCA</td>
+              <td class="tituloColumna">UBICACION</td>
+              <td class="tituloColumna"></td>
+            </tr>
+            <tr>
+              <td><label><span class="titulo"></span>1</label></td>
+              <td><label><span class="titulo"></span>Microfono XP</label>
+              <td><label><span class="titulo"></span>SONIDO</label></td>
+              <td><label><span class="titulo"></span>Razer</label></td>
+              <td><label><span class="titulo"></span>SON6</label></td>
+              <td><i class="bi bi-trash3-fill"></td>
+            </tr>
+          </table>
+          <br>
+            <div>
+              <label for="">Observaciones: <input class="observacion" id="observacion" name="observacion"></label>
+            </div>
+            <div class="pieBotones">
+              <div class="btnModificar">
+                <input type="button" class="modBoton delBotonFicha" name="delBotonFicha" id="delBotonFicha" data-div="pantallaOscuraBorrarC" value="ELIMINAR"></input>
+              </div>
+              <div class="pdfFicha">
+                <i class="bi bi-filetype-pdf nuevoanadir">&nbsp Descargar PDF</i>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <?php endforeach; ?>
 
-      <div class='paginacion'>
-        <?php
+
+
+      <!-- DIV UBICACIONES -->
+
+      <div class="ubicaciones d-none">
+        <h2>Ubicaciones</h2>
+        <div class="container arriba">
+          <div class="mb-3 row">
+            <i class="bi bi-plus-square nuevoanadir" data-div="pantallaOscuraAnadirU">&nbsp Añadir nueva ubicación</i><!-- sumar fichero-->
+          </div>
+        </div>
+
+        <?php foreach ($paginasUbicacion as $x) : ?>
+
+          <div class="container mb-5 modelo">
+            <div class="columna1">
+              <label><span class="titulo">Localidad: </span> <?php echo $x->localidad; ?> </label>
+              <label><span class="titulo">Recinto: </span> <?php echo $x->recinto; ?> </label>
+              <label><span class="titulo">Direccion: </span> <?php echo $x->direccion; ?> </label>
+            </div>
+
+            <div class="botones2">
+              <div class="btnModificar">
+                <input type="button" class="modBoton modBotonU" name="modBotonU" data-div="pantallaOscuraEditU" data-id="<?php echo $x->id; ?>" data-localidad="<?php echo $x->localidad; ?>" data-recinto="<?php echo $x->recinto; ?>" data-direccion="<?php echo $x->direccion; ?>" id="modBoton" value="MODIFICAR"></input>
+              </div>
+              <div class="btnEliminar">
+                <input type="button" class="delBoton delBotonU" name="delBotonU" data-id="<?php echo $x->id; ?>" data-div="pantallaOscuraBorrarU" id="delBoton" value="ELIMINAR"></input>
+              </div>
+            </div>
+          </div>
+
+        <?php endforeach; ?>
+
+        <div class='paginacion'>
+          <?php
           for ($i = 1; $i <= $numeroDePaginasUbicacion; $i++) {
             echo "<a class='pagina' href ='?paginaUbicacion=" . $i . "&categoria=ubicaciones'>" . $i . "</a>";
           };
-        ?>
+          ?>
+        </div>
       </div>
-    </div>
 
 
 
   </main>
+
+
+
+
+
+
+
+
+
+
+
+  <!--
+
+
+
+
+----------------------------------------------------------------
+
+
+
+
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -393,9 +466,9 @@
     </form>
   </div>
 
-<!-- DIV EDITAR PERSONAL-->
+  <!-- DIV EDITAR PERSONAL-->
 
-  
+
   <div class="pantallaOscura pantallaOscuraEditPersonal editP d-none">
     <form class="pantallaFrontal container mb-5" method="post" action="index.php" enctype="multipart/form-data">
       <i class="bi bi-x" data-div="pantallaOscuraEditPersonal"></i>
@@ -427,13 +500,13 @@
   <!-- DIV ELIMINAR PERSONAL -->
 
   <div class="pantallaOscura pantallaOscuraBorrarPersonal d-none">
-      <form class="pantallaFrontal container mb-5" method="post" action="index.php">
-        <input type="hidden" name="idBorrarPersonal" id="idBorrarPersonal" value="">
-        <p class="textoEliminar">¿Estás seguro/a de que quieres borrar la ficha seleccionada?</p>
+    <form class="pantallaFrontal container mb-5" method="post" action="index.php">
+      <input type="hidden" name="idBorrarPersonal" id="idBorrarPersonal" value="">
+      <p class="textoEliminar">¿Estás seguro/a de que quieres borrar la ficha seleccionada?</p>
 
-        <input type="submit" class="modBoton" name="botonBorrarPersonal" value="BORRAR">
-        <input type="button" class="salirPantallaOscuraBorrarPersonal modBoton" data-div="pantallaOscuraBorrarPersonal" value="CANCELAR Y SALIR">
-      </form>
+      <input type="submit" class="modBoton" name="botonBorrarPersonal" value="BORRAR">
+      <input type="button" class="salirPantallaOscuraBorrarPersonal modBoton" data-div="pantallaOscuraBorrarPersonal" value="CANCELAR Y SALIR">
+    </form>
   </div>
 
   <!-- DIV AÑADIR VEHICULOS -->
@@ -465,20 +538,20 @@
       <label><span class="titulo">Imagen Permiso Circulación:</span></label>
       <input class="input" type="file" name="addImgPermiso">
       <label><span class="titulo">Observaciones:</span>
-      <input class="input" type="text" name="addObs">
-      <div class="botones2">
-        <input type="submit" class="anadirBoton" name="addBotonV" id="addBotonV" value="AÑADIR"></input>
-      </div>
+        <input class="input" type="text" name="addObs">
+        <div class="botones2">
+          <input type="submit" class="anadirBoton" name="addBotonV" id="addBotonV" value="AÑADIR"></input>
+        </div>
     </form>
   </div>
 
 
   <!-- DIV MODIFICAR VEHICULO -->
-          <!--Añadir id de vehiculos -->
+
   <div class="pantallaOscura pantallaOscuraEditVehiculo d-none">
     <form method="post" action="index.php" enctype="multipart/form-data" class="pantallaFrontal container mb-5">
       <i class="bi bi-x" data-div="pantallaOscuraEditVehiculo"></i>
-      <input type="hidden" name="idEditVehiculo" id="idEditVehiculo"  value="">
+      <input type="hidden" name="idEditVehiculo" id="idEditVehiculo" value="">
       <label><span class="titulo">Marca:</span></label>
       <input class="input" type="text" name="editMarcaVehiculo" id="editMarcaVehiculo">
       <label><span class="titulo">Modelo:</span></label>
@@ -502,10 +575,10 @@
       <label><span class="titulo">Imagen Permiso Circulación:</span></label>
       <input class="input" type="file" name="editImgPermisoVehiculo" id="editImgPermisoVehiculo">
       <label><span class="titulo">Observaciones:</span>
-      <input class="input" type="text" name="editObsVehiculo" id="editObsVehiculo">
-      <div class="botones2">
-        <input type="submit" class="anadirBoton" name="editBotonV" id="editBotonV" value="MODIFICAR"></input>
-      </div>
+        <input class="input" type="text" name="editObsVehiculo" id="editObsVehiculo">
+        <div class="botones2">
+          <input type="submit" class="anadirBoton" name="editBotonV" id="editBotonV" value="MODIFICAR"></input>
+        </div>
     </form>
   </div>
 
@@ -513,33 +586,129 @@
   <!-- DIV ELIMINAR VEHICULO -->
 
   <div class="pantallaOscura pantallaOscuraBorrarVehiculo d-none">
-      <form class="pantallaFrontal container mb-5" method="post" action="index.php">
-        <input type="hidden" name="idBorrarVehiculo" id="idBorrarVehiculo" value="">
-        <p class="textoEliminar">¿Estás seguro/a de que quieres borrar el vehículo seleccionado?</p>
+    <form class="pantallaFrontal container mb-5" method="post" action="index.php">
+      <input type="hidden" name="idBorrarVehiculo" id="idBorrarVehiculo" value="">
+      <p class="textoEliminar">¿Estás seguro/a de que quieres borrar el vehículo seleccionado?</p>
 
-        <input type="submit" class="modBoton" name="botonBorrarVehiculo" value="BORRAR">
-        <input type="button" class="salirPantallaOscuraBorrarVehiculo modBoton" data-div="pantallaOscuraBorrarVehiculo" value="CANCELAR Y SALIR">
-      </form>
+      <input type="submit" class="modBoton" name="botonBorrarVehiculo" value="BORRAR">
+      <input type="button" class="salirPantallaOscuraBorrarVehiculo modBoton" data-div="pantallaOscuraBorrarVehiculo" value="CANCELAR Y SALIR">
+    </form>
   </div>
 
   <!-- DIV AÑADIR MATERIAL -->
 
   <div class="pantallaOscura anadirM d-none ">
-    <div class="pantallaFrontal container mb-5"><i class="bi bi-x" data-div="anadirM"></i>
+    <form action="index.php" method="post" enctype="multipart/form-data" class="pantallaFrontal container mb-5">
+      <i class="bi bi-x" data-div="anadirM"></i>
       <label><span class="titulo">Nombre:</span></label>
       <input type="text" name="addNom">
       <label><span class="titulo">Familia:</span></label>
-      <input type="text" name="addFam">
+      <select name="addFam">
+        <option value="CABLEADO">Cableado</option>
+        <option value="ESTRUCTURAS">Estructuras</option>
+        <option value="ILUMINACION">Iluminación</option>
+        <option value="SONIDO">Sonido</option>
+        <option value="UTILES">Útiles y Herramientas</option>
+        <option value="VARIOS">Varios</option>
+        <option value="VIDEO">Video</option>
+      </select>
       <label><span class="titulo">Marca:</span></label>
       <input type="text" name="addMarca">
       <label><span class="titulo">Fotografía:</span></label>
-      <input type="file" name="addFoto">
+      <input type="file" name="addFoto" value="">
       <label><span class="titulo">Datos:</span></label>
-      <input type="text" name="addDatos"> <!--hacer bien el puto div cabrones-->
-      <input type="submit" name="addBotonM" id="addBotonM">AÑADIR</input>
+      <input type="text" name="addDatos">
+      <label><span class="titulo">Ubicación del material:</span></label>
+      <input type="text" name="addUbicacion">
+      <input type="submit" name="addBotonM" id="addBotonM">AÑADIR</select>
+    </form>
+  </div>
+
+  <!--DIV AÑADIR FICHA DESDE MATERIALES-->
+
+  <div class="pantallaOscura pantallaOscuraAnadirF d-none ">
+    <div class="pantallaFrontal container mb-5"><i class="bi bi-x" data-div="pantallaOscuraAnadirF"></i>
+      <label><span class="titulo">SELECCIONAR:</span></label>
+      <select id="seleccionar" name="seleccionar" class="seleccionar">
+        <option value="" selected disabled>FAMILIA</option>
+      </select>
+      <div class="botones2">
+        <input type="submit" class="anadirBoton" name="anadirFicha" id="anadirFicha" value="AÑADIR FICHA"></input>
+      </div>
     </div>
   </div>
 
+  <!-- DIV AÑADIR CARGA -->
+
+
+  <div class="pantallaOscura anadirC d-none">
+    <form class="pantallaFrontal container mb-5" method="post" action="index.php" enctype="multipart/form-data">
+      <i class="bi bi-x" data-div="anadirC"></i>
+      <input class="input" type="hidden" name="idAddtPersonal" id="idAddPersonal" value="">
+      <select name="addLocalidad">
+        <option value="" selected disabled>Localidad</option>
+        <?php foreach ($lugaresSelect as $x)
+
+          echo "<option value='$x->id'>$x->localidad - $x->recinto</option>";
+        
+        ?>
+      </select>
+      <label><span class="titulo">Fecha:</span></label>
+      <input class="input" type="text" name="addFecha">
+      <div class="botones2">
+        <input type="submit" class="anadirBoton" name="addBotonC" id="addBotonC" value="AÑADIR"></input>
+      </div>
+    </form>
+  </div>
+
+  <!-- DIV ELIMINAR CARGA-->
+
+  <div class="pantallaOscura pantallaOscuraBorrarC d-none">
+    <form class="pantallaFrontal container mb-5" method="post" action="index.php">
+      <input type="hidden" name="idBorrarC" id="idBorrarC" value="">
+      <p class="textoEliminar">¿Estás seguro/a de que quieres borrar la carga seleccionada?</p>
+
+      <input type="submit" class="modBoton" name="botonBorrarC" id="botonBorrarC" value="BORRAR">
+      <input type="button" class="salirPantallaOscuraBorrarC modBoton" data-div="pantallaOscuraBorrarC" value="CANCELAR Y SALIR">
+    </form>
+  </div>
+
+  <!-- DIV MODIFICAR MATERIAL -->
+
+  <div class="pantallaOscura pantallaOscuraEditMaterial d-none">
+    <form method="post" action="index.php" enctype="multipart/form-data" class="pantallaFrontal container mb-5">
+      <i class="bi bi-x" data-div="pantallaOscuraEditMaterial"></i>
+      <input type="hidden" name="idEditMaterial" id="idEditMaterial" value="">
+      <label><span class="titulo">Nombre:</span></label>
+      <input class="input" type="text" name="editNombreMaterial" id="editNombreMaterial">
+      <label><span class="titulo">Familia:</span></label>
+      <input class="input" type="text" name="editFamiliaMaterial" id="editFamiliaMaterial">
+      <label><span class="titulo">Marca:</span></label>
+      <input class="input" type="text" name="editMarcaMaterial" id="editMarcaMaterial">
+      <label><span class="titulo">Foto:</span></label>
+      <input class="input" type="text" name="editFotoMaterial" id="editFotoMaterial">
+      <label><span class="titulo">Datos:</span></label>
+      <input class="input" type="text" name="editDatosMaterial" id="editDatosMaterial">
+      <label><span class="titulo">Ubicacion:</span></label>
+      <input class="input" type="text" name="editUbicacionMaterial" id="editUbicacionMaterial">
+
+      <div class="botones2">
+        <input type="submit" class="anadirBoton" name="editBotonM" id="editBotonM" value="MODIFICAR"></input>
+      </div>
+    </form>
+  </div>
+
+  <!-- DIV ELIMINAR Material -->
+
+  <div class="pantallaOscura pantallaOscuraBorrarM d-none">
+    <form class="pantallaFrontal container mb-5" method="post" action="index.php">
+      <input type="hidden" name="idBorrarM" id="idBorrarM" value="">
+      <p class="textoEliminar">¿Estás seguro/a de que quieres eliminar el producto seleccionado?</p>
+
+      <input type="submit" class="modBoton" name="botonBorrarM" value="BORRAR">
+      <input type="button" class="salirPantallaOscuraBorrarM modBoton" data-div="pantallaOscuraBorrarM" value="CANCELAR Y SALIR">
+    </form>
+  </div>
 
   <!--DIV AÑADIR UBICACIONES -->
 
@@ -555,14 +724,14 @@
       <div class="botones2">
         <input type="submit" class="anadirBoton" name="addBotonU" id="addBotonU" value="AÑADIR"></input>
       </div>
-      </form>
+    </form>
   </div>
 
   <!-- DIV EDITAR UBICACIONES -->
   <div class="pantallaOscura pantallaOscuraEditU d-none ">
     <form class="pantallaFrontal container mb-5" action="index.php" method="post" enctype="multipart/form-data">
       <i class="bi bi-x" data-div="pantallaOscuraEditU"></i>
-      <input type="hidden" name="idEditU" id="idEditU"  value="">
+      <input type="hidden" name="idEditU" id="idEditU" value="">
       <label><span class="titulo">Localidad:</span></label>
       <input class="input" type="text" name="editLocalidad" id="editLocalidad">
       <label><span class="titulo">Recinto:</span></label>
@@ -578,13 +747,15 @@
   <!-- DIV ELIMINAR UBICACION-->
 
   <div class="pantallaOscura pantallaOscuraBorrarU d-none">
-      <form class="pantallaFrontal container mb-5" method="post" action="index.php">
-        <input type="hidden" name="idBorrarU" id="idBorrarU" value="">
-        <p class="textoEliminar">¿Estás seguro/a de que quieres borrar la ubicación seleccionada?</p>
-        
-        <input type="submit" class="modBoton" name="botonBorrarU" id="botonBorrarU" value="BORRAR">
-        <input type="button" class="salirPantallaOscuraBorrarU modBoton" data-div="pantallaOscuraBorrarU" value="CANCELAR Y SALIR">
-      </form>
+    <form class="pantallaFrontal container mb-5" method="post" action="index.php">
+      <input type="hidden" name="idBorrarU" id="idBorrarU" value="">
+      <p class="textoEliminar">¿Estás seguro/a de que quieres borrar la ubicación seleccionada?</p>
+
+      <input type="submit" class="modBoton" name="botonBorrarU" id="botonBorrarU" value="BORRAR">
+      <input type="button" class="salirPantallaOscuraBorrarU modBoton" data-div="pantallaOscuraBorrarU" value="CANCELAR Y SALIR">
+    </form>
   </div>
+
+
 
 </body>

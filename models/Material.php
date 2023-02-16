@@ -18,6 +18,16 @@ class Material{
         return $final;
     }
 
+    public function searchMaterial($nombre){
+        $consulta = $this->db->prepare("SELECT * FROM material WHERE nombre=:n");
+        $consulta->execute(array(
+            ":n" => $nombre,
+        ));
+
+        $final = $consulta->fetchAll(PDO::FETCH_OBJ);
+
+        return $final;
+    }
     public function updateMaterial($id, $nombre, $familia, $marca, $foto, $datos, $ubicacion){
         $consulta = $this->db->prepare("UPDATE material SET nombre=:n, familia=:f, marca=:m, foto=:o, datos=:d, ubicacionMaterial=:u WHERE id=:i");
 
@@ -39,8 +49,7 @@ class Material{
 
         $consulta->execute(
             array(
-                ":i" => $id
-            )
+                ':i' => $id,)
         );
     }
 
@@ -59,35 +68,6 @@ class Material{
         );
     }
 
-    public function anadirCarga($id, $fechaCarga, $lugarCarga){
-        $consulta = $this->db->prepare("UPDATE material SET lugarCarga=:l, fechaCarga=:f WHERE id=:i");
-        $consulta->execute(
-            array(
-                ":l" => $lugarCarga,
-                ":f" => $fechaCarga,
-                ":i" => $id
-            )
-        );
-    }
-
-    public function borrarElementoDeCarga($id){
-        $consulta = $this->db->prepare("UPDATE material SET lugarCarga=NULL, fechaCarga=NULL WHERE id=:i");
-        $consulta->execute(
-            array(
-                ":i" => $id
-            )
-        );
-    }
-
-    public function borrarCargaCompleta($lugarCarga, $fechaCarga){
-        $consulta = $this->db->prepare("UPDATE material SET lugarCarga=NULL, fechaCarga=NULL WHERE lugarCarga=:l AND fechaCarga=:f");
-        $consulta->execute(
-            array(
-                ":l" => $lugarCarga,
-                ":f" => $fechaCarga
-            )
-        );
-    }
 
     public function getFilas($familia){
         // Devuelve un int con las filas que hay en una table

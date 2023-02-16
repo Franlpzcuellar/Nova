@@ -249,6 +249,10 @@ h2{
     padding: 5px;
 }
 
+.espacioTitulo{
+    display: grid;
+}
+
 .bi{
     color: #ecf0f3;
 }
@@ -265,11 +269,37 @@ h2{
     0px 5px 10px #000000;
 }
 
+.modeloFichaProducto{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    grid-gap: 5px;
+}
+
+.fotoMaterial{
+    grid-column: 3/4;
+    grid-row: 1/3;
+    margin: auto;
+}
+
+.fotoMaterial img{
+    margin: auto;
+    width: 150px;
+}
 
 .btnModificar{
     
     border: #000000 ridge black;
     
+}
+
+.btnModificar2{
+    grid-column: 1/4;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+
+    margin-top: 40px;
 }
 
 .botones{
@@ -358,8 +388,8 @@ h2{
 
     background: #443c3d9d;
     position: absolute;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     
 }
 
@@ -418,6 +448,9 @@ h2{
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3,1fr);
     grid-gap: 5px;
+    background: #00000083;
+    backdrop-filter: blur(30px);
+    box-shadow: 0px 10px 10px 0px #000000;
 }
 
 .divCategorias h3{
@@ -428,13 +461,13 @@ h2{
 }
 
 .divCategorias .categoria{
-    background: #443C3D;
     color: #ecf0f3;
     padding: 5px;
+    transition: all 300ms ease-in-out;
 }
 
 .divCategorias .categoria:hover{
-    color: #FD080F;
+    background: #FD080F;
 }
 
 .divCategorias .ulti{
@@ -498,3 +531,81 @@ h2{
 .supFoto2 img{
     margin: auto;
 }
+
+.addBotonF{
+    background-color: rgb(211, 211, 211);
+    color: black;
+    
+    
+}
+
+.addBotonFa:hover {
+    background-color: rgb(117, 211, 255);
+  }
+
+
+.factura{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-row-gap: 30px;
+
+}
+
+.cabeceraFactura{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 15px;
+    border-radius:20px;
+    
+    background-color: rgba(22, 21, 21, 0.593);
+    
+    padding: 17px;
+    color: #DCE0DF;
+}
+
+
+td{
+    background-color: #2825254c;
+    border-radius: 5px;
+    
+    padding: 20px;
+    box-shadow: inset 0px 0px 0px 2px #443C3D;
+}
+
+.tablaMaterial{
+    padding: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+.pieBotones{
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 15px;
+    align-items: center;
+    justify-items: center;
+    margin-top: 30px;
+
+}
+
+.tituloColumna{
+    font-size: 15px;
+    font-weight: bold;
+    background-color: rgba(130, 90, 95, 0.826);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

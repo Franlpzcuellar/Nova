@@ -8,6 +8,7 @@ require_once 'models/Lugar.php';
 require_once 'models/Material.php';
 require_once 'models/Personal.php';
 require_once 'models/Vehiculo.php';
+require_once 'models/Carga.php';
 
 //$_SESSION["nombre"] = NOMBRE DEL USUARIO
 //$_SESSION["rol] = ROL DEL USUARIO     (o admin o lectura)
@@ -222,15 +223,46 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
         $paginasMaterial = $material->getLimit($paginaMaterialActual, $filasMaterialPorPagina, $familia);
         $numeroDePaginasMaterial = ceil($filasMaterial / $filasMaterialPorPagina);
     }
+
+    // BUSCAR MATERIAL
+
+    
+    if (isset($_GET["buscar"])){
+        $buscar = $_GET["buscar"];
+
+        $material = new Material();
+        $paginasMaterial = $material->searchMaterial($buscar);
+
+        header("Location: index.php");
+    }
+
+
+
+    //MODIFICAR MATERIAL
+    if(isset($_POST['editBotonM'])){
+        $claseMaterial = new Material();
+        $claseMaterial->updateMaterial($_POST['idEditMaterial'],$_POST['editNombreMaterial'], $_POST['editFamiliaMaterial'],$_POST['editMarcaMaterial'],$_POST['editFotoMaterial'],$_POST['editDatosMaterial'],$_POST['editUbicacionMaterial']);
+        
+        header("Location: index.php");
+    }
     
 
-    //AÑADIR MATERIAL // estaba comentado
+    //AÑADIR MATERIAL
 
     if(isset($_POST['addBotonM'])){
 
         $claseMaterial = new Material();
 
-        $claseMaterial->createMaterial($_POST['addNom'],$_POST['addFam'],$_POST['addMarca'],$_POST['addFoto'],$_POST['addDatos'], $_POST['addUbicacion']);
+        $nombreFotoMaterial = $_FILES["addFoto"]["name"];
+        $tipoImgMaterial = $_FILES["addFoto"]["type"];
+
+        if($tipoImgMaterial=="image/jpg" || $tipoImgMaterial == "image/jpeg" || $tipoImgMaterial == "image/png" || $tipoImgMaterial == "image/gif"){
+            $carpetaDestino = $_SERVER["DOCUMENT_ROOT"].'/php/proyectonova/upload/images/'. $nombreFotoMaterial;
+
+            move_uploaded_file($_FILES["addFoto"]["tmp_name"], $carpetaDestino);
+        }
+
+        $claseMaterial->createMaterial($_POST['addNom'],$_POST['addFam'],$_POST['addMarca'], $nombreFotoMaterial,$_POST['addDatos'], $_POST['addUbicacion']);
 
         header("Location: index.php");
     }
@@ -240,9 +272,9 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
     //ELIMINAR MATERIAL
     
     
-    if(isset($_POST["botonBorrarMaterial"])){
+    if(isset($_POST["botonBorrarM"])){
         $claseMaterial = new Material();
-        $claseMaterial->deleteMaterial($_POST["id"]);
+        $claseMaterial->deleteMaterial($_POST["idBorrarM"]);
         
         header("Location: index.php");
     }
@@ -257,6 +289,25 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
         header("Location: index.php");
     }
 
+    // MOSTRAR LUGARES FICHA DE CARGA
+
+    
+        $claseLugar = new Lugar();
+        $lugaresSelect = $claseLugar->readLugar();
+
+
+
+    //AÑADIR FICHA DE CARGA
+
+
+        if(isset($_POST['addBotonC'])){
+            $claseCarga = new Carga();
+
+            $claseCarga->crearCarga($_POS['addLocalidad'],$_POST['addFecha']);
+            
+            header("Location: index.php");
+
+        }
 
     //AÑADIR UBICACION
 

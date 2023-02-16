@@ -43,9 +43,14 @@ CREATE TABLE material(
     marca VARCHAR(255),
     foto VARCHAR(2000),
     datos VARCHAR(5000),
-    fechaCarga DATETIME,
-    lugarCarga VARCHAR(500),
+    id_fichaCarga INT DEFAULT NULL,
     ubicacionMaterial VARCHAR(200)
+);
+
+CREATE TABLE carga(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idUbicacion INT,
+    fecha VARCHAR(255)
 );
 
 CREATE TABLE lugar(

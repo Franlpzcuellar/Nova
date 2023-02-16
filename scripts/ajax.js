@@ -47,6 +47,22 @@ $(document).ready(function () {
         
     });
 
+    $(".salirPantallaOscuraBorrarM").click(function (e) { 
+        e.preventDefault();
+        
+        $("#idBorrarM").val("");
+        $("." + $(this).data("div")).addClass("d-none");
+        
+    });
+
+    $(".salirPantallaOscuraBorrarC").click(function (e) { 
+        e.preventDefault();
+        
+        $("#idBorrarC").val("");
+        $("." + $(this).data("div")).addClass("d-none");
+        
+    });
+
     $(".modBotonP").click(function (e) { 
         e.preventDefault();
         $("." + $(this).data("div")).removeClass("d-none");
@@ -85,7 +101,7 @@ $(document).ready(function () {
         $("#editObsVehiculo").val($(this).data("observaciones"));
         $("#editImgVehiculo").val($(this).data("imagen"));        
         $("#editImgItvVehiculo").val($(this).data("imagenitv"));
-        $("#editImgPermisoVehiculo").val($(this).data("imagenPermisoCirculacion"));
+        $("#editImgPermisoVehiculo").val($(this).data("imagenpermisocirculacion"));
     });
 
     $(".delBotonV").click(function (e) { 
@@ -94,6 +110,23 @@ $(document).ready(function () {
         $("#idBorrarVehiculo").val($(this).data("id"));
         $("." + $(this).data("div")).removeClass("d-none");
     });
+
+    $(".addBotonF").click(function (e) { 
+        e.preventDefault();
+
+        $("." + $(this).data("div")).removeClass("d-none");
+        $("#seleccionar").val($(this).data("seleccionar"));//EL NOMBRE SELECCIONAR ES PROVISIONAL
+
+    
+    });
+
+    $(".delBotonFicha").click(function (e) { 
+        e.preventDefault();  
+          
+        $("#idBorrarC").val($(this).data("id"));
+        $("." + $(this).data("div")).removeClass("d-none");
+    });
+
 
 
 
@@ -115,4 +148,28 @@ $(document).ready(function () {
         $("." + $(this).data("div")).removeClass("d-none");
 
     });
+
+    $("#modBotonM").click(function (e) {
+        e.preventDefault();
+
+        $("." + $(this).data("div")).removeClass("d-none");
+
+        $("#idEditMaterial").val($(this).data("id"));
+        $("#editNombreMaterial").val($(this).data("nombre"));
+        $("#editFamiliaMaterial").val($(this).data("familia"));
+        $("#editMarcaMaterial").val($(this).data("marca"));
+        $("#editFotoMaterial").val($(this).data("foto"));
+        $("#editDatosMaterial").val($(this).data("datos"));
+        $("#editUbicacionMaterial").val($(this).data("ubicacionmaterial"));
+    });
+
+    $(".delBotonM").click(function (e) { 
+        e.preventDefault();
+
+        $("#idBorrarM").val($(this).data("id"));
+        $("." + $(this).data("div")).removeClass("d-none");
+
+    });
+
+
 });

@@ -42,7 +42,7 @@ class Lugar{
     }
 
 
-public function createLugar($localidad, $recinto, $direccion){
+    public function createLugar($localidad, $recinto, $direccion){
         $consulta = $this->db->prepare("INSERT INTO lugar(localidad, recinto, direccion) VALUES (:l, :r, :d)");
 
         $consulta->execute(
