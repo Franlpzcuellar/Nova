@@ -28,6 +28,7 @@ class Material{
 
         return $final;
     }
+    
     public function updateMaterial($id, $nombre, $familia, $marca, $foto, $datos, $ubicacion){
         $consulta = $this->db->prepare("UPDATE material SET nombre=:n, familia=:f, marca=:m, foto=:o, datos=:d, ubicacionMaterial=:u WHERE id=:i");
 
@@ -95,6 +96,14 @@ class Material{
 
         return $fila;
 
+    }
+
+    public function anadirAFicha($idFicha, $idMaterial){
+        $consulta = $this->db->prepare("UPDATE material SET id_fichaCarga=:fi WHERE id=:mi");
+        $consulta->execute(array(
+            ":fi"=>$idFicha,
+            ":mi"=>$idMaterial
+        ));
     }
 
 }

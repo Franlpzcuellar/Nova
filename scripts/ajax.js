@@ -84,6 +84,7 @@ $(document).ready(function () {
         $("." + $(this).data("div")).removeClass("d-none");
     });
 
+
     $(".modBotonV").click(function (e) {
         e.preventDefault();
 
@@ -115,6 +116,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         $("." + $(this).data("div")).removeClass("d-none");
+        $("#idMaterialFichaAnadir").val($(this).data("id"));
         $("#seleccionar").val($(this).data("seleccionar"));//EL NOMBRE SELECCIONAR ES PROVISIONAL
 
     
@@ -170,6 +172,25 @@ $(document).ready(function () {
         $("." + $(this).data("div")).removeClass("d-none");
 
     });
+
+    $(".").click(function (e) { 
+        e.preventDefault();
+        $("#").val($(this).data("id"));
+        
+        
+    });
+
+
+    //BOTON OBSERVACIONES
+
+
+    $("#anadirOb").click(function (e) { 
+        e.preventDefault();
+        $("#Observacion").val($(this).data(""));
+        
+    });
+
+
 
 
 });

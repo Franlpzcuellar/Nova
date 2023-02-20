@@ -533,14 +533,14 @@ h2{
 }
 
 .addBotonF{
-    background-color: rgb(211, 211, 211);
-    color: black;
+    background-color: rgb(212, 50, 50);
+    color: rgb(238, 238, 238);
     
     
 }
 
-.addBotonFa:hover {
-    background-color: rgb(117, 211, 255);
+.addBotonF:hover {
+    background-color: rgb(242, 0, 0);
   }
 
 
@@ -567,7 +567,8 @@ h2{
 td{
     background-color: #2825254c;
     border-radius: 5px;
-    
+    text-align: center;
+    margin: auto;
     padding: 20px;
     box-shadow: inset 0px 0px 0px 2px #443C3D;
 }
@@ -575,7 +576,7 @@ td{
 .tablaMaterial{
     padding: 20px;
     width: 100%;
-    text-align: center;
+    
 }
 
 .pieBotones{
@@ -592,8 +593,25 @@ td{
 .tituloColumna{
     font-size: 15px;
     font-weight: bold;
-    background-color: rgba(130, 90, 95, 0.826);
+    background-color: rgba(130, 90, 95, 0.338);
 }
+
+.observacion{
+    width: 100%;
+}
+
+.contenido{
+    text-align: center;
+    margin: auto;
+}
+
+
+.bi-trash3-fill:hover{
+    color: red;
+    cursor: pointer;
+}
+
+
 
 
 

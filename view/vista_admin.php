@@ -271,7 +271,7 @@
 
               <div class="btnModificar btnModificar2">
                 <input type="button" class="modBoton" name="modBotonM" id="modBotonM" value="MODIFICAR" data-div="pantallaOscuraEditMaterial" data-id="<?php echo $x->id ?>" data-nombre="<?php echo $x->nombre ?>" data-familia="<?php echo $x->familia ?>" data-marca="<?php echo $x->marca ?>" data-foto="<?php echo $x->foto ?>" data-datos="<?php echo $x->datos ?>" data-ubicacionMaterial="<?php echo $x->ubicacionMaterial ?>"></input>
-                <input type="button" class="modBoton addBotonF" name="addBotonF" id="addBotonF" data-div="pantallaOscuraAnadirF" value="AÑADIR A FICHA DE CARGA"></input>
+                <input type="button" class="modBoton addBotonF" name="addBotonF" id="addBotonF" data-div="pantallaOscuraAnadirF" data-id="<?php echo $x->id; ?>" value="AÑADIR A FICHA DE CARGA"></input>
                 <input type="button" class="delBoton delBotonM" name="delBotonM" data-id="<?php echo $x->id; ?>" data-div="pantallaOscuraBorrarM" id="delBotonM" value="ELIMINAR"></input>
               </div>
 
@@ -309,35 +309,48 @@
         </div>
       </div>
 
-      <div class="container mb-5 modelo factura"><!-- mb-5 modelo container -->
-        <div class="cabeceraFactura">
-          <label><span class="titulo">Localidad: </span>Granada</label>
-          <label><span class="titulo">Recinto: </span>Ferial Granada</label>
-          <label><span class="titulo">Fecha: </span>25-11-2220</label>
-        </div>
-        <div class="cuerpoFactura">
+      <?php foreach ($lugar as $x) : ?>
+        <div class="container mb-5 modelo factura"><!-- mb-5 modelo container -->
+          <div class="cabeceraFactura">
+            <label><span class="titulo">Localidad: </span><?php echo $x->loc; ?></label>
+            <label><span class="titulo">Recinto: </span><?php echo $x->rec; ?></label>
+            <label><span class="titulo">Fecha: </span><?php echo $x->fec; ?></label>
+            <label><span class="titulo">Direccion: </span><?php echo $x->dir; ?></label>
+          </div>
+        
+          <div class="cuerpoFactura">
 
-          <table class="tablaMaterial">
-            <tr>
-              <td class="tituloColumna">ID</td>
-              <td class="tituloColumna">NOMBRE</td>
-              <td class="tituloColumna">FAMILIA</td>
-              <td class="tituloColumna">MARCA</td>
-              <td class="tituloColumna">UBICACION</td>
-              <td class="tituloColumna"></td>
-            </tr>
-            <tr>
-              <td><label><span class="titulo"></span>1</label></td>
-              <td><label><span class="titulo"></span>Microfono XP</label>
-              <td><label><span class="titulo"></span>SONIDO</label></td>
-              <td><label><span class="titulo"></span>Razer</label></td>
-              <td><label><span class="titulo"></span>SON6</label></td>
-              <td><i class="bi bi-trash3-fill"></td>
-            </tr>
-          </table>
-          <br>
+            <table class="tablaMaterial">
+              <tr>
+                <td class="tituloColumna">ID</td>
+                <td class="tituloColumna">NOMBRE</td>
+                <td class="tituloColumna">FAMILIA</td>
+                <td class="tituloColumna">MARCA</td>
+                <td class="tituloColumna">UBICACION</td>
+                <td class="tituloColumna"></td>
+              </tr>
+
+              <?php
+                $carguita = new Carga();
+                $nuevaFichas = $carguita->selectCargaWhere($x->cid);
+                foreach ($nuevaFichas as $y) : ?>
+                <tr>
+
+                  <td><label class="contenido" id="idBorrarMaterialFicha"><?php echo $y->id; ?></label></td>
+                  <td><label class="contenido"><?php echo $y->nom; ?></label>
+                  <td><label class="contenido"><?php echo $y->fam; ?></label></td>
+                  <td><label class="contenido"><?php echo $y->mar; ?></label></td>
+                  <td><label class="contenido"><?php echo $y->ubi; ?></label></td>
+
+                  <td><i class="bi bi-trash3-fill"><input type="button" name="" id="idBotonBorrarMaterial" class="d-none idBotonBorrarMaterial" data-div=<?php echo $y->id?>><i></td>
+                </tr>
+              <?php endforeach; ?>
+            </table>
+
+            <br>
             <div>
-              <label for="">Observaciones: <input class="observacion" id="observacion" name="observacion"></label>
+              <label for="">Observaciones: <input type="text" class="observacion" id="observacion" name="observacion"></label>
+              <input type="button" class="anadirBoton" name="anadirOb" id="anadirOb" value="Enviar Observaciones">
             </div>
             <div class="pieBotones">
               <div class="btnModificar">
@@ -349,50 +362,57 @@
             </div>
           </div>
         </div>
+      <?php endforeach; ?>
+    </div>
+
+  
+  
+
+
+
+
+
+
+  <!-- DIV UBICACIONES -->
+
+  <div class="ubicaciones d-none">
+    <h2>Ubicaciones</h2>
+    <div class="container arriba">
+      <div class="mb-3 row">
+        <i class="bi bi-plus-square nuevoanadir" data-div="pantallaOscuraAnadirU">&nbsp Añadir nueva ubicación</i><!-- sumar fichero-->
       </div>
+    </div>
 
+    <?php foreach ($paginasUbicacion as $x) : ?>
 
-
-
-      <!-- DIV UBICACIONES -->
-
-      <div class="ubicaciones d-none">
-        <h2>Ubicaciones</h2>
-        <div class="container arriba">
-          <div class="mb-3 row">
-            <i class="bi bi-plus-square nuevoanadir" data-div="pantallaOscuraAnadirU">&nbsp Añadir nueva ubicación</i><!-- sumar fichero-->
-          </div>
+      <div class="container mb-5 modelo">
+        <div class="columna1">
+          <label><span class="titulo">Localidad: </span> <?php echo $x->localidad; ?> </label>
+          <label><span class="titulo">Recinto: </span> <?php echo $x->recinto; ?> </label>
+          <label><span class="titulo">Direccion: </span> <?php echo $x->direccion; ?> </label>
         </div>
 
-        <?php foreach ($paginasUbicacion as $x) : ?>
-
-          <div class="container mb-5 modelo">
-            <div class="columna1">
-              <label><span class="titulo">Localidad: </span> <?php echo $x->localidad; ?> </label>
-              <label><span class="titulo">Recinto: </span> <?php echo $x->recinto; ?> </label>
-              <label><span class="titulo">Direccion: </span> <?php echo $x->direccion; ?> </label>
-            </div>
-
-            <div class="botones2">
-              <div class="btnModificar">
-                <input type="button" class="modBoton modBotonU" name="modBotonU" data-div="pantallaOscuraEditU" data-id="<?php echo $x->id; ?>" data-localidad="<?php echo $x->localidad; ?>" data-recinto="<?php echo $x->recinto; ?>" data-direccion="<?php echo $x->direccion; ?>" id="modBoton" value="MODIFICAR"></input>
-              </div>
-              <div class="btnEliminar">
-                <input type="button" class="delBoton delBotonU" name="delBotonU" data-id="<?php echo $x->id; ?>" data-div="pantallaOscuraBorrarU" id="delBoton" value="ELIMINAR"></input>
-              </div>
-            </div>
+        <div class="botones2">
+          <div class="btnModificar">
+            <input type="button" class="modBoton modBotonU" name="modBotonU" data-div="pantallaOscuraEditU" data-id="<?php echo $x->id; ?>" data-localidad="<?php echo $x->localidad; ?>" data-recinto="<?php echo $x->recinto; ?>" data-direccion="<?php echo $x->direccion; ?>" id="modBoton" value="MODIFICAR"></input>
           </div>
-
-        <?php endforeach; ?>
-
-        <div class='paginacion'>
-          <?php
-          for ($i = 1; $i <= $numeroDePaginasUbicacion; $i++) {
-            echo "<a class='pagina' href ='?paginaUbicacion=" . $i . "&categoria=ubicaciones'>" . $i . "</a>";
-          };
-          ?>
+          <div class="btnEliminar">
+            <input type="button" class="delBoton delBotonU" name="delBotonU" data-id="<?php echo $x->id; ?>" data-div="pantallaOscuraBorrarU" id="delBoton" value="ELIMINAR"></input>
+          </div>
         </div>
       </div>
+
+    <?php endforeach; ?>
+
+    <div class='paginacion'>
+      <?php
+      for ($i = 1; $i <= $numeroDePaginasUbicacion; $i++) {
+        echo "<a class='pagina' href ='?paginaUbicacion=" . $i . "&categoria=ubicaciones'>" . $i . "</a>";
+      };
+      ?>
+    </div>
+
+  </div>
 
 
 
@@ -627,15 +647,21 @@
   <!--DIV AÑADIR FICHA DESDE MATERIALES-->
 
   <div class="pantallaOscura pantallaOscuraAnadirF d-none ">
-    <div class="pantallaFrontal container mb-5"><i class="bi bi-x" data-div="pantallaOscuraAnadirF"></i>
-      <label><span class="titulo">SELECCIONAR:</span></label>
+    <form method="post" action="index.php" class="pantallaFrontal container mb-5">
+      <i class="bi bi-x" data-div="pantallaOscuraAnadirF"></i>
+      <input type="hidden" name="idMaterial" id="idMaterialFichaAnadir" value="">
       <select id="seleccionar" name="seleccionar" class="seleccionar">
-        <option value="" selected disabled>FAMILIA</option>
+        <option value="" selected disabled>HOJAS DE CARGA</option>
+        <?php
+        foreach ($lugar as $x) {
+          echo "<option value='" . $x->cid . "'>" . $x->rec . " - " . $x->fec . "</option>";
+        }
+        ?>
       </select>
       <div class="botones2">
-        <input type="submit" class="anadirBoton" name="anadirFicha" id="anadirFicha" value="AÑADIR FICHA"></input>
+        <input type="submit" class="anadirBoton" name="anadirAFicha" id="anadirAFicha" value="AÑADIR A FICHA"></input>
       </div>
-    </div>
+    </form>
   </div>
 
   <!-- DIV AÑADIR CARGA -->
@@ -650,11 +676,11 @@
         <?php foreach ($lugaresSelect as $x)
 
           echo "<option value='$x->id'>$x->localidad - $x->recinto</option>";
-        
+
         ?>
       </select>
       <label><span class="titulo">Fecha:</span></label>
-      <input class="input" type="text" name="addFecha">
+      <input class="input" type="date" name="addFecha">
       <div class="botones2">
         <input type="submit" class="anadirBoton" name="addBotonC" id="addBotonC" value="AÑADIR"></input>
       </div>

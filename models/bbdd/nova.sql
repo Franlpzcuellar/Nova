@@ -50,7 +50,8 @@ CREATE TABLE material(
 CREATE TABLE carga(
     id INT PRIMARY KEY AUTO_INCREMENT,
     idUbicacion INT,
-    fecha VARCHAR(255)
+    fecha VARCHAR(255),
+    observaciones VARCHAR(255)
 );
 
 CREATE TABLE lugar(

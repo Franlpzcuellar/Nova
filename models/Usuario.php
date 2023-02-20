@@ -49,7 +49,7 @@
 
         public function getRol($usuario){
 
-            $consulta = $this->db->prepare("SELECT * FROM usuarios WHERE usuario=:u");
+            $consulta = $this->db->prepare("SELECT * FROM usuarios WHERE  usuario=:u");
             $consulta->execute(array(
                 ":u"=>$usuario
                 )

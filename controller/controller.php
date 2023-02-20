@@ -21,6 +21,7 @@ if(isset($_GET["cerrarSesion"])){
 }
 
 if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login si no hay un usuario logeado en este momento*/
+
     if(isset($_POST['userName']) && isset($_POST['pwd'])){
         $claseUsuario = new Usuario();      // Nuevo Usuario para tener los métodos de validación de usuarios.
 
@@ -34,8 +35,10 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
             }   else{
                 $_SESSION["rol"] = "lectura";
-                // Aquí irá el require que importará la vista de PERSONAL.
+                header("Location: index.php");
             }
+        }else{
+            require("view/login.html");
         }
 
     }else{
@@ -289,6 +292,11 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
         header("Location: index.php");
     }
 
+    //MOSTRAR FICHAS CARGA
+
+    $carga = new Carga();
+    $lugar = $carga->selectLugar();
+
     // MOSTRAR LUGARES FICHA DE CARGA
 
     
@@ -297,17 +305,37 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
 
 
-    //AÑADIR FICHA DE CARGA
+    // AÑADIR MATERIAL A FICHA DE CARGA
+
+        if(isset($_POST["anadirAFicha"])){
+            $claseMaterial = new Material();
+            $claseMaterial->anadirAFicha($_POST["seleccionar"], $_POST["idMaterial"]);
+        }
+
+    //AÑADIR LUGAR A FICHA DE CARGA
 
 
         if(isset($_POST['addBotonC'])){
             $claseCarga = new Carga();
 
-            $claseCarga->crearCarga($_POS['addLocalidad'],$_POST['addFecha']);
+            $claseCarga->crearCarga($_POST['addLocalidad'],$_POST['addFecha']);
             
             header("Location: index.php");
 
         }
+
+    
+    //AÑADIR Observacion a ficha de carga
+
+
+    if(isset($_POST['anadirOb'])){
+        $claseCarga = new Carga();
+
+        $claseCarga->updateOb($_POST['id'],$_POST['observacion']);
+        
+        header("Location: index.php");
+
+    }
 
     //AÑADIR UBICACION
 
@@ -358,19 +386,17 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
 
 
-
-
-
-    /* PROVISIONAL */
-    
     if($_SESSION["rol"] == "admin"){
         require("view/vista_admin.php");
-    }else{
-        echo "PROVISIONAL_LECTURA";
+    }else if($_SESSION["rol"] == "lectura"){
+        require("view/vista_personal.php");
     }
-    /* PROVISIONAL */
 
+    //borrarMaterialFicha
 
+    if(isset($_POST[""])){
+        
+    }
 
 }
 
