@@ -19,10 +19,8 @@ class Material{
     }
 
     public function searchMaterial($nombre){
-        $consulta = $this->db->prepare("SELECT * FROM material WHERE nombre=:n");
-        $consulta->execute(array(
-            ":n" => $nombre,
-        ));
+        $consulta = $this->db->prepare("SELECT * FROM material WHERE nombre LIKE '%$nombre%'");
+        $consulta->execute();
 
         $final = $consulta->fetchAll(PDO::FETCH_OBJ);
 

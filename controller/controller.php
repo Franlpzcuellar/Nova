@@ -230,13 +230,13 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
     // BUSCAR MATERIAL
 
     
-    if (isset($_GET["buscar"])){
-        $buscar = $_GET["buscar"];
+    if (isset($_POST["buscar"])){
+        $buscar = $_POST["nombre"];
 
-        $material = new Material();
-        $paginasMaterial = $material->searchMaterial($buscar);
+        $materiales = new Material();
+        $_SESSION['materialBuscado'] = $materiales->searchMaterial($buscar);
 
-        header("Location: index.php");
+        header("Location: index.php?categoria=material&buscar=true");
     }
 
 
@@ -394,8 +394,11 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     //borrarMaterialFicha
 
-    if(isset($_POST[""])){
-        
+    if(isset($_POST["botonBorrarMF"])){
+        $claseMaterial = new Material();
+        $claseMaterial->deleteMaterial($_POST["idBorrarMaterialFicha"]);
+
+        header("Location index.php");
     }
 
 }

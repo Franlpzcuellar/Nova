@@ -533,14 +533,13 @@ h2{
 }
 
 .addBotonF{
-    background-color: rgb(212, 50, 50);
-    color: rgb(238, 238, 238);
-    
-    
+    background-color: rgb(255, 255, 255);
+    color: rgb(242, 0, 0);    
 }
 
 .addBotonF:hover {
-    background-color: rgb(242, 0, 0);
+    background-color: rgb(255, 61, 65);
+    color: rgb(255, 255, 255);
   }
 
 

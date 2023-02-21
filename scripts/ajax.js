@@ -173,11 +173,9 @@ $(document).ready(function () {
 
     });
 
-    $(".").click(function (e) { 
+    $(".idBotonBorrarMaterial").click(function (e) { 
         e.preventDefault();
-        $("#").val($(this).data("id"));
-        
-        
+        $("#idBorrarMaterialFicha").val($(this).data("id"));
     });
 
 
@@ -186,7 +184,8 @@ $(document).ready(function () {
 
     $("#anadirOb").click(function (e) { 
         e.preventDefault();
-        $("#Observacion").val($(this).data(""));
+        $("#id").val($(this).data("id"));
+        $("#observacion").val($(this).data("observacion"));
         
     });
 

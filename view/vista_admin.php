@@ -229,11 +229,11 @@
 
       <!--BUSCADOR-->
       <div class="input-group">
-        <form method="get" action="index.php" class="form-outline">
-          <button href='?categoria=material' class="buscar">
+        <form method="post" action="index.php" class="form-outline">
+          <button type="submit" name="buscar" id="buscar" value="buscar" class="buscar">
             <i class="bi bi-search"></i>
           </button>
-          <input name="buscar" id="buscar" placeholder="Buscar..."></input>
+          <input type="text" name="nombre" id="nombre" placeholder="Buscar..." required></input>
           <label class="form-label" for="buscar"></label>
         </form>
       </div>
@@ -248,12 +248,35 @@
         <a href='?categoria=material&familia=VARIOS' name="varios" class="btn categoria">Varios</a>
         <a href='?categoria=material&familia=VIDEO' name="video" class="btn categoria ulti">Video</a>
       </div>
+      <!--MATERIALES BUSCADOS-->
+      <div class="materiales <?php if (!isset($_GET["buscar"])) {echo "d-none";} ?>">
+
+        <div class="fichaProducto">
+            <h2>Ficha Producto</h2>
+          <?php foreach ($_SESSION['materialBuscado'] as $j) : ?>
+
+            <div class="container mb-5 modelo modeloFichaProducto">
+              <label><span class="titulo espacioTitulo">ID:</span><?php echo "#" . $j->id ?></label>
+              <label><span class="titulo espacioTitulo">Nombre:</span><?php echo $j->nombre ?></label>
+              <label><span class="titulo espacioTitulo">Familia:</span><?php echo $j->familia ?></label>
+              <label><span class="titulo espacioTitulo">Marca:</span><?php echo $j->marca ?></label>
+              <label><span class="titulo espacioTitulo">Ubicacion:</span><?php echo $j->ubicacionMaterial ?></label>
+              <label class="fotoMaterial supFoto"><span class="titulo">Foto</span><img src="<?php echo 'upload/images/' . $j->foto ?>"></label>
+              <label><span class="titulo espacioTitulo">Datos:</span><?php echo $j->datos ?></label>
+
+              <div class="btnModificar btnModificar2">
+                <input type="button" class="modBoton" name="modBotonM" id="modBotonM" value="MODIFICAR" data-div="pantallaOscuraEditMaterial" data-id="<?php echo $j->id ?>" data-nombre="<?php echo $j->nombre ?>" data-familia="<?php echo $j->familia ?>" data-marca="<?php echo $j->marca ?>" data-foto="<?php echo $j->foto ?>" data-datos="<?php echo $j->datos ?>" data-ubicacionMaterial="<?php echo $j->ubicacionMaterial ?>"></input>
+                <input type="button" class="modBoton addBotonF" name="addBotonF" id="addBotonF" data-div="pantallaOscuraAnadirF" data-id="<?php echo $j->id; ?>" value="AÑADIR A FICHA DE CARGA"></input>
+                <input type="button" class="delBoton delBotonM" name="delBotonM" data-id="<?php echo $j->id; ?>" data-div="pantallaOscuraBorrarM" id="delBotonM" value="ELIMINAR"></input>
+              </div>
+
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </div>
 
       <!--MATERIALES-->
-      <div class="materiales <?php if (!isset($_GET["familia"])) {
-                                echo "d-none";
-                              }
-                              /*if (!isset($_GET["buscar"])) {echo "d-none";}*/ ?>">
+      <div class="materiales <?php if (!isset($_GET["familia"])) {echo "d-none";}?>">
 
         <div class="fichaProducto">
           <h2>Ficha Producto</h2>
@@ -317,7 +340,7 @@
             <label><span class="titulo">Fecha: </span><?php echo $x->fec; ?></label>
             <label><span class="titulo">Direccion: </span><?php echo $x->dir; ?></label>
           </div>
-        
+
           <div class="cuerpoFactura">
 
             <table class="tablaMaterial">
@@ -331,18 +354,18 @@
               </tr>
 
               <?php
-                $carguita = new Carga();
-                $nuevaFichas = $carguita->selectCargaWhere($x->cid);
-                foreach ($nuevaFichas as $y) : ?>
+              $carguita = new Carga();
+              $nuevaFichas = $carguita->selectCargaWhere($x->cid);
+              foreach ($nuevaFichas as $y) : ?>
                 <tr>
 
-                  <td><label class="contenido" id="idBorrarMaterialFicha"><?php echo $y->id; ?></label></td>
+                  <td><label class="contenido" id="idBorrarMaterialFicha" name="idBorrarMaterialFicha"><?php echo $y->id; ?></label></td>
                   <td><label class="contenido"><?php echo $y->nom; ?></label>
                   <td><label class="contenido"><?php echo $y->fam; ?></label></td>
                   <td><label class="contenido"><?php echo $y->mar; ?></label></td>
                   <td><label class="contenido"><?php echo $y->ubi; ?></label></td>
 
-                  <td><i class="bi bi-trash3-fill"><input type="button" name="" id="idBotonBorrarMaterial" class="d-none idBotonBorrarMaterial" data-div=<?php echo $y->id?>><i></td>
+                  <td><i class="bi bi-trash3-fill"><input type="button" name="botonBorrarMF" id="idBotonBorrarMaterial" class="d-none idBotonBorrarMaterial" data-div=<?php echo $y->id ?>></i></td>
                 </tr>
               <?php endforeach; ?>
             </table>
@@ -350,7 +373,7 @@
             <br>
             <div>
               <label for="">Observaciones: <input type="text" class="observacion" id="observacion" name="observacion"></label>
-              <input type="button" class="anadirBoton" name="anadirOb" id="anadirOb" value="Enviar Observaciones">
+              <input type="button" class="anadirBoton" name="anadirOb" id="anadirOb" value="Enviar Observaciones" data-id="<?php echo $x->id;?>" data-observacion="<?php echo $x->observacion;?>">
             </div>
             <div class="pieBotones">
               <div class="btnModificar">
@@ -365,54 +388,54 @@
       <?php endforeach; ?>
     </div>
 
-  
-  
 
 
 
 
 
 
-  <!-- DIV UBICACIONES -->
 
-  <div class="ubicaciones d-none">
-    <h2>Ubicaciones</h2>
-    <div class="container arriba">
-      <div class="mb-3 row">
-        <i class="bi bi-plus-square nuevoanadir" data-div="pantallaOscuraAnadirU">&nbsp Añadir nueva ubicación</i><!-- sumar fichero-->
-      </div>
-    </div>
 
-    <?php foreach ($paginasUbicacion as $x) : ?>
+    <!-- DIV UBICACIONES -->
 
-      <div class="container mb-5 modelo">
-        <div class="columna1">
-          <label><span class="titulo">Localidad: </span> <?php echo $x->localidad; ?> </label>
-          <label><span class="titulo">Recinto: </span> <?php echo $x->recinto; ?> </label>
-          <label><span class="titulo">Direccion: </span> <?php echo $x->direccion; ?> </label>
-        </div>
-
-        <div class="botones2">
-          <div class="btnModificar">
-            <input type="button" class="modBoton modBotonU" name="modBotonU" data-div="pantallaOscuraEditU" data-id="<?php echo $x->id; ?>" data-localidad="<?php echo $x->localidad; ?>" data-recinto="<?php echo $x->recinto; ?>" data-direccion="<?php echo $x->direccion; ?>" id="modBoton" value="MODIFICAR"></input>
-          </div>
-          <div class="btnEliminar">
-            <input type="button" class="delBoton delBotonU" name="delBotonU" data-id="<?php echo $x->id; ?>" data-div="pantallaOscuraBorrarU" id="delBoton" value="ELIMINAR"></input>
-          </div>
+    <div class="ubicaciones d-none">
+      <h2>Ubicaciones</h2>
+      <div class="container arriba">
+        <div class="mb-3 row">
+          <i class="bi bi-plus-square nuevoanadir" data-div="pantallaOscuraAnadirU">&nbsp Añadir nueva ubicación</i><!-- sumar fichero-->
         </div>
       </div>
 
-    <?php endforeach; ?>
+      <?php foreach ($paginasUbicacion as $x) : ?>
 
-    <div class='paginacion'>
-      <?php
-      for ($i = 1; $i <= $numeroDePaginasUbicacion; $i++) {
-        echo "<a class='pagina' href ='?paginaUbicacion=" . $i . "&categoria=ubicaciones'>" . $i . "</a>";
-      };
-      ?>
+        <div class="container mb-5 modelo">
+          <div class="columna1">
+            <label><span class="titulo">Localidad: </span> <?php echo $x->localidad; ?> </label>
+            <label><span class="titulo">Recinto: </span> <?php echo $x->recinto; ?> </label>
+            <label><span class="titulo">Direccion: </span> <?php echo $x->direccion; ?> </label>
+          </div>
+
+          <div class="botones2">
+            <div class="btnModificar">
+              <input type="button" class="modBoton modBotonU" name="modBotonU" data-div="pantallaOscuraEditU" data-id="<?php echo $x->id; ?>" data-localidad="<?php echo $x->localidad; ?>" data-recinto="<?php echo $x->recinto; ?>" data-direccion="<?php echo $x->direccion; ?>" id="modBoton" value="MODIFICAR"></input>
+            </div>
+            <div class="btnEliminar">
+              <input type="button" class="delBoton delBotonU" name="delBotonU" data-id="<?php echo $x->id; ?>" data-div="pantallaOscuraBorrarU" id="delBoton" value="ELIMINAR"></input>
+            </div>
+          </div>
+        </div>
+
+      <?php endforeach; ?>
+
+      <div class='paginacion'>
+        <?php
+        for ($i = 1; $i <= $numeroDePaginasUbicacion; $i++) {
+          echo "<a class='pagina' href ='?paginaUbicacion=" . $i . "&categoria=ubicaciones'>" . $i . "</a>";
+        };
+        ?>
+      </div>
+
     </div>
-
-  </div>
 
 
 
