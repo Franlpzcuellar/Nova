@@ -104,6 +104,13 @@ class Material{
         ));
     }
 
+    public function quitarFicha($id){
+        $consulta = $this->db->prepare("UPDATE material SET id_fichaCarga=NULL WHERE id=:mi");
+        $consulta->execute(array(
+            ":mi"=>$id
+        ));
+    }
+
 }
 
 ?>

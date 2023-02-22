@@ -320,18 +320,39 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
             $claseCarga->crearCarga($_POST['addLocalidad'],$_POST['addFecha']);
             
-            header("Location: index.php");
+            header("Location: index.php?categoria=carga");
 
         }
+
+
+    //ELIMINAR FICHA DE CARGA
+
+    if(isset($_POST["botonBorrarC"])){
+        $claseCarga = new Carga();
+        $claseCarga->borrarCarga($_POST["idBorrarC"]);
+
+        header("Location: index.php?categoria=carga");
+    }
+
+
+    // ELIMINAR ELEMENTO DE FICHA DE CARGA
+
+    if(isset($_GET['eliminarMaterialFicha'])){
+
+        $claseMaterial = new Material();
+        $claseMaterial->quitarFicha($_GET['id']);
+
+        header("Location: index.php?categoria=carga");
+    }
 
     
     //AÑADIR Observacion a ficha de carga
 
 
     if(isset($_POST['anadirOb'])){
-        $claseCarga = new Carga();
+        $nuevaObs = new Carga();
 
-        $claseCarga->updateOb($_POST['id'],$_POST['observacion']);
+        $nuevaObs->updateOb($_POST['id'],$_POST['observacion']);
         
         header("Location: index.php");
 
@@ -343,7 +364,7 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
         $claseLugar = new Lugar();
         $claseLugar->createLugar($_POST['addLocalidad'], $_POST['addRe'], $_POST['addDir']);
 
-        header('Location: index.php');
+        header('Location: index.php?categoria=');
         
     }
 

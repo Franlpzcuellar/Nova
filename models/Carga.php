@@ -10,6 +10,21 @@ class Carga{
         $this->db = Conectar::conexion();
     }
 
+    public function indexCarga(){
+        $consulta = $this->db->prepare("SELECT * FROM carga");
+        $consulta->execute();
+
+        $final = $consulta->fetchAll(PDO::FETCH_OBJ);
+
+        return $final;
+    }
+
+    public function borrarCarga($id){
+        $consulta = $this->db->prepare("DELETE FROM carga WHERE id=:i");
+        $consulta->execute(array(
+            ":i"=>$id
+        ));
+    }
     
 
     public function selectCarga(){
@@ -22,6 +37,7 @@ class Carga{
             M.marca AS mar,
             M.ubicacionMaterial AS ubi,
             C.fecha AS fec,
+            C.observaciones AS obs,
             L.localidad AS loc,
             L.recinto AS rec,
             L.direccion AS dir

@@ -249,10 +249,12 @@
         <a href='?categoria=material&familia=VIDEO' name="video" class="btn categoria ulti">Video</a>
       </div>
       <!--MATERIALES BUSCADOS-->
-      <div class="materiales <?php if (!isset($_GET["buscar"])) {echo "d-none";} ?>">
+      <div class="materiales <?php if (!isset($_GET["buscar"])) {
+                                echo "d-none";
+                              } ?>">
 
         <div class="fichaProducto">
-            <h2>Ficha Producto</h2>
+          <h2>Ficha Producto</h2>
           <?php foreach ($_SESSION['materialBuscado'] as $j) : ?>
 
             <div class="container mb-5 modelo modeloFichaProducto">
@@ -276,7 +278,9 @@
       </div>
 
       <!--MATERIALES-->
-      <div class="materiales <?php if (!isset($_GET["familia"])) {echo "d-none";}?>">
+      <div class="materiales <?php if (!isset($_GET["familia"])) {
+                                echo "d-none";
+                              } ?>">
 
         <div class="fichaProducto">
           <h2>Ficha Producto</h2>
@@ -365,19 +369,28 @@
                   <td><label class="contenido"><?php echo $y->mar; ?></label></td>
                   <td><label class="contenido"><?php echo $y->ubi; ?></label></td>
 
-                  <td><i class="bi bi-trash3-fill"><input type="button" name="botonBorrarMF" id="idBotonBorrarMaterial" class="d-none idBotonBorrarMaterial" data-div=<?php echo $y->id ?>></i></td>
+                  <td>
+                    <a href="index.php?eliminarMaterialFicha=true&id=<?php echo $y->id; ?>">
+                      <i class="bi bi-trash3-fill"></i>
+                    </a>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             </table>
 
             <br>
-            <div>
-              <label for="">Observaciones: <input type="text" class="observacion" id="observacion" name="observacion"></label>
-              <input type="button" class="anadirBoton" name="anadirOb" id="anadirOb" value="Enviar Observaciones" data-id="<?php echo $x->id;?>" data-observacion="<?php echo $x->observacion;?>">
-            </div>
+              <div>
+                <?php
+                $cargasion = new Carga();
+                $nuevaCargasion = $cargasion->indexCarga();
+                ?>
+                  <input type="text" name="observaciones" value="<?php //echo $nuevaCargasion["observaciones"]; ?>"> 
+                 <!-- <a href="index.php?anadirOb=true&id=<?php// echo $nuevaCargasion["id"];&observaciones ?>"></a>-->
+              </div>
+
             <div class="pieBotones">
               <div class="btnModificar">
-                <input type="button" class="modBoton delBotonFicha" name="delBotonFicha" id="delBotonFicha" data-div="pantallaOscuraBorrarC" value="ELIMINAR"></input>
+                <input type="button" class="modBoton delBotonFicha" name="delBotonFicha" id="delBotonFicha" data-id="<?php echo $x->cid; ?>" data-div="pantallaOscuraBorrarC" value="ELIMINAR"></input>
               </div>
               <div class="pdfFicha">
                 <i class="bi bi-filetype-pdf nuevoanadir">&nbsp Descargar PDF</i>
