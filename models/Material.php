@@ -55,7 +55,7 @@ class Material{
     }
 
     public function createMaterial($nombre, $familia, $marca, $foto, $datos, $ubicacion, $observaciones, $numeroSerie){
-        $consulta = $this->db->prepare("INSERT INTO material(nombre, familia, marca, foto, datos, ubicacionMaterial, observaciones, numeroSerie ) VALUES (:n, :f, :m, :o, :d, :u, :ob, :ns)");
+        $consulta = $this->db->prepare("INSERT INTO material(nombre, familia, marca, foto, datos, ubicacionMaterial, observaciones, numero_serie ) VALUES (:n, :f, :m, :o, :d, :u, :ob, :ns)");
 
         $consulta->execute(
             array(

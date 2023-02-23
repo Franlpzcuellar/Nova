@@ -681,7 +681,7 @@
       <input type="text" name="addNumero_serie">
       <label><span class="titulo">Observaciones:</span></label>
       <input type="text" name="addObservacion">
-      <input type="submit" name="addBotonM" id="addBotonM">AÑADIR</select>
+      <input type="submit" name="addBotonM" id="addBotonM" class="anadirBoton">
     </form>
   </div>
 
