@@ -44,7 +44,9 @@ CREATE TABLE material(
     foto VARCHAR(2000),
     datos VARCHAR(5000),
     id_fichaCarga INT DEFAULT NULL,
-    ubicacionMaterial VARCHAR(200)
+    ubicacionMaterial VARCHAR(200),
+    observaciones VARCHAR(5000),
+    numero_serie VARCHAR(250)
 );
 
 CREATE TABLE carga(
@@ -79,18 +81,15 @@ INSERT INTO vehiculo(marca, matricula,modelo,imagen,imagenItv,imagenPermisoCircu
 VALUES
 ("Ford", "217-JFK","KGFORD","furgoneta1.jpg","itv.jpg","permisoCirculacion.jpg","revisionidkqcojonesponer aqui","averia en el motor", 250000, "Mutua Madrileña","29-08-27","Está pa morirse"),
 ("Ford", "098-OYS","Kuga","furgoneta1.jpg","itv.jpg","permisoCirculacion.jpg","revisio aquilorenipmsuasmamsaksadfgqwertyuf","averia en el motorasasadfd", 10000, "Mutua Madrileña","29-08-27","Huele a pedo");
-INSERT INTO material(nombre,familia,marca,foto,datos,ubicacionMaterial)
+INSERT INTO material(nombre,familia,marca,foto,datos,ubicacionMaterial,observaciones,numero_serie)
 VALUES
-("Torre Andamio", "ESTRUCTURAS", "Pro Safe", "andamio.jpg", "Facil y resistente uso", "ESTRU1"),
-("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2"),
-("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2"),
-("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2"),
-("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2"),
-("Cable Eléctrico", "CABLEADO", "Kopp", "cable.jpg", "Tiene la longitud de mi p****", "CABLE3"),
-("Kit de Plataforma de Hombro para Cámara", "VIDEO", "Neewer", "kitplataforma.jpg", "Con esto haces más hombro que en el gym", "VIDEO4"),
-("Caja de Conexión", "VARIOS", "IP55", "cajaConexion.jfif", "A tu madre si que se la conecto", "VAR5"),
-("Apollo Twin MkII Duo Heritage", "SONIDO", "Universal Audio", "apolloTwin.jpg", "Sonidos precisos", "SON6"),
-("Taladro Percutor 18V", "UTILES", "ONE", "taladro.jpg", "Genial", "UTI7");
-
-
-
+("Torre Andamio", "ESTRUCTURAS", "Pro Safe", "andamio.jpg", "Facil y resistente uso", "ESTRU1", "Esta roto", "076534"),
+("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2", "Esta roto", "076473"),
+("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2", "Esta roto", "076545"),
+("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2", "Esta roto", "076334"),
+("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2", "Esta roto", "054534"),
+("Cable Eléctrico", "CABLEADO", "Kopp", "cable.jpg", "Tiene la longitud de mi p****", "CABLE3", "Esta roto", "075504"),
+("Kit de Plataforma de Hombro para Cámara", "VIDEO", "Neewer", "kitplataforma.jpg", "Con esto haces más hombro que en el gym", "VIDEO4", "Esta roto", "076589"),
+("Caja de Conexión", "VARIOS", "IP55", "cajaConexion.jfif", "A tu madre si que se la conecto", "VAR5", "Esta roto", "076835"),
+("Apollo Twin MkII Duo Heritage", "SONIDO", "Universal Audio", "apolloTwin.jpg", "Sonidos precisos", "SON6", "Esta roto", "076871"),
+("Taladro Percutor 18V", "UTILES", "ONE", "taladro.jpg", "Genial", "UTI7", "Esta roto", "076847");

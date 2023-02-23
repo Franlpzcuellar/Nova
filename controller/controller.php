@@ -244,7 +244,7 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
     //MODIFICAR MATERIAL
     if(isset($_POST['editBotonM'])){
         $claseMaterial = new Material();
-        $claseMaterial->updateMaterial($_POST['idEditMaterial'],$_POST['editNombreMaterial'], $_POST['editFamiliaMaterial'],$_POST['editMarcaMaterial'],$_POST['editFotoMaterial'],$_POST['editDatosMaterial'],$_POST['editUbicacionMaterial']);
+        $claseMaterial->updateMaterial($_POST['idEditMaterial'],$_POST['editNombreMaterial'], $_POST['editFamiliaMaterial'],$_POST['editMarcaMaterial'],$_POST['editFotoMaterial'],$_POST['editDatosMaterial'],$_POST['editUbicacionMaterial'],$_POST['editObservacionesMaterial'],$_POST['editNumero_serie']);
         
         header("Location: index.php");
     }
@@ -265,7 +265,7 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
             move_uploaded_file($_FILES["addFoto"]["tmp_name"], $carpetaDestino);
         }
 
-        $claseMaterial->createMaterial($_POST['addNom'],$_POST['addFam'],$_POST['addMarca'], $nombreFotoMaterial,$_POST['addDatos'], $_POST['addUbicacion']);
+        $claseMaterial->createMaterial($_POST['addNom'], $_POST['addFam'], $_POST['addMarca'], $nombreFotoMaterial,$_POST['addDatos'], $_POST['addUbicacion'], $_POST['addObservacion'], $_POST['addNumero_serie']);
 
         header("Location: index.php");
     }
@@ -285,12 +285,12 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     //MODIFICAR MATERIAL
 
-    if(isset($_POST['modBotonM'])){
+    /*if(isset($_POST['modBotonM'])){
         $claseMaterial = new Material();
-        $claseMaterial->updateMaterial($_POST['id'], $_POST['editNombre'],$_POST['editFamilia'],$_POST['editMarca'],$_POST['editFoto'],$_POST['editDatos'], $_POST['editUbicacion']);
+        $claseMaterial->updateMaterial($_POST['id'], $_POST['editNombre'],$_POST['editFamilia'],$_POST['editMarca'],$_POST['editFoto'],$_POST['editDatos'], $_POST['editUbicacion'], $_POST['editObservaciones'],$_POST['editNumero_serie']);
         
         header("Location: index.php");
-    }
+    }*/
 
     //MOSTRAR FICHAS CARGA
 

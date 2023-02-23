@@ -610,19 +610,19 @@ td{
     cursor: pointer;
 }
 
+@media print {
+    .cabeceraFactura{
 
+        position: fixed;
+        top: 0;
+        width: 100%;
+        
+    }
+    table{
 
+        margin-top: 200px;
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
+    
+}

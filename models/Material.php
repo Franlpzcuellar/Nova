@@ -27,8 +27,8 @@ class Material{
         return $final;
     }
     
-    public function updateMaterial($id, $nombre, $familia, $marca, $foto, $datos, $ubicacion){
-        $consulta = $this->db->prepare("UPDATE material SET nombre=:n, familia=:f, marca=:m, foto=:o, datos=:d, ubicacionMaterial=:u WHERE id=:i");
+    public function updateMaterial($id, $nombre, $familia, $marca, $foto, $datos, $ubicacion, $observaciones, $numeroSerie){
+        $consulta = $this->db->prepare("UPDATE material SET nombre=:n, familia=:f, marca=:m, foto=:o, datos=:d, ubicacionMaterial=:u, observaciones=:ob, numero_serie=:ns WHERE id=:i");
 
         $consulta->execute(
             array(
@@ -38,6 +38,8 @@ class Material{
                 ":o" => $foto,
                 ":d" => $datos,
                 ":u" => $ubicacion,
+                ":ob" => $observaciones,
+                ":ns" => $numeroSerie,
                 ":i" => $id
             )
         );
@@ -52,8 +54,8 @@ class Material{
         );
     }
 
-    public function createMaterial($nombre, $familia, $marca, $foto, $datos, $ubicacion){
-        $consulta = $this->db->prepare("INSERT INTO material(nombre, familia, marca, foto, datos, ubicacionMaterial) VALUES (:n, :f, :m, :o, :d, :u)");
+    public function createMaterial($nombre, $familia, $marca, $foto, $datos, $ubicacion, $observaciones, $numeroSerie){
+        $consulta = $this->db->prepare("INSERT INTO material(nombre, familia, marca, foto, datos, ubicacionMaterial, observaciones, numeroSerie ) VALUES (:n, :f, :m, :o, :d, :u, :ob, :ns)");
 
         $consulta->execute(
             array(
@@ -62,7 +64,9 @@ class Material{
                 ":m" => $marca,
                 ":o" => $foto,
                 ":d" => $datos,
-                ":u" => $ubicacion
+                ":u" => $ubicacion,
+                ":ob" => $observaciones,
+                ":ns" => $numeroSerie
             )
         );
     }

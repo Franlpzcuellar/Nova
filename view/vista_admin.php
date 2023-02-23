@@ -259,15 +259,18 @@
 
             <div class="container mb-5 modelo modeloFichaProducto">
               <label><span class="titulo espacioTitulo">ID:</span><?php echo "#" . $j->id ?></label>
+              <label><span class="titulo espacioTitulo">NºSerie:</span><?php echo $j->numero_serie ?></label>
               <label><span class="titulo espacioTitulo">Nombre:</span><?php echo $j->nombre ?></label>
               <label><span class="titulo espacioTitulo">Familia:</span><?php echo $j->familia ?></label>
               <label><span class="titulo espacioTitulo">Marca:</span><?php echo $j->marca ?></label>
               <label><span class="titulo espacioTitulo">Ubicacion:</span><?php echo $j->ubicacionMaterial ?></label>
               <label class="fotoMaterial supFoto"><span class="titulo">Foto</span><img src="<?php echo 'upload/images/' . $j->foto ?>"></label>
               <label><span class="titulo espacioTitulo">Datos:</span><?php echo $j->datos ?></label>
+              <label><span class="titulo espacioTitulo">Observaciones:</span><?php echo $j->observaciones ?></label>
+
 
               <div class="btnModificar btnModificar2">
-                <input type="button" class="modBoton" name="modBotonM" id="modBotonM" value="MODIFICAR" data-div="pantallaOscuraEditMaterial" data-id="<?php echo $j->id ?>" data-nombre="<?php echo $j->nombre ?>" data-familia="<?php echo $j->familia ?>" data-marca="<?php echo $j->marca ?>" data-foto="<?php echo $j->foto ?>" data-datos="<?php echo $j->datos ?>" data-ubicacionMaterial="<?php echo $j->ubicacionMaterial ?>"></input>
+                <input type="button" class="modBoton" name="modBotonM" id="modBotonM" value="MODIFICAR" data-div="pantallaOscuraEditMaterial" data-id="<?php echo $j->id ?>" data-numero_serie="<?php echo $j->numero_serie ?>" data-nombre="<?php echo $j->nombre ?>" data-familia="<?php echo $j->familia ?>" data-marca="<?php echo $j->marca ?>" data-foto="<?php echo $j->foto ?>" data-datos="<?php echo $j->datos ?>" data-ubicacionMaterial="<?php echo $j->ubicacionMaterial ?>"data-observaciones="<?php echo $j->observaciones ?>"></input>
                 <input type="button" class="modBoton addBotonF" name="addBotonF" id="addBotonF" data-div="pantallaOscuraAnadirF" data-id="<?php echo $j->id; ?>" value="AÑADIR A FICHA DE CARGA"></input>
                 <input type="button" class="delBoton delBotonM" name="delBotonM" data-id="<?php echo $j->id; ?>" data-div="pantallaOscuraBorrarM" id="delBotonM" value="ELIMINAR"></input>
               </div>
@@ -289,15 +292,17 @@
 
             <div class="container mb-5 modelo modeloFichaProducto">
               <label><span class="titulo espacioTitulo">ID:</span><?php echo "#" . $x->id ?></label>
+              <label><span class="titulo espacioTitulo">Nº Serie:</span><?php echo $x->numero_serie ?></label>
               <label><span class="titulo espacioTitulo">Nombre:</span><?php echo $x->nombre ?></label>
               <label><span class="titulo espacioTitulo">Familia:</span><?php echo $x->familia ?></label>
               <label><span class="titulo espacioTitulo">Marca:</span><?php echo $x->marca ?></label>
               <label><span class="titulo espacioTitulo">Ubicacion:</span><?php echo $x->ubicacionMaterial ?></label>
               <label class="fotoMaterial supFoto"><span class="titulo">Foto</span><img src="<?php echo 'upload/images/' . $x->foto ?>"></label>
               <label><span class="titulo espacioTitulo">Datos:</span><?php echo $x->datos ?></label>
+              <label><span class="titulo espacioTitulo">Observaciones:</span><?php echo $x->observaciones ?></label>
 
               <div class="btnModificar btnModificar2">
-                <input type="button" class="modBoton" name="modBotonM" id="modBotonM" value="MODIFICAR" data-div="pantallaOscuraEditMaterial" data-id="<?php echo $x->id ?>" data-nombre="<?php echo $x->nombre ?>" data-familia="<?php echo $x->familia ?>" data-marca="<?php echo $x->marca ?>" data-foto="<?php echo $x->foto ?>" data-datos="<?php echo $x->datos ?>" data-ubicacionMaterial="<?php echo $x->ubicacionMaterial ?>"></input>
+                <input type="button" class="modBoton" name="modBotonM" id="modBotonM" value="MODIFICAR" data-div="pantallaOscuraEditMaterial" data-id="<?php echo $x->id ?>" data-nombre="<?php echo $x->nombre ?>" data-familia="<?php echo $x->familia ?>" data-marca="<?php echo $x->marca ?>" data-foto="<?php echo $x->foto ?>" data-datos="<?php echo $x->datos ?>" data-ubicacionMaterial="<?php echo $x->ubicacionMaterial ?>"data-observaciones="<?php echo $x->observaciones ?>"data-numero_serie="<?php echo $x->numero_serie ?>"></input>
                 <input type="button" class="modBoton addBotonF" name="addBotonF" id="addBotonF" data-div="pantallaOscuraAnadirF" data-id="<?php echo $x->id; ?>" value="AÑADIR A FICHA DE CARGA"></input>
                 <input type="button" class="delBoton delBotonM" name="delBotonM" data-id="<?php echo $x->id; ?>" data-div="pantallaOscuraBorrarM" id="delBotonM" value="ELIMINAR"></input>
               </div>
@@ -385,7 +390,7 @@
                 $nuevaCargasion = $cargasion->indexCarga();
                 ?>
                   <input type="text" name="observaciones" value="<?php //echo $nuevaCargasion["observaciones"]; ?>"> 
-                 <!-- <a href="index.php?anadirOb=true&id=<?php// echo $nuevaCargasion["id"];&observaciones ?>"></a>-->
+                 <!-- <a href="index.php?anadirOb=true&id= echo $nuevaCargasion["id"];&observaciones ?>"></a>-->
               </div>
 
             <div class="pieBotones">
@@ -393,17 +398,13 @@
                 <input type="button" class="modBoton delBotonFicha" name="delBotonFicha" id="delBotonFicha" data-id="<?php echo $x->cid; ?>" data-div="pantallaOscuraBorrarC" value="ELIMINAR"></input>
               </div>
               <div class="pdfFicha">
-                <i class="bi bi-filetype-pdf nuevoanadir">&nbsp Descargar PDF</i>
+                <i class="bi bi-filetype-pdf nuevoanadir" >&nbsp IMPRIMIR PDF</i>
               </div>
             </div>
           </div>
         </div>
       <?php endforeach; ?>
     </div>
-
-
-
-
 
 
 
@@ -676,6 +677,10 @@
       <input type="text" name="addDatos">
       <label><span class="titulo">Ubicación del material:</span></label>
       <input type="text" name="addUbicacion">
+      <label><span class="titulo">Nº Serie:</span></label>
+      <input type="text" name="addNumero_serie">
+      <label><span class="titulo">Observaciones:</span></label>
+      <input type="text" name="addObservacion">
       <input type="submit" name="addBotonM" id="addBotonM">AÑADIR</select>
     </form>
   </div>
@@ -741,6 +746,8 @@
     <form method="post" action="index.php" enctype="multipart/form-data" class="pantallaFrontal container mb-5">
       <i class="bi bi-x" data-div="pantallaOscuraEditMaterial"></i>
       <input type="hidden" name="idEditMaterial" id="idEditMaterial" value="">
+      <label><span class="titulo">NºSerie:</span></label>
+      <input class="input" type="text" name="editNumero_serie" id="editNumero_serie">
       <label><span class="titulo">Nombre:</span></label>
       <input class="input" type="text" name="editNombreMaterial" id="editNombreMaterial">
       <label><span class="titulo">Familia:</span></label>
@@ -753,6 +760,8 @@
       <input class="input" type="text" name="editDatosMaterial" id="editDatosMaterial">
       <label><span class="titulo">Ubicacion:</span></label>
       <input class="input" type="text" name="editUbicacionMaterial" id="editUbicacionMaterial">
+      <label><span class="titulo">Observaciones:</span></label>
+      <input class="input" type="text" name="editObservacionesMaterial" id="editObservacionesMaterial">
 
       <div class="botones2">
         <input type="submit" class="anadirBoton" name="editBotonM" id="editBotonM" value="MODIFICAR"></input>
