@@ -105,6 +105,7 @@ $(document).ready(function () {
         $("#editImgPermisoVehiculo").val($(this).data("imagenpermisocirculacion"));
     });
 
+
     $(".delBotonV").click(function (e) {
         e.preventDefault();
 
