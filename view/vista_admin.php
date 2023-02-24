@@ -681,7 +681,7 @@
       <input type="text" name="addNumero_serie">
       <label><span class="titulo">Observaciones:</span></label>
       <input type="text" name="addObservacion">
-      <input type="submit" name="addBotonM" id="addBotonM" class="anadirBoton">
+      <input type="submit" name="addBotonM" id="addBotonM" value="CREAR" class="anadirBoton">
     </form>
   </div>
 
@@ -742,7 +742,7 @@
 
   <!-- DIV MODIFICAR MATERIAL -->
 
-  <div class="pantallaOscura pantallaOscuraEditMaterial d-none">
+  <div class="d-none pantallaOscura pantallaOscuraEditMaterial">
     <form method="post" action="index.php" enctype="multipart/form-data" class="pantallaFrontal container mb-5">
       <i class="bi bi-x" data-div="pantallaOscuraEditMaterial"></i>
       <input type="hidden" name="idEditMaterial" id="idEditMaterial" value="">

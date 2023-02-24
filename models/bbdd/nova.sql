@@ -79,8 +79,8 @@ VALUES
 ("Cristina Rojas","98765240J","981671414674","123456789","cristinaRojas.jpg","C/ San Anton 11 3A","69696969","Profesional de Sonido");
 INSERT INTO vehiculo(marca, matricula,modelo,imagen,imagenItv,imagenPermisoCirculacion,ultimaItv,averias, kms, seguro, fechaSeguro, observaciones)
 VALUES
-("Ford", "217-JFK","KGFORD","furgoneta1.jpg","itv.jpg","permisoCirculacion.jpg","revisionidkqcojonesponer aqui","averia en el motor", 250000, "Mutua Madrileña","29-08-27","Está pa morirse"),
-("Ford", "098-OYS","Kuga","furgoneta1.jpg","itv.jpg","permisoCirculacion.jpg","revisio aquilorenipmsuasmamsaksadfgqwertyuf","averia en el motorasasadfd", 10000, "Mutua Madrileña","29-08-27","Huele a pedo");
+("Ford", "217-JFK","KGFORD","furgoneta1.jpg","itv.jpg","permisoCirculacion.jpg","27-04-2022","averia en el motor", 250000, "Mutua Madrileña","29-08-27","Solo lleva equipos de sonido"),
+("Ford", "098-OYS","Kuga","furgoneta1.jpg","itv.jpg","permisoCirculacion.jpg","25-04-2020","averia en el motorasasadfd", 10000, "Mutua Madrileña","29-08-27","puede llevar 100k de peso");
 INSERT INTO material(nombre,familia,marca,foto,datos,ubicacionMaterial,observaciones,numero_serie)
 VALUES
 ("Torre Andamio", "ESTRUCTURAS", "Pro Safe", "andamio.jpg", "Facil y resistente uso", "ESTRU1", "Esta roto", "076534"),
@@ -88,8 +88,8 @@ VALUES
 ("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2", "Esta roto", "076545"),
 ("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2", "Esta roto", "076334"),
 ("Panel de Luz","ILUMINACION","Prime Lux","luces.jpg","Para fotografías", "ILU2", "Esta roto", "054534"),
-("Cable Eléctrico", "CABLEADO", "Kopp", "cable.jpg", "Tiene la longitud de mi p****", "CABLE3", "Esta roto", "075504"),
-("Kit de Plataforma de Hombro para Cámara", "VIDEO", "Neewer", "kitplataforma.jpg", "Con esto haces más hombro que en el gym", "VIDEO4", "Esta roto", "076589"),
-("Caja de Conexión", "VARIOS", "IP55", "cajaConexion.jfif", "A tu madre si que se la conecto", "VAR5", "Esta roto", "076835"),
+("Cable Eléctrico", "CABLEADO", "Kopp", "cable.jpg", "Longitud de 3m", "CABLE3", "Esta roto", "075504"),
+("Kit de Plataforma de Hombro para Cámara", "VIDEO", "Neewer", "kitplataforma.jpg", "altura de 10m", "VIDEO4", "Esta roto", "076589"),
+("Caja de Conexión", "VARIOS", "IP55", "cajaConexion.jfif", "conexion eficaz", "VAR5", "Esta roto", "076835"),
 ("Apollo Twin MkII Duo Heritage", "SONIDO", "Universal Audio", "apolloTwin.jpg", "Sonidos precisos", "SON6", "Esta roto", "076871"),
 ("Taladro Percutor 18V", "UTILES", "ONE", "taladro.jpg", "Genial", "UTI7", "Esta roto", "076847");

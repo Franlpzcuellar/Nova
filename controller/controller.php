@@ -285,12 +285,12 @@ if(!isset($_SESSION["nombre"])){ // Este if sirve para que nos envíe al login s
 
     //MODIFICAR MATERIAL
 
-    /*if(isset($_POST['modBotonM'])){
+    if(isset($_POST['modBotonM'])){
         $claseMaterial = new Material();
         $claseMaterial->updateMaterial($_POST['id'], $_POST['editNombre'],$_POST['editFamilia'],$_POST['editMarca'],$_POST['editFoto'],$_POST['editDatos'], $_POST['editUbicacion'], $_POST['editObservaciones'],$_POST['editNumero_serie']);
         
         header("Location: index.php");
-    }*/
+    }
 
     //MOSTRAR FICHAS CARGA
 
